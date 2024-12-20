@@ -1,4 +1,8 @@
+import Categories from "./Categories";
+import ContactForm from "./ContactForm";
 import Faq from "./Faq";
+import FeaturedProducts from "./FeaturedProducts";
+import Testomonial from "./Testomonial";
 
 
 const Home = () => {
@@ -22,7 +26,23 @@ const Home = () => {
                 </div>
             </div>
             <div className="my-10">
-                <p className="font-extrabold flex justify-center mb-10">FAQ</p>
+                <p className="font-extrabold flex justify-center mb-10 text-4xl">Featured Products</p>
+                <FeaturedProducts></FeaturedProducts>
+            </div>
+            
+            <div className="my-10">
+                <Testomonial></Testomonial>
+            </div>
+            <div className="my-10">
+            <p className="font-extrabold flex justify-center mb-10 text-4xl">Categories</p>
+            <Categories></Categories>
+            </div>
+            <div className="my-10">
+            <p className="font-extrabold flex justify-center mb-10 text-4xl">Contact</p>
+            <ContactForm></ContactForm>
+            </div>
+            <div className="my-10">
+                <p className="font-extrabold flex justify-center mb-10 text-4xl">FAQ</p>
                 <Faq></Faq>
             </div>
         </div>
