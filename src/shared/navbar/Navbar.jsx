@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 
 const Navbar = () => {
+  const { user, logOut } = useAuth()
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar container mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -29,7 +31,7 @@ const Navbar = () => {
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl">Mobile Shop</Link>
+        <Link to="/" className=" text-xl">Mobile Shop</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -39,8 +41,14 @@ const Navbar = () => {
           <li><Link to="/contact">Contact</Link></li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <Link to="/login" className="btn btn-primary">Login</Link>
+      <div className="navbar-end gap-4">
+        {
+          user? <Link to="/dashboard" className="btn btn-accent ">Dashboard</Link> : <p></p>
+        }
+        {
+          user? <button onClick={logOut} className="btn btn-secondary">Logout</button> : <Link to="/login" className="btn btn-primary">Login</Link>
+        }
+        
       </div>
     </div>
   );

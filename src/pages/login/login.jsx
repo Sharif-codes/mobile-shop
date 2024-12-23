@@ -4,13 +4,14 @@ import { FcGoogle } from 'react-icons/fc'
 import toast from 'react-hot-toast'
 import { ImSpinner3 } from "react-icons/im";
 import useAuth from '../../Hooks/useAuth';
+import { saveUser } from '../../Api/saveUser';
 // import useSaveUser from '../../hooks/useSaveUser';
 
 // import { saveUser } from '../../api/auth';
 
 const Login = () => {
     const navigate = useNavigate()
-  const { signIn,signInWithGoogle, loading } = useAuth()
+  const { signIn,signInWithGoogle, loading,setLoading } = useAuth()
   const location= useLocation()
   const from= location?.state?.from?.pathname || "/";
   const handleLogin = async e => {
@@ -30,10 +31,12 @@ const Login = () => {
       //get token
       // await getToken(result?.user?.email)
       toast.success('Successfully login')
+      setLoading(0)
       navigate(from,{replace:true})
     }
     catch (error) {
       console.log(error);
+      setLoading(0)
       toast.error(error?.message)
     }
   }
@@ -42,16 +45,18 @@ const Login = () => {
       signInWithGoogle()
       .then(result=>{
         console.log(result);
-        // saveUser(result?.user, result?.user?.displayName)
+        saveUser(result?.user, result?.user?.displayName)
         //get token
         // getToken(result?.user?.email)
-        toast.success('Registration successful')
+        toast.success('successfully Logged In!')
+        setLoading(0)
       navigate(from, {replace:true})
       console.log(loading);
       } )
     }
     catch (error) {
       console.log(error);
+      setLoading(0)
       toast.error(error?.message)
     }
   }
@@ -130,7 +135,7 @@ const Login = () => {
           <p className='px-6 text-sm text-center text-gray-400'>
             Don&apos;t have an account yet?{' '}
             <Link
-              to='/signup'
+              to='/register'
               className='hover:underline hover:text-info text-gray-600'
             >
               Sign up
