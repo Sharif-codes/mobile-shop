@@ -4,10 +4,14 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { ImSpinner3 } from "react-icons/im";
 import { saveUser } from "../../Api/saveUser";
+import { useState } from "react";
 
 
 const Register = () => {
   const navigate = useNavigate()
+  const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+  const numberRegex = /\d/;
+  const caseRegex = /(?=.*[a-z])(?=.*[A-Z])/;
   const { createUser, updateUserProfile, signInWithGoogle, loading, setLoading } = useAuth()
   const location = useLocation()
   const from = location?.state?.from?.pathname || "/";
@@ -22,6 +26,23 @@ const Register = () => {
     // const image = form.image.files[0]
     console.log(email, name, password)
 
+    if (password.length < 6) {
+      toast.error(`password must be longer than 6`)
+      return;
+    }
+    if (!specialChars.test(password)) {
+      toast.error(`Password must contain a special character`)
+      return;
+    }
+    if (!numberRegex.test(password)) {
+      toast.error(`Password must contain a Number`)
+      return;
+    }
+    if (!caseRegex.test(password)) {
+      toast.error(`Password must contain uppercase and lowercase letters`)
+      return;
+    }
+
     try {
       // upload image
       //   const imageData = await imgUpload(image)
@@ -30,8 +51,8 @@ const Register = () => {
       updateUserProfile(name)
       console.log(result)
       // save user in database
-        const dbResponse = await saveUser(result?.user,name,role)
-        console.log(dbResponse);
+      const dbResponse = await saveUser(result?.user, name, role)
+      console.log(dbResponse);
       // get token
       // await getToken(result?.user?.email)
       toast.success('Registration successful')
@@ -40,6 +61,7 @@ const Register = () => {
     }
     catch (error) {
       console.log(error);
+      setLoading(0)
       toast.error(error?.message)
     }
   }
@@ -48,7 +70,7 @@ const Register = () => {
       signInWithGoogle()
         .then(result => {
           console.log(result.user);
-            saveUser(result?.user, result?.user?.displayName)
+          saveUser(result?.user, result?.user?.displayName)
           //get token
           // getToken(result?.user?.email)
           toast.success('Successfullly Registered with google')
@@ -100,7 +122,7 @@ const Register = () => {
                 name="role"
                 id="role"
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-info bg-gray-200 text-gray-900'
-                
+
               >
                 <option value="buyer">Buyer</option>
                 <option value="seller">Seller</option>
@@ -160,6 +182,7 @@ const Register = () => {
             </button>
           </div>
         </form>
+
         <div className='flex items-center pt-4 space-x-1'>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
           <p className='px-3 text-sm dark:text-gray-400'>

@@ -1,12 +1,13 @@
 import ProductCard from "../../../components/ProductCard/ProductCard";
+import Spinner from "../../../components/spinner/spinner";
 import useAllsellerProducts from "../../../Hooks/useAllsellerProducts";
 
 const SellerProducts = () => {
-    const allSellerProducts = useAllsellerProducts();
+    const [allSellerProducts,productLoading] = useAllsellerProducts();
 
     return (
         <div className="grid grid-cols-3">
-            {allSellerProducts.length > 0 ? (
+            {productLoading? <Spinner></Spinner>: allSellerProducts.length > 0 ? (
                 allSellerProducts.map((product) => (
                     <ProductCard key={product.sellerEmail} product={product}></ProductCard>
                 ))

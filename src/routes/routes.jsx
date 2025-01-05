@@ -14,6 +14,8 @@ import SellerProducts from "../pages/Dashboard/Seller/SellerProducts";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 import Cart from "../pages/Dashboard/Buyer/Cart";
 import Wishlist from "../pages/Dashboard/Buyer/Wishlist";
+import DashboardHome from "../pages/Dashboard/DashboardHome";
+import ProductDetailsPage from "../pages/Products/ProductDetailsPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "/products",
         element: <PrivateRoute><Products></Products></PrivateRoute> 
+      },
+      {
+        path: "/products/details",
+        element: <PrivateRoute><ProductDetailsPage></ProductDetailsPage></PrivateRoute> 
       },
       {
         path: "/contact",
@@ -45,6 +51,10 @@ export const router = createBrowserRouter([
     element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute> ,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "/dashboard",
+        element: <DashboardHome></DashboardHome>
+      },
       {
         path: "/dashboard/contact",
         element: <ContactForm></ContactForm>
@@ -66,7 +76,7 @@ export const router = createBrowserRouter([
         element: <Cart></Cart>
       },
       {
-        path: "/dashboard/wishlist",
+        path: "/dashboard/wishList",
         element: <Wishlist></Wishlist>
       },
     ]

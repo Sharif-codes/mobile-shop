@@ -24,7 +24,7 @@ const AddProduct = () => {
         if(res)
         {
             toast.success("product added")
-            navigate("/dashboard/sellerProducts")
+            // navigate("/dashboard/sellerProducts")
             
         }
         else{

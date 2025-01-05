@@ -40,6 +40,7 @@ const buyerRoute= [
         icon: <FaCartPlus></FaCartPlus>
     },
 ]
+
 const DashboardLayout = () => {
     const userData= useUserData()
     const {logout}= useAuth()
@@ -58,16 +59,16 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                    <ul className="menu bg-blue-200 text-base-content min-h-full w-80 p-4 text-center">
                         {/* Sidebar content here */}
-                        <p className="text-2xl text-red-400 border-2 rounded-xl p-2">Mobile Shop</p>
+                        <p className="text-2xl text-red-400 border-2 rounded-xl p-2 ">Mobile Shop</p>
                         <li><Link to="/"><><FaHome></FaHome></><>Home</></Link></li>
                         
                         {userData.role === "seller" && sellerRoute.map(route=> <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
                         {userData.role === "buyer" && buyerRoute.map(route=> <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
                         {userData.role === "admin" && adminRoute.map(route=> <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
                         <li><Link to="/dashboard/contact"><><FaMessage></FaMessage></><>Contact us</></Link></li>
-                        <li><Link to="/login" onClick={logout}><><FaSignOutAlt></FaSignOutAlt></><>Logout</></Link></li>
+                        <li><Link onClick={logout} to="/login" ><><FaSignOutAlt></FaSignOutAlt></><>Logout</></Link></li>
                     </ul>
                 </div>
             </div>

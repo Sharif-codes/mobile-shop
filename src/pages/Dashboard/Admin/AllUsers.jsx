@@ -109,18 +109,22 @@ const AllUsers = () => {
                             <td>{item.role}</td>
                             <td>
                                 {
-                                    item.role == "buyer"? <button
+                                   item.role == "admin"? <></>: item.role == "buyer"? <button
                                     onClick={() => handleUpdateToSeller(item.email)}
                                     className='btn btn-sm btn-success'>Make Seller</button> : <button onClick={() => handleUpdateToBuyer(item.email)} className='btn btn-sm btn-accent'>Make Buyer</button>
                                 }
+                               
                             </td>
                             <td>
-                                <button
+                                {
+                                    item.role== "admin"? <></>:<button
                                     onClick={() => handleMemberRemove(item.email)}
                                     className="btn btn-primary"
                                 >
-                                    Remove
+                                    Delete
                                 </button>
+                                }
+                                
                             </td>
                         </tr>
                     ))}

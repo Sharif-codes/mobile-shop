@@ -1,7 +1,5 @@
 import axios from "axios";
-
 export const saveUser= async (user,name,role) =>{
-
     if (!role) {
         role= "buyer"
     }
