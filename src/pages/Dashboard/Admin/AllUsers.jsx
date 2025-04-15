@@ -2,7 +2,7 @@ import axios from 'axios';
 import useAllUser from '../../../Hooks/useAllUser';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
-
+import { deleteDoc,doc } from 'firebase/firestore';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const AllUsers = () => {
@@ -13,6 +13,7 @@ const AllUsers = () => {
         queryKey: ["users"],
         queryFn: async () => {
           const res = await axiosPublic.get("/getAllUser");
+          console.log(res.data);
           return res?.data;
         },
       });
@@ -28,9 +29,14 @@ const AllUsers = () => {
           confirmButtonText: "Remove User",
         }).then(async (result) => {
           if (result.isConfirmed) {
-            const res = await axiosPublic.delete(`/userRemove/${email}`);
+            try {
+              const res = await axiosPublic.delete(`/userRemove/${email}`);
             console.log(res.data);
             refetch();
+            } catch (error) {
+              console.error(error);
+            }
+            
             Swal.fire({
               title: "Removed!",
               text: "The Member is deleted to user now",
@@ -91,7 +97,7 @@ const AllUsers = () => {
             <table className="table table-xs table-pin-rows table-pin-cols">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>#</th>
                         <td>Name</td>
                         <td>Email</td>
                         <td>Role</td>

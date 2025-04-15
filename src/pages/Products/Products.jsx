@@ -64,11 +64,11 @@ const Products = () => {
             </div>
             {/* content */}
             <div className="grid grid-cols-12 gap-2 mt-2">
-                <div className="col-span-2">
+                <div className="col-span-5 lg:col-span-2 md:col-span-3">
                     <FilterBar setBrand={setBrand} setCategory={setCategory} handleReset={handleReset} uniqueBrands={uniqueBrands}
                         uniqueCategory={uniqueCategory}></FilterBar>
                 </div>
-                <div className="col-span-10">
+                <div className="col-span-7 lg:col-span-10 md:col-span-9">
                     {
                         loading ? (
                             <Spinner></Spinner>
@@ -77,7 +77,7 @@ const Products = () => {
                                 {
                                     products?.length === 0 ? (<div className="w-full h-full flex items-center justify-center">
                                         <h1 className="text-3xl font-bold">No product found</h1>
-                                    </div>) : (<div className=" grid grid-cols-3 gap-2">
+                                    </div>) : (<div className=" grid grid-cols-1 md:grid-cols-3 gap-2">
                                         {
                                             products?.map(item =>
                                                 <ProductCard key={item?.objectId} product={item}></ProductCard>

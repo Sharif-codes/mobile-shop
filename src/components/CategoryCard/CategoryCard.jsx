@@ -8,7 +8,7 @@ const CategoryCard = ({categories}) => {
                     <img
                         src={categories.img}
                         alt={categories.name}
-                        className="w-full h-60 object-cover rounded-t-md " />
+                        className=" h-24 md:h-44 lg:h-52 object-fit rounded-t-md " />
                 </figure>
                 
             </div>

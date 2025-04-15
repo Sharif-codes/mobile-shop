@@ -18,10 +18,15 @@ const Categories = () => {
             id:3,
             name: "Apple",
             img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCD6cl92WdvaHCBq4ySNtAt6IC-vI6J-mxmQ&s"
+        },
+        {
+            id:3,
+            name: "Apple",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCD6cl92WdvaHCBq4ySNtAt6IC-vI6J-mxmQ&s"
         }
     ]
     return (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 ">
             {categoriesData.map(item=><CategoryCard key={item.id} categories={item}></CategoryCard> )}
           
         </div>

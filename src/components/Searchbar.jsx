@@ -8,7 +8,7 @@ const Searchbar = ({handleSearch}) => {
             <input type="text" 
             placeholder="Search products"
             name="search"
-            className="max-w-md p-[10px] border-2 border-black rounded-l-md "
+            className="md:max-w-md w-40 p-[10px] border-2 border-black rounded-l-md "
             />
             <button className="btn rounded-l-none border-2 rounded-r-md bg-gray-300 btn-outline "><IoMdSearch size={20}> </IoMdSearch></button>
             

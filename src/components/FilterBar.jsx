@@ -11,13 +11,13 @@ const FilterBar = ({setBrand,setCategory,handleReset,uniqueBrands,uniqueCategory
             </div>
             <div className="mt-8 flex flex-col gap-2 items-center">
                 <div className="w-md">
-                    <select className="p-[11px] w-48 border border-black rounded-md" onChange={(e)=> setBrand(e.target.value)} >
+                    <select className="p-[11px] w-36 lg:w-48 md:w-40 border border-black rounded-md" onChange={(e)=> setBrand(e.target.value)} >
                         <option value="">Brand</option>
                         {uniqueBrands.map((brand)=> <option key={brand} value={brand}>{brand}</option>)}
                     </select>
                 </div>
                 <div className="w-md">
-                    <select className="p-[11px] w-48 border border-black rounded-md" onChange={(e)=> setCategory(e.target.value)} >
+                    <select className="p-[11px] w-36 lg:w-48 md:w-40 border border-black rounded-md" onChange={(e)=> setCategory(e.target.value)} >
                         <option value="">Category</option>
                         {uniqueCategory.map((category)=> <option key={category} value={category}>{category}</option>)}
                     </select>

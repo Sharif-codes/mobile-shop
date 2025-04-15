@@ -9,7 +9,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateProfile,
+  updateProfile
 } from 'firebase/auth'
 // import { app } from '../firebase/firebase.config'
 

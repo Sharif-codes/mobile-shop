@@ -16,6 +16,7 @@ import Cart from "../pages/Dashboard/Buyer/Cart";
 import Wishlist from "../pages/Dashboard/Buyer/Wishlist";
 import DashboardHome from "../pages/Dashboard/DashboardHome";
 import ProductDetailsPage from "../pages/Products/ProductDetailsPage";
+import SettingsPage from "../pages/Settings/SettingsPage";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <About></About>
+      },
+      {
+        path: "/settings",
+        element: <SettingsPage></SettingsPage>
       }
     ]
 
@@ -79,6 +84,10 @@ export const router = createBrowserRouter([
         path: "/dashboard/wishList",
         element: <Wishlist></Wishlist>
       },
+      {
+        path: "/dashboard/settings",
+        element: <SettingsPage></SettingsPage>
+      }
     ]
   },
   {
