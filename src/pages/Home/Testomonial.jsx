@@ -51,9 +51,6 @@ const Testomonial = () => {
                             </figcaption>
                         </figure>
                     </div>
-                    <div className="text-center">
-                    <button className="btn btn-primary rounded-md">Submit</button>
-                    </div>
                 </div>
             </section>
 

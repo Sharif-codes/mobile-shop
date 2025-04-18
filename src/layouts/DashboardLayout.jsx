@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useUserData from "../Hooks/useUserData";
 import { AiFillProduct } from "react-icons/ai";
-import { FaCartPlus, FaHome, FaRegListAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaCartPlus, FaHome, FaProductHunt, FaRegListAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
 import { FaMessage } from "react-icons/fa6";
 import { useSelector } from "react-redux";
@@ -12,6 +12,12 @@ const adminRoute= [
         route: "/dashboard/allUsers",
         title: "All users",
         icon: <FaUser></FaUser>
+    },
+    {
+        id:2,
+        route: "/dashboard/allProducts",
+        title: "All products",
+        icon: <FaProductHunt></FaProductHunt>
     }
 ]
 const sellerRoute= [
@@ -61,10 +67,9 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className={`menu ${theme=='black' && 'luxury' && 'lofi'? 'text-white' : 'text-primary'}  bg-neutral   min-h-full w-80 p-4`}>
+                    <ul className={`menu menu-vertical bg-sky-300  min-h-full w-80 p-4`}>
                         {/* Sidebar content here */}
                         <p className={`md:text-3xl text-2xl md:font-semibold font-semibold ${theme=='black' && 'luxury' && 'lofi'? 'text-sky-500' : 'text-primary'}  p-2` }>Mobile Shop</p>
-                        
                         
                         {userData.role === "seller" && sellerRoute.map(route=> <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
                         {userData.role === "buyer" && buyerRoute.map(route=> <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}

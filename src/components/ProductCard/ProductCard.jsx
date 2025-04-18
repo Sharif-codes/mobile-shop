@@ -88,22 +88,19 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
     };
     return (
 
-        <div className="rounded-md mt-4 border-1 shadow-md" >
-            <div onClick={handleDetailsPage} className="cursor-pointer" >
+        <div className="rounded-md mx-4 mt-4 border-1 shadow-md" >
+            <div onClick={handleDetailsPage} className="cursor-pointer flex justify-center " >
                 <img
                     src={product?.photo_url}
                     alt="product image"
-                    className="w-full h-32 md:h-52 object-cover rounded-t-md " />
+                    className="h-28  object-cover rounded-t-md " />
             </div>
 
             <div className="p-1 md:p-2 text-center">
-                <h2 className="text-sm md:text-xl text-center font-semibold">{product?.name}</h2>
-                <h2 className="text-xs md:text-lg font-semibold ">Brand: {product?.brand}</h2>
+                <h2 className="text-sm text-center font-semibold">{product?.name}</h2>
+                <h2 className="text-xs font-semibold ">Brand: {product?.brand}</h2>
                 <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>
-                <h2 className="text-xs md:text-sm font-semibold">Category: {product?.category}</h2>
-
-                <p className="text-xs mt-1 md:mt-2">{product?.description.length < 50 ? `${product?.description}` : `${product?.description.slice(0, 50)}...`}</p>
-
+                <h2 className="text-xs font-semibold">Category: {product?.category}</h2>
                 <div className="mt-2">
                     {user.role === "buyer" && location.pathname === "/products" && (
                         <div className="flex justify-between gap-1">

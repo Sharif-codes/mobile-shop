@@ -5,6 +5,7 @@ import Faq from "./Faq";
 import FeaturedProducts from "./FeaturedProducts";
 import Testomonial from "./Testomonial";
 import { useSelector } from "react-redux";
+import Footer from "../../shared/footer/Footer";
 
 
 const Home = () => {
@@ -50,9 +51,10 @@ const Home = () => {
                 <ContactForm></ContactForm>
             </div>
             <div className="my-10">
-                <p className="font-extrabold flex justify-center mb-10 text-4xl">FAQ</p>
                 <Faq></Faq>
             </div>
+            {/* footer section */}
+            <Footer></Footer>
         </div>
     );
 };
