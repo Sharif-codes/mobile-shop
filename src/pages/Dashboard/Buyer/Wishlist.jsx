@@ -14,7 +14,9 @@ const Wishlist = () => {
                 <ProductCard key={idx} product={product} refetchWishlist={refetchWishlist}></ProductCard>
             ))
         ) : (
-            <p className="text-center">No products available</p>
+            <div className="flex  justify-center items-center  text-blue-500 h-screen ">
+            <div className="text-xl font-bold p-2 animate-bounce "> No Items...</div>
+        </div>
         )}
     </div>
     );

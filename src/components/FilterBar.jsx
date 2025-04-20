@@ -5,7 +5,7 @@ import { TbFilter } from "react-icons/tb";
 const FilterBar = ({setBrand,setCategory,setSeller,handleReset,uniqueBrands,uniqueCategory,uniqueSeller}) => {
     uniqueSeller.splice(0,1)
     return (
-        <div className="bg-gray-200  min-h-screen p-4 rounded-r-md ">
+        <div className="bg-gray-200 h-fit md:min-h-screen p-2 md:p-4 rounded-md ">
             <div className="flex items-center gap-3">
                 
                 <h2 className="text-xl font-semibold flex justify-center items-center"><span><TbFilter size={20}></TbFilter></span><span>Filters</span></h2>
@@ -30,7 +30,7 @@ const FilterBar = ({setBrand,setCategory,setSeller,handleReset,uniqueBrands,uniq
                     </select>
                 </div>
             </div>
-            <button className="btn btn-primary w-full mt-4 flex items-center" onClick={handleReset}>Reset<GrPowerReset></GrPowerReset></button>
+            <button className="btn btn-md btn-primary w-full mt-4 flex items-center" onClick={handleReset}>Reset<GrPowerReset></GrPowerReset></button>
         </div>
     );
 };

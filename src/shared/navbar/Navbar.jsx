@@ -5,7 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 const Navbar = () => {
   const { user, logOut } = useAuth()
   return (
-    <div className="navbar container mx-auto borer border-b">
+    <div className="navbar container border-b">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -45,10 +45,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-4">
         {
-          user? <Link to="/dashboard" className="btn btn-accent rounded-md">Dashboard</Link> : <p></p>
+          user ? <Link to="/dashboard" className="btn btn-accent rounded-md">Dashboard</Link> : <p></p>
         }
         {
-          user? <button onClick={logOut} className="btn btn-secondary rounded-md">Logout</button> : <Link to="/login" className="btn btn-primary">Login</Link>
+          user ? <button onClick={logOut} className="btn btn-secondary rounded-md">Logout</button> : <Link to="/login" className="btn btn-primary">Login</Link>
         }
       </div>
     </div>

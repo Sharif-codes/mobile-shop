@@ -11,7 +11,7 @@ import Footer from "../../shared/footer/Footer";
 const Home = () => {
     const theme = useSelector((state) => state.theme.value)
     return (
-        <div data-theme={theme} >
+        <div data-theme={theme} className="md:space-y-12 space-y-4" >
             <div
                 className="hero min-h-screen mx-auto"
                 style={{
@@ -28,7 +28,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="my-10">
+            <div className="">
                 <p className="font-extrabold flex justify-center mb-10 text-4xl">Featured Products</p>
                 <div className="flex justify-center">
                     <FeaturedProducts></FeaturedProducts>
@@ -36,25 +36,23 @@ const Home = () => {
 
             </div>
 
-            <div className="my-10">
+            <div className="">
                 <Testomonial></Testomonial>
             </div>
-            <div className="my-10">
+            <div className="">
                 <p className="font-extrabold flex justify-center mb-10 text-4xl">Categories</p>
                 <div className="flex justify-center">
                     <Categories></Categories>
                 </div>
                 
             </div>
-            <div className="my-10">
+            <div className="">
                 <p className="font-extrabold flex justify-center mb-10 text-4xl">Contact</p>
                 <ContactForm></ContactForm>
             </div>
-            <div className="my-10">
+            <div className="">
                 <Faq></Faq>
             </div>
-            {/* footer section */}
-            <Footer></Footer>
         </div>
     );
 };

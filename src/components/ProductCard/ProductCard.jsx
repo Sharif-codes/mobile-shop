@@ -93,7 +93,7 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
                 <img
                     src={product?.photo_url}
                     alt="product image"
-                    className="h-28  object-cover rounded-t-md " />
+                    className="h-28  object-cover rounded-t-md bg-neutral" />
             </div>
 
             <div className="p-1 md:p-2 text-center">
