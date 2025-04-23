@@ -37,6 +37,10 @@ const Home = () => {
             </div>
 
             <div className="">
+                <div className="mx-auto max-w-sm ">
+                    <h2 className=" text-4xl tracking-tight font-extrabold text-center ">Testimonials</h2>
+                    <p className=" font-light text-gray-500 lg:mb-10 sm:text-xl dark:text-gray-400 text-center">What our client says about us!</p>
+                </div>
                 <Testomonial></Testomonial>
             </div>
             <div className="">
@@ -44,7 +48,7 @@ const Home = () => {
                 <div className="flex justify-center">
                     <Categories></Categories>
                 </div>
-                
+
             </div>
             <div className="">
                 <p className="font-extrabold flex justify-center mb-10 text-4xl">Contact</p>
