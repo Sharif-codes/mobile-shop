@@ -8,7 +8,6 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { TbFilter } from "react-icons/tb";
 
-
 const Products = () => {
     const axiosPublic = useAxiosPublic()
     const [products, setProducts] = useState([])
@@ -18,7 +17,6 @@ const Products = () => {
     const [brand, setBrand] = useState("")
     const [category, setCategory] = useState("")
     const [seller, setSeller] = useState("")
-
     const [uniqueBrands, setUniqueBrands] = useState([])
     const [uniqueCategory, setUniqueCategory] = useState([])
     const [uniqueSeller, setUniqueSeller] = useState([])
@@ -26,13 +24,13 @@ const Products = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [toggleFilter, setToggleFilter] = useState(1);
 
-    useEffect(() => {
+    useEffect(() => { 
         const fetch = async () => {
             setLoading(true);
             try {
                 const { data } = await axiosPublic.get(
-                    `/allProducts?name=${search}&page=${page}&$limit=${9}&sort=${sort}&brand=${brand}&category=${category}&seller=${seller}`
-                );
+                    `/allProducts?name=${search}&page=${page}&$limit=${9}&sort=${sort}&brand=${brand}&category=${category}&seller=${seller}`);
+
                 console.log("API Response:", data);
                 setProducts(data.products || []);
                 setUniqueBrands(data.brands || []);
@@ -55,6 +53,7 @@ const Products = () => {
         setSearch(e.target.search.value)
         e.target.search.value = "";
     }
+
     const handleReset = () => {
         setSearch("")
         setBrand("")
@@ -70,18 +69,17 @@ const Products = () => {
         }
     }
 
-
     return (
-        <div className="container mx-auto">
+        <div className=" mx-auto">
             <h1 className="text-2xl my-6 font-semibold text-center">All Products</h1>
             <div className="lg: flex justify-between items-center w-full">
                 <Searchbar handleSearch={handleSearch} ></Searchbar>
                 <SortByPrice setSort={setSort}></SortByPrice>
             </div>
-            <div className="md:hidden flex justify-center my-2 items-center" onClick={()=> toggleFilter===1?setToggleFilter(0):setToggleFilter(1)}>
+            <div className="md:hidden flex justify-center my-2 items-center" onClick={() => toggleFilter === 1 ? setToggleFilter(0) : setToggleFilter(1)}>
                 <TbFilter size={24}></TbFilter><span className="text-xl font-semibold">Filter</span>
             </div>
-            <div className={`md:hidden ${toggleFilter===1? 'block':'hidden'}`}>
+            <div className={`md:hidden ${toggleFilter === 1 ? 'block' : 'hidden'}`}>
                 <FilterBar setBrand={setBrand} setCategory={setCategory} setSeller={setSeller} handleReset={handleReset} uniqueBrands={uniqueBrands}
                     uniqueCategory={uniqueCategory} uniqueSeller={uniqueSeller}>
                 </FilterBar>
@@ -90,7 +88,8 @@ const Products = () => {
             <div className="grid grid-cols-12 gap-2 mt-2">
                 <div className="hidden md:block col-span-5 lg:col-span-2 md:col-span-3 ">
                     <FilterBar setBrand={setBrand} setCategory={setCategory} setSeller={setSeller} handleReset={handleReset} uniqueBrands={uniqueBrands}
-                        uniqueCategory={uniqueCategory} uniqueSeller={uniqueSeller}>
+                    uniqueCategory={uniqueCategory}
+                    uniqueSeller={uniqueSeller}>
                     </FilterBar>
                 </div>
 
@@ -101,9 +100,9 @@ const Products = () => {
                         ) : (
                             <>
                                 {
-                                    products?.length === 0 ? (<div className="w-full h-full flex items-center justify-center">
-                                        <h1 className="text-3xl font-bold">No product found</h1>
-                                    </div>) : (<div className=" grid grid-cols-2 md:grid-cols-3 gap-2">
+                                    products?.length === 0 ? (<div className="w-full h-screen flex items-center justify-center">
+                                        <p className="text-3xl font-bold">No product found</p>
+                                    </div>) : (<div className=" grid grid-cols-2 md:grid-cols-3  gap-2">
                                         {
                                             products?.map(item =>
                                                 <ProductCard key={item?.objectId} product={item}></ProductCard>
@@ -117,7 +116,6 @@ const Products = () => {
                     {/* pagination */}
                     <div className="flex justify-center items-center gap-2 my-8">
                         <button className="btn  p-2 border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
-
                             disabled={page === 1}>
                             <FaArrowLeft  ></FaArrowLeft>
                         </button>
@@ -126,10 +124,8 @@ const Products = () => {
                             disabled={page === totalPages}>
                             <FaArrowRight ></FaArrowRight>
                         </button>
-
                     </div>
                 </div>
-
             </div>
         </div>
     );

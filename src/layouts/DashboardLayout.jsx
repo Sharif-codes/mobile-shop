@@ -6,6 +6,8 @@ import useAuth from "../Hooks/useAuth";
 import { FaMessage } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { FiSettings } from "react-icons/fi";
+import { TbCategoryPlus } from "react-icons/tb";
+
 const adminRoute= [
     {
         id:1,
@@ -32,6 +34,12 @@ const sellerRoute= [
         route: "/dashboard/addProducts",
         title: "Add Products",
         icon: <FaCartPlus></FaCartPlus>
+    },
+    {
+        id:3,
+        route: "/dashboard/Categories",
+        title: "Categories",
+        icon: <TbCategoryPlus></TbCategoryPlus>
     },
 ]
 const buyerRoute= [
@@ -70,7 +78,6 @@ const DashboardLayout = () => {
                     <ul className={`menu menu-vertical bg-sky-300  min-h-full w-80 p-4`}>
                         {/* Sidebar content here */}
                         <p className={`md:text-3xl text-2xl md:font-semibold font-semibold ${theme=='black' && 'luxury' && 'lofi'? 'text-sky-500' : 'text-primary'}  p-2` }>Mobile Shop</p>
-                        
                         {userData.role === "seller" && sellerRoute.map(route=> <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
                         {userData.role === "buyer" && buyerRoute.map(route=> <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
                         {userData.role === "admin" && adminRoute.map(route=> <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}

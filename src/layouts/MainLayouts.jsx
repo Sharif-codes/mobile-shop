@@ -8,7 +8,7 @@ const MainLayout = () => {
     const theme = useSelector((state) => state.theme.value)
     return (
         <div className="container mx-auto" data-theme={theme}>
-            <div className="mx-4" >
+            <div className="mx-4 mb-2" >
               <Navbar></Navbar>  
             </div>
             <div className="mx-4">

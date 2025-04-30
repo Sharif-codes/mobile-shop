@@ -7,12 +7,16 @@ import addToWishList from "../../Api/addToWishList";
 import addToCart from "../../Api/addToCart";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useCart from "../../Hooks/useCart";
+import toast from "react-hot-toast";
 
 
 const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
     const location = useLocation()
     const user = useUserData()
     const axiosPublic = useAxiosPublic()
+    const [cart, cartLoading,refetch]= useCart();
+
    
     const navigate = useNavigate()
     const handleDetailsPage = () => {
@@ -21,8 +25,17 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
         }
     }
     const handleAddToCart = () => {
-        delete product._id
-        product.email = user.email
+        console.log("cart ityems",cart);
+        console.log("producyt", product);
+        refetch()
+        const alreadyInCart = cart.find(item => item.name === product.name);
+        if (alreadyInCart) {
+            toast.error(`${product.name} is already in the cart`);
+            return { message: "already added" };        
+        }
+        delete product._id;
+        product.email = user.email;
+       refetch()
         addToCart(product)
     }
     const handleAddToWishList = () => {
@@ -82,7 +95,6 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
                 });
                 // window.location.reload()
                 }
-               
             }
         });
     };
@@ -93,7 +105,7 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
                 <img
                     src={product?.photo_url}
                     alt="product image"
-                    className="h-28  object-cover rounded-t-md bg-neutral" />
+                    className="h-28 md:h-52 object-cover rounded-t-md bg-neutral" />
             </div>
 
             <div className="p-1 md:p-2 text-center">
@@ -103,22 +115,17 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
                 <h2 className="text-xs font-semibold">Category: {product?.category}</h2>
                 <div className="mt-2">
                     {user.role === "buyer" && location.pathname === "/products" && (
-                        <div className="flex justify-between gap-1">
-                            <button onClick={handleAddToWishList} className="btn w-1/2 btn-sm">
-                                Add to Wishlist
+                        <div className="flex justify-between gap-1 ">
+                            <button onClick={handleDetailsPage} className="btn w-1/2 btn-sm text-xs">
+                                Details
                             </button>
-                            <button onClick={handleAddToCart} className="btn w-1/2 btn-sm">
+                            <button onClick={handleAddToCart} className="btn w-1/2 btn-sm text-xs">
                                 Add to Cart
                             </button>
                         </div>
                     )}
 
-                    {user.role === "buyer" && location.pathname === "/dashboard/wishList" && (
-                        <button onClick={() => handleDeleteWishlist(product)} className="btn btn-error text-white w-full btn-sm">
-                            Delete
-                        </button>
-                    )
-                    }
+                 
                     {user.role === "buyer" && location.pathname === "/dashboard/cart" && (
                         <button onClick={() => handleDeleteCart(product)} className="btn btn-error text-white w-full btn-sm">
                             Delete

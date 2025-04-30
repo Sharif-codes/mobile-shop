@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
     const allProducts= useFeaturedProduct()
 console.log("feature:", allProducts);
     return (
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-10 lg:gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {
                 
                 allProducts.map(item => <FeatureCard key={item} product={item}></FeatureCard>)

@@ -18,6 +18,8 @@ import DashboardHome from "../pages/Dashboard/DashboardHome";
 import ProductDetailsPage from "../pages/Products/ProductDetailsPage";
 import SettingsPage from "../pages/Settings/SettingsPage";
 import AllProducts from "../pages/Dashboard/Admin/AllProducts";
+import AddCategory from "../pages/Dashboard/Seller/Categories/AddCategory";
+import Categories from "../pages/Dashboard/Seller/Categories/Categories";
 
 export const router = createBrowserRouter([
   {
@@ -50,7 +52,6 @@ export const router = createBrowserRouter([
         element: <SettingsPage></SettingsPage>
       }
     ]
-
   },
   {
     path: "/dashboard",
@@ -68,6 +69,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/addProducts",
         element: <AddProduct></AddProduct>
+      },
+      {
+        path: "/dashboard/Categories",
+        element: <Categories></Categories>
+      },
+      {
+        path: "/dashboard/addCategories",
+        element: <AddCategory></AddCategory>
       },
       {
         path: "/dashboard/sellerProducts",

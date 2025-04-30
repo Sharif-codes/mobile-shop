@@ -32,19 +32,18 @@ const Faq = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-4">
-      <p className="font-extrabold flex justify-center mb-10 text-4xl">Frequently Asked Questions</p>
-      <div className="space-y-4">
+      <div className="space-y-2 md:space-y-4">
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="border border-gray-300 rounded-lg"
+            className="border border-gray-300 rounded-lg overflow-hidden"
           >
             <button
               onClick={() => toggleFAQ(index)}
-              className="w-full flex justify-between items-center p-4 text-left font-medium text-lg bg-white hover:bg-gray-100 transition"
+              className="w-full flex justify-between items-center p-2 md:p-4 text-left font-medium text-sm md:text-xl bg-white hover:bg-gray-100 transition "
             >
               {faq.question}
-              <span className="text-xl">
+              <span className="text-lg md:text-xl">
                 {openIndex === index ? "-" : "+"}
               </span>
             </button>

@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
     const useAllProducts = () => {
-        const token= localStorage.getItem('access-token')
-        const axiosPublic= useAxiosPublic()
+        const token= localStorage.getItem('access-token');
+        const axiosPublic= useAxiosPublic();
         const {data: allProducts, isPending: productLoading}= useQuery({
          queryKey: ["allProducts"],
          queryFn: async()=>{
