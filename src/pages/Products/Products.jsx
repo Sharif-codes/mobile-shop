@@ -29,7 +29,7 @@ const Products = () => {
             setLoading(true);
             try {
                 const { data } = await axiosPublic.get(
-                    `/allProducts?name=${search}&page=${page}&$limit=${9}&sort=${sort}&brand=${brand}&category=${category}&seller=${seller}`);
+                    `/allProducts?name=${search}&page=${page}&$limit=${6}&sort=${sort}&brand=${brand}&category=${category}&seller=${seller}`);
 
                 console.log("API Response:", data);
                 setProducts(data.products || []);

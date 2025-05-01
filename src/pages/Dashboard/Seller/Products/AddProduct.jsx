@@ -1,8 +1,8 @@
 import toast from "react-hot-toast";
-import useAuth from "../../../Hooks/useAuth";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAuth from "../../../../Hooks/useAuth";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
-import useAllCategories from "../../../Hooks/useAllCategories";
+import useAllCategories from "../../../../Hooks/useAllCategories";
 
 
 const AddProduct = () => {

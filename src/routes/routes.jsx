@@ -9,8 +9,8 @@ import About from "../pages/About/About";
 import Register from "../pages/Register/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
-import AddProduct from "../pages/Dashboard/Seller/AddProduct";
-import SellerProducts from "../pages/Dashboard/Seller/SellerProducts";
+
+import SellerProducts from "../pages/Dashboard/Seller/Products/SellerProducts";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 import Cart from "../pages/Dashboard/Buyer/Cart";
 import Wishlist from "../pages/Dashboard/Buyer/Wishlist";
@@ -20,6 +20,7 @@ import SettingsPage from "../pages/Settings/SettingsPage";
 import AllProducts from "../pages/Dashboard/Admin/AllProducts";
 import AddCategory from "../pages/Dashboard/Seller/Categories/AddCategory";
 import Categories from "../pages/Dashboard/Seller/Categories/Categories";
+import AddProduct from "../pages/Dashboard/Seller/Products/AddProduct";
 
 export const router = createBrowserRouter([
   {
@@ -75,7 +76,7 @@ export const router = createBrowserRouter([
         element: <Categories></Categories>
       },
       {
-        path: "/dashboard/addCategories",
+        path: "/dashboard/categories/addCategories",
         element: <AddCategory></AddCategory>
       },
       {

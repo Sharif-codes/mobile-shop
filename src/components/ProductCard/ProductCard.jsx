@@ -100,15 +100,15 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
     };
     return (
 
-        <div className="rounded-md mx-4 mt-4 border-1 shadow-md" >
-            <div onClick={handleDetailsPage} className="cursor-pointer flex justify-center " >
+        <div className="rounded-md mx-4 mt-4 border-1 shadow-lg shadow-slate-200" >
+            <div onClick={handleDetailsPage} className="cursor-pointer flex justify-center p-2  " >
                 <img
                     src={product?.photo_url}
                     alt="product image"
-                    className="h-28 md:h-52 object-cover rounded-t-md bg-neutral" />
+                    className="h-20 md:h-52 object-cover bg-neutral " />
             </div>
 
-            <div className="p-1 md:p-2 text-center">
+            <div className="p-2 text-center">
                 <h2 className="text-sm text-center font-semibold">{product?.name}</h2>
                 <h2 className="text-xs font-semibold ">Brand: {product?.brand}</h2>
                 <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>
