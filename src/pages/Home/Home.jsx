@@ -15,7 +15,7 @@ const Home = () => {
             <div
                 className="hero h-[300px] md:min-h-screen mx-auto"
                 style={{
-                    backgroundImage: "url(https://img.freepik.com/premium-vector/hand-holding-mobile-smart-phone-with-shop-app-fashion-items-online-shopping-concept_3482-7693.jpg", borderRadius: "20px"
+                    backgroundImage: "url(https://img.freepik.com/free-photo/realistic-phone-studio-social-media-concept_23-2151459542.jpg?t=st=1746103818~exp=1746107418~hmac=7177a97100c4c29ef3885eb8567bb259a01750d47e30d9903146ee00da16586e&w=996", borderRadius: "20px"
                 }}>
                 <div className=""></div>
                 <div className="hero-content text-neutral-content text-center">
@@ -24,7 +24,7 @@ const Home = () => {
                         <p className="mb-2 md:mb-5 text-lg md:text-2xl">
                             One stop service for digital world!
                         </p>
-                        <Link to="/products" className="text-xs btn-sm btn btn-primary rounded-md">Our Products</Link>
+                        <Link to="/products" > <button className="text-xs btn-sm btn hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">Our Products</button></Link>
                     </div>
                 </div>
             </div>

@@ -100,12 +100,12 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
     };
     return (
 
-        <div className="rounded-md mx-4 mt-4 border-1 shadow-lg shadow-slate-200" >
-            <div onClick={handleDetailsPage} className="cursor-pointer flex justify-center p-2  " >
+        <div className="rounded-md mx-4 mt-4 border-1 shadow-lg shadow-slate-200 flex flex-col justify-between" >
+            <div onClick={handleDetailsPage} className="cursor-pointer flex justify-center p-1   " >
                 <img
                     src={product?.photo_url}
                     alt="product image"
-                    className="h-20 md:h-52 object-cover bg-neutral " />
+                    className="h-20 md:h-40 object-cover bg-transparent " />
             </div>
 
             <div className="p-2 text-center">

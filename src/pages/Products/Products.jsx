@@ -9,6 +9,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { TbFilter } from "react-icons/tb";
 
 const Products = () => {
+
     const axiosPublic = useAxiosPublic()
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -24,18 +25,18 @@ const Products = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [toggleFilter, setToggleFilter] = useState(1);
 
-    useEffect(() => { 
+    useEffect(() => {
         const fetch = async () => {
             setLoading(true);
             try {
                 const { data } = await axiosPublic.get(
-                    `/allProducts?name=${search}&page=${page}&$limit=${6}&sort=${sort}&brand=${brand}&category=${category}&seller=${seller}`);
+                    `/allProducts?name=${search}&page=${page}&$limit=${8}&sort=${sort}&brand=${brand}&category=${category}&seller=${seller}`);
 
                 console.log("API Response:", data);
                 setProducts(data.products || []);
                 setUniqueBrands(data.brands || []);
                 setUniqueCategory(data.categories || []);
-                setTotalPages(Math.ceil(data.totalProducts / 6))
+                setTotalPages(Math.ceil(data.totalProducts / 8))
                 setUniqueSeller(data.sellers || []);
             } catch (error) {
                 console.error("Error fetching products:", error);
@@ -70,11 +71,18 @@ const Products = () => {
     }
 
     return (
-        <div className=" mx-auto">
-            <h1 className="text-2xl my-6 font-semibold text-center">All Products</h1>
-            <div className="lg: flex justify-between items-center w-full">
-                <Searchbar handleSearch={handleSearch} ></Searchbar>
-                <SortByPrice setSort={setSort}></SortByPrice>
+        <div className="mx-auto ">
+
+            <div className="h-16 md:h-16 flex justify-between md:grid grid-cols-9 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold ">
+                <div className="col-span-2 flex  items-center ">
+                    <p>Products</p>
+                </div>
+                <div className="md:col-span-7 flex justify-end items-center gap-4">
+                    <SortByPrice setSort={setSort}></SortByPrice>
+                    <Searchbar handleSearch={handleSearch} ></Searchbar>
+                </div>
+
+
             </div>
             <div className="md:hidden flex justify-center my-2 items-center" onClick={() => toggleFilter === 1 ? setToggleFilter(0) : setToggleFilter(1)}>
                 <TbFilter size={24}></TbFilter><span className="text-xl font-semibold">Filter</span>
@@ -88,8 +96,8 @@ const Products = () => {
             <div className="grid grid-cols-12 gap-2 mt-2">
                 <div className="hidden md:block col-span-5 lg:col-span-2 md:col-span-3 ">
                     <FilterBar setBrand={setBrand} setCategory={setCategory} setSeller={setSeller} handleReset={handleReset} uniqueBrands={uniqueBrands}
-                    uniqueCategory={uniqueCategory}
-                    uniqueSeller={uniqueSeller}>
+                        uniqueCategory={uniqueCategory}
+                        uniqueSeller={uniqueSeller}>
                     </FilterBar>
                 </div>
 
@@ -102,7 +110,7 @@ const Products = () => {
                                 {
                                     products?.length === 0 ? (<div className="w-full h-screen flex items-center justify-center">
                                         <p className="text-3xl font-bold">No product found</p>
-                                    </div>) : (<div className=" grid grid-cols-2 md:grid-cols-3  gap-2">
+                                    </div>) : (<div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2">
                                         {
                                             products?.map(item =>
                                                 <ProductCard key={item?.objectId} product={item}></ProductCard>
@@ -114,7 +122,7 @@ const Products = () => {
                         )
                     }
                     {/* pagination */}
-                    <div className="flex justify-center items-center gap-2 my-8">
+                   { products?.length >=1 && <div className="flex justify-center items-center gap-2 my-8">
                         <button className="btn  p-2 border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
                             disabled={page === 1}>
                             <FaArrowLeft  ></FaArrowLeft>
@@ -124,7 +132,7 @@ const Products = () => {
                             disabled={page === totalPages}>
                             <FaArrowRight ></FaArrowRight>
                         </button>
-                    </div>
+                    </div>} 
                 </div>
             </div>
         </div>

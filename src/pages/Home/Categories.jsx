@@ -2,12 +2,6 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import useAllCategories from "../../Hooks/useAllCategories";
-import mobile from "../../../src/categoryIcon/mobile.png"
-import tab from "../../../src/categoryIcon/tablet_icon.png"
-import accessories from "../../../src/categoryIcon/accessories.png"
-import tv from "../../../src/categoryIcon/tv.png"
-import wifi from '../../../src/categoryIcon/wifi.png';
-
 
 const Categories = () => {
     const [allCategories, categoryLoading] = useAllCategories()
@@ -48,13 +42,6 @@ const Categories = () => {
                         </div>
                     ))
                 } 
-                <div>hq</div>
-                <div>hq</div>
-                <div>hq</div>
-                <div>hq</div>
-                
-                
-
             </Carousel>
         </div>
 

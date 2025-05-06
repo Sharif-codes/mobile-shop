@@ -78,7 +78,7 @@ const DashboardLayout = () => {
                         </div>
 
 
-                        <div className="mr-4 font-medium flex lg:hidden md:flex gap-1"><span className="text-lg text-primary">Mobile</span> <span className="text-lg text-accent">Store</span>
+                        <div className="mr-4 font-medium flex lg:hidden md:flex gap-1"><span className="text-lg md:text-2xl text-primary">Mobile</span> <span className="text-lg md:text-2xl text-accent">Store</span>
                         </div>
                     </div>
 
@@ -91,9 +91,9 @@ const DashboardLayout = () => {
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className={`menu menu-vertical bg-sky-300  min-h-full w-80 p-4`}>
                         {/* Sidebar content here */}
-                        <div className={`my-1 gap-1 hidden md:flex lg:flex`}><span className={`md:text-3xl text-2xl md:font-semibold font-semibold ${theme == 'black' && 'luxury' && 'lofi' ? 'text-sky-500' : 'text-primary'} `}>Mobile</span> <span className={`md:text-3xl text-2xl md:font-semibold font-semibold ${theme == 'black' && 'luxury' && 'lofi' ? 'text-sky-500' : 'text-accent'}  `}>Shop</span>
+                        <div className={`my-1 gap-1 hidden md:hidden lg:flex`}><span className={`md:text-3xl text-2xl md:font-semibold font-semibold ${theme == 'black' && 'luxury' && 'lofi' ? 'text-sky-500' : 'text-primary'} `}>Mobile</span> <span className={`md:text-3xl text-2xl md:font-semibold font-semibold ${theme == 'black' && 'luxury' && 'lofi' ? 'text-sky-500' : 'text-accent'}  `}>Shop</span>
                         </div>
-                        <div className="flex items-center md:hidden lg:hidden">
+                        <div className="flex items-center md:flex lg:hidden">
                             <div>
                                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button justify-center items-center bg-transparent pl-0 pr-1 border-0">
                                     <RxCross2 className="text-2xl"></RxCross2>
