@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Categories = () => {
     const [allCategories, categoryLoading, refetch] = useAllCategories()
     return (
-        <div className="mt-0 lg:mt-8 md:mt-0 flex flex-col h-screen md:h-full lg:h-full gap-4">
+        <div className="mt-0 lg:mt-2 md:mt-0 flex flex-col h-screen md:h-full lg:h-full gap-4">
         <div className="h-16  flex justify-between items-center mx-4  p-4 bg-slate-100 rounded-t-lg text-sm md:text-lg  font-semibold ">
             <h2 className="text-sm md:text-2xl">Categories</h2>
             <Link to="/dashboard/categories/addCategories"><button className="flex justify-center items-center hover:bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text hover:text-transparent "> <span>+</span> <span>Add Category</span></button></Link>

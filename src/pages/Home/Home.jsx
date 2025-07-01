@@ -6,8 +6,7 @@ import FeaturedProducts from "./FeaturedProducts";
 import Testomonial from "../../components/Testimonial/Testomonial";
 import { useSelector } from "react-redux";
 import Footer from "../../shared/footer/Footer";
-
-
+import img from '../../categoryIcon/HomeBanner.jpg'
 const Home = () => {
     const theme = useSelector((state) => state.theme.value)
     return (
@@ -15,7 +14,7 @@ const Home = () => {
             <div
                 className="hero h-[300px] md:min-h-screen mx-auto"
                 style={{
-                    backgroundImage: "url(https://img.freepik.com/free-photo/realistic-phone-studio-social-media-concept_23-2151459542.jpg?t=st=1746103818~exp=1746107418~hmac=7177a97100c4c29ef3885eb8567bb259a01750d47e30d9903146ee00da16586e&w=996", borderRadius: "20px"
+                    backgroundImage: `url(${img})`, borderRadius: "20px"
                 }}>
                 <div className=""></div>
                 <div className="hero-content text-neutral-content text-center">

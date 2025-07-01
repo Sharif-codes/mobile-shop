@@ -88,14 +88,25 @@ const Products = () => {
                 <TbFilter size={24}></TbFilter><span className="text-xl font-semibold">Filter</span>
             </div>
             <div className={`md:hidden ${toggleFilter === 1 ? 'block' : 'hidden'}`}>
-                <FilterBar setBrand={setBrand} setCategory={setCategory} setSeller={setSeller} handleReset={handleReset} uniqueBrands={uniqueBrands}
-                    uniqueCategory={uniqueCategory} uniqueSeller={uniqueSeller}>
+                <FilterBar
+                    setBrand={setBrand}
+                    setCategory={setCategory}
+                    setSeller={setSeller}
+                    handleReset={handleReset}
+                    uniqueBrands={uniqueBrands}
+                    uniqueCategory={uniqueCategory}
+                    uniqueSeller={uniqueSeller}>
                 </FilterBar>
             </div>
             {/* content */}
             <div className="grid grid-cols-12 gap-2 mt-2">
                 <div className="hidden md:block col-span-5 lg:col-span-2 md:col-span-3 ">
-                    <FilterBar setBrand={setBrand} setCategory={setCategory} setSeller={setSeller} handleReset={handleReset} uniqueBrands={uniqueBrands}
+                    <FilterBar
+                        setBrand={setBrand}
+                        setCategory={setCategory}
+                        setSeller={setSeller}
+                        handleReset={handleReset}
+                        uniqueBrands={uniqueBrands}
                         uniqueCategory={uniqueCategory}
                         uniqueSeller={uniqueSeller}>
                     </FilterBar>
@@ -122,17 +133,17 @@ const Products = () => {
                         )
                     }
                     {/* pagination */}
-                   { products?.length >=1 && <div className="flex justify-center items-center gap-2 my-8">
-                        <button className="btn  p-2 border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
+                    {products?.length >= 1 && <div className="flex justify-center items-center gap-2 my-8">
+                        <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
                             disabled={page === 1}>
                             <FaArrowLeft  ></FaArrowLeft>
                         </button>
                         <p>Page {page} of {totalPages}</p>
-                        <button className="btn p-2 border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
+                        <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
                             disabled={page === totalPages}>
                             <FaArrowRight ></FaArrowRight>
                         </button>
-                    </div>} 
+                    </div>}
                 </div>
             </div>
         </div>

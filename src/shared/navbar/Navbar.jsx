@@ -3,12 +3,18 @@ import useAuth from "../../Hooks/useAuth";
 import { FiShoppingCart } from "react-icons/fi";
 import useCart from "../../Hooks/useCart";
 import useUserData from "../../Hooks/useUserData";
-
+import { MdLogin, MdLogout } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const userData= useUserData();
   const [cart, cartLoading,refetch]= useCart();
+  const HandleLogout = ()=>{
+    logOut()
+    toast.success(`${user.displayName} Logged out Successfully!`)
+    
+  }
   
   console.log(user);
   return (
@@ -54,10 +60,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-2 md:gap-4">
         {
-          user ? <Link to="/dashboard" className="w-16 md:w-24 text-xs md:text-md btn-sm md:btn-md btn btn-primary rounded-md">Dashboard</Link> : <p></p>
+          user ? <Link to="/dashboard" className="font-semibold hover:text-primary">Dashboard</Link> : <p></p>
         }
         {
-          user ? <button onClick={logOut} className="w-16 md:w-24 text-xs md:text-md btn-sm md:btn-md btn btn-accent rounded-md">Logout</button> : <Link to="/login" className="btn btn-primary">Login</Link>
+          user ? <button onClick={HandleLogout} className="flex items-center text-md font-semibold hover:text-red-600 " > <MdLogout></MdLogout> Logout</button> :    <Link className="flex items-center text-md  font-semibold text-green-600" to="/login" > <p><MdLogin /></p>  <p>Login</p> </Link>
         }
       </div>
     </div>

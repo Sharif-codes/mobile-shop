@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useUserData from "../../Hooks/useUserData";
 import addToWishList from "../../Api/addToWishList";
 import addToCart from "../../Api/addToCart";
@@ -8,6 +8,7 @@ const ProductDetailsPage = () => {
     const location = useLocation();
     const product = location.state;
     const user = useUserData()
+       const navigate = useNavigate()
 
     product.email = user.email;
     
@@ -17,6 +18,12 @@ const ProductDetailsPage = () => {
     const handleAddToWishList = () => {
        
         addToWishList(product)
+    }
+
+    const handleUpdateProduct = () => {
+       
+            navigate("/dashboard/updateProduct", { state: product })
+       
     }
     return (
         <div className="w-full flex justify-center items-center lg:mt-5 mt-1">
@@ -36,6 +43,11 @@ const ProductDetailsPage = () => {
                     {
                         user?.role == "buyer" ? <div className="flex justify-between gap-1">
                             <button onClick={handleAddToCart} className="btn text-xs btn-sm">Add to Cart</button>
+                        </div> : <></>
+                    }
+                    {
+                        user?.role == "seller" ? <div className="flex justify-between gap-1">
+                            <button onClick={handleUpdateProduct} className="btn text-xs btn-sm">Update Product</button>
                         </div> : <></>
                     }
                 </div>

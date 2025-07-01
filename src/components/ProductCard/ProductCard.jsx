@@ -11,31 +11,32 @@ import useCart from "../../Hooks/useCart";
 import toast from "react-hot-toast";
 
 
-const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
+const ProductCard = ({ product, refetchWishlist, refetchCart }) => {
     const location = useLocation()
     const user = useUserData()
     const axiosPublic = useAxiosPublic()
-    const [cart, cartLoading,refetch]= useCart();
+    const [cart, cartLoading, refetch] = useCart();
+    const token = localStorage.getItem('access-token')
 
-   
     const navigate = useNavigate()
     const handleDetailsPage = () => {
-        if (location.pathname === "/products") {
-            navigate("/products/details", { state: product })
-        }
+        // if (location.pathname === "/products") {
+        //     navigate("/products/details", { state: product })
+        // }
+        navigate("/products/details", { state: product })
     }
     const handleAddToCart = () => {
-        console.log("cart ityems",cart);
+        console.log("cart ityems", cart);
         console.log("producyt", product);
         refetch()
         const alreadyInCart = cart.find(item => item.name === product.name);
         if (alreadyInCart) {
             toast.error(`${product.name} is already in the cart`);
-            return { message: "already added" };        
+            return { message: "already added" };
         }
         delete product._id;
         product.email = user.email;
-       refetch()
+        refetch()
         addToCart(product)
     }
     const handleAddToWishList = () => {
@@ -56,18 +57,18 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosPublic.delete(`/wishlistRemove/${product._id}`);
-                console.log("delete id:",product._id);
+                console.log("delete id:", product._id);
                 console.log(res.data);
                 refetchWishlist()
                 if (res.data.deletedCount > 0) {
-                     Swal.fire({
-                    title: "Deleted!",
-                    text: "The product is deleted from wishlist",
-                    icon: "success",
-                });
-                // window.location.reload()
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "The product is deleted from wishlist",
+                        icon: "success",
+                    });
+                    // window.location.reload()
                 }
-               
+
             }
         });
     };
@@ -84,20 +85,57 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosPublic.delete(`/cartRemove/${product._id}`);
-                console.log("delete id:",product._id);
+                console.log("delete id:", product._id);
                 console.log(res.data);
                 refetchCart()
                 if (res.data.deletedCount > 0) {
-                     Swal.fire({
-                    title: "Deleted!",
-                    text: "The product is deleted from cart",
-                    icon: "success",
-                });
-                // window.location.reload()
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "The product is deleted from cart",
+                        icon: "success",
+                    });
+                    // window.location.reload()
                 }
             }
         });
     };
+
+    const handleDeleteSellerProduct = (product) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Remove Product",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosPublic.delete(`/sellerProductDelete/${product._id}`, {
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
+                });
+                console.log("delete id:", product._id);
+                console.log(res.data);
+
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "The product is deleted",
+                        icon: "success",
+                    });
+                    window.location.reload()
+                }
+            }
+        });
+    }
+
+    const handleUpdateProduct = () => {
+        if (location.pathname === "/dashboard/sellerProducts") {
+            navigate("/dashboard/updateProduct", { state: product })
+        }
+    }
     return (
 
         <div className="rounded-md mx-4 mt-4 border-1 shadow-lg shadow-slate-200 flex flex-col justify-between" >
@@ -125,7 +163,7 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
                         </div>
                     )}
 
-                 
+
                     {user.role === "buyer" && location.pathname === "/dashboard/cart" && (
                         <button onClick={() => handleDeleteCart(product)} className="btn btn-error text-white w-full btn-sm">
                             Delete
@@ -133,12 +171,12 @@ const ProductCard = ({ product,refetchWishlist,refetchCart }) => {
                     )
                     }
 
-                    {user.role === "seller" && (
+                    {user.role === "seller" && location.pathname === "/dashboard/sellerProducts" && (
                         <div className="flex justify-between gap-1">
-                            <button className="btn w-1/2 btn-sm">
+                            <button onClick={() => handleDeleteSellerProduct(product)} className="btn w-1/2 btn-sm">
                                 Delete
                             </button>
-                            <button className="btn w-1/2 btn-sm">Update</button>
+                            <button onClick={handleUpdateProduct} className="btn w-1/2 btn-sm">Update</button>
                         </div>
                     )}
                 </div>

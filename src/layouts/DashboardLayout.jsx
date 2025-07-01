@@ -22,7 +22,13 @@ const adminRoute = [
         route: "/dashboard/allProducts",
         title: "All products",
         icon: <FaProductHunt></FaProductHunt>
-    }
+    },
+    {
+        id: 2,
+        route: "/dashboard/Categories",
+        title: "Categories",
+        icon: <TbCategoryPlus></TbCategoryPlus>
+    },
 ]
 const sellerRoute = [
     {
@@ -31,12 +37,7 @@ const sellerRoute = [
         title: "My Products",
         icon: <AiFillProduct></AiFillProduct>
     },
-    {
-        id: 2,
-        route: "/dashboard/Categories",
-        title: "Categories",
-        icon: <TbCategoryPlus></TbCategoryPlus>
-    },
+    
 ]
 const buyerRoute = [
     {
@@ -64,13 +65,13 @@ const DashboardLayout = () => {
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Page content here */}
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between sticky top-0 overflow-hidden bg-slate-200 z-10">
 
 
                         <div className="flex items-center md:flex lg:hidden">
                         <div>
                                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button justify-center items-center bg-transparent pl-0 pr-1 border-0 ml-4 my-2">
-                                    <MdMenu className="text-2xl"></MdMenu>
+                                    <MdMenu className="text-2xl text-blue-600"></MdMenu>
                                 </label>
                             </div>
                             <p className=" font-semibold my-1">Menu</p>
@@ -104,7 +105,7 @@ const DashboardLayout = () => {
                         {userData.role === "seller" && sellerRoute.map(route => <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
                         {userData.role === "buyer" && buyerRoute.map(route => <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
                         {userData.role === "admin" && adminRoute.map(route => <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
-                        <li><Link to="/dashboard/contact"><><FaMessage></FaMessage></><>Contact us</></Link></li>
+                        
                         <li><Link to="/"><><FaHome></FaHome></><>Home</></Link></li>
                         <li><Link onClick={logout} to="/login" ><><FaSignOutAlt></FaSignOutAlt></><>Logout</></Link></li>
                         <li><Link to="/settings"><FiSettings></FiSettings> Setting</Link></li>

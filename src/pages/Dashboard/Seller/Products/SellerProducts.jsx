@@ -14,10 +14,6 @@ import FilterBar from "../../../../components/FilterBar";
 
 const SellerProducts = () => {
 
-    // const [allSellerProducts, productLoading] = useAllsellerProducts();
-
-
-
     const axiosPublic = useAxiosPublic()
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -69,7 +65,7 @@ const SellerProducts = () => {
     }
 
     const handleReset = () => {
-         console.log("Reset triggered");
+        console.log("Reset triggered");
         setSearch("");
         setBrand("");
         setCategory("");
@@ -78,8 +74,10 @@ const SellerProducts = () => {
     }
 
     return (
-        <div className="flex flex-col mt-0 lg:mt-2 md:mt-0">
-            <div className="h-12 md:h-16 grid md:grid-cols-9 grid-cols-2 mx-4 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold">
+        <div className=" flex flex-col mt-0 lg:mt-2 md:mt-0">
+
+            {/*  */}
+            <div className=" h-12 md:h-16 grid md:grid-cols-9 grid-cols-2 mx-4 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold">
                 <div className="col-span-1 md:col-span-3 flex gap-2">
                     <Searchbar handleSearch={handleSearch} ></Searchbar>
                     <SortByPrice setSort={setSort}></SortByPrice>
@@ -91,7 +89,8 @@ const SellerProducts = () => {
                         setSeller={setSeller}
                         handleReset={handleReset}
                         uniqueBrands={uniqueBrands}
-                        uniqueCategory={uniqueCategory} ></SellerFilterProducts>
+                        uniqueCategory={uniqueCategory}>
+                    </SellerFilterProducts>
                 </div>
 
 
@@ -144,14 +143,14 @@ const SellerProducts = () => {
             </div>
 
             {products?.length === 0 ? "" : <div className="flex justify-center items-center gap-2 my-8">
-                <button className="btn  p-2 border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
+                <button className="btn  p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
                     disabled={page === 1}>
                     <FaArrowLeft  ></FaArrowLeft>
                 </button>
                 <p>Page {page} of {totalPages}</p>
-                <button className="btn p-2 border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
+                <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
                     disabled={page === totalPages}>
-                    <FaArrowRight ></FaArrowRight>
+                    <FaArrowRight className="" ></FaArrowRight>
                 </button>
             </div>}
         </div>

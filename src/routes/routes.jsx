@@ -18,9 +18,11 @@ import DashboardHome from "../pages/Dashboard/DashboardHome";
 import ProductDetailsPage from "../pages/Products/ProductDetailsPage";
 import SettingsPage from "../pages/Settings/SettingsPage";
 import AllProducts from "../pages/Dashboard/Admin/AllProducts";
-import AddCategory from "../pages/Dashboard/Seller/Categories/AddCategory";
-import Categories from "../pages/Dashboard/Seller/Categories/Categories";
+
 import AddProduct from "../pages/Dashboard/Seller/Products/AddProduct";
+import Categories from "../pages/Dashboard/Admin/Categories/Categories";
+import AddCategory from "../pages/Dashboard/Admin/Categories/AddCategory";
+import UpdateProduct from "../pages/Dashboard/Seller/Products/UpdateProduct";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +84,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/sellerProducts",
         element: <SellerProducts></SellerProducts>
+      },
+      {
+        path: "/dashboard/updateProduct",
+        element: <UpdateProduct></UpdateProduct>
       },
       {
         path: "/dashboard/allUsers",
