@@ -46,7 +46,7 @@ const Navbar = () => {
             {userData?.role==="buyer"?<li><Link className="flex gap-1" to="/dashboard/cart"><div><FiShoppingCart></FiShoppingCart></div><div>{cart?.length}</div></Link></li>:""}
           </ul>
         </div>
-        <Link to="/" className="text-lg md:text-2xl  font-semibold"><span className="text-primary">Mobile </span><span className="text-accent">Shop</span></Link>
+        <Link to="/" className="text-lg md:text-2xl  font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

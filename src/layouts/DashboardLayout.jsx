@@ -79,7 +79,7 @@ const DashboardLayout = () => {
                         </div>
 
 
-                        <div className="mr-4 font-medium flex lg:hidden md:flex gap-1"><span className="text-lg md:text-2xl text-primary">Mobile</span> <span className="text-lg md:text-2xl text-accent">Store</span>
+                        <div className="mr-4 font-medium flex lg:hidden md:flex gap-1 text-lg md:text-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore
                         </div>
                     </div>
 
@@ -90,9 +90,9 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side z-10">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className={`menu menu-vertical bg-sky-300  min-h-full w-80 p-4`}>
+                    <ul className={`menu menu-vertical bg-sky-400  min-h-full w-80 p-4`}>
                         {/* Sidebar content here */}
-                        <div className={`my-1 gap-1 hidden md:hidden lg:flex`}><span className={`md:text-3xl text-2xl md:font-semibold font-semibold ${theme == 'black' && 'luxury' && 'lofi' ? 'text-sky-500' : 'text-primary'} `}>Mobile</span> <span className={`md:text-3xl text-2xl md:font-semibold font-semibold ${theme == 'black' && 'luxury' && 'lofi' ? 'text-sky-500' : 'text-accent'}  `}>Shop</span>
+                        <div className={`my-1 gap-1 hidden md:hidden font-semibold lg:flex text-lg md:text-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent`}>DigiStore
                         </div>
                         <div className="flex items-center md:flex lg:hidden">
                             <div>
