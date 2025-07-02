@@ -5,20 +5,22 @@ import useCart from "../../Hooks/useCart";
 import useUserData from "../../Hooks/useUserData";
 import { MdLogin, MdLogout } from "react-icons/md";
 import toast from "react-hot-toast";
+import logo from "../../../public/digi_logo.png"
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const userData= useUserData();
-  const [cart, cartLoading,refetch]= useCart();
-  const HandleLogout = ()=>{
+  const userData = useUserData();
+  const [cart, cartLoading, refetch] = useCart();
+  const HandleLogout = () => {
     logOut()
     toast.success(`${user.displayName} Logged out Successfully!`)
-    
+
   }
-  
+
   console.log(user);
   return (
     <div className="navbar container border-b">
+
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,32 +41,51 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             <li><Link to="/">Home</Link></li>
+            <li>
+            {
+              user ? <Link to="/dashboard" className=" ">Dashboard</Link> : <p></p>
+            }
+          </li>
+          
             <li><Link to="/products">Products</Link></li>
-            <li><Link to="/about">About</Link></li>
             <li><Link to="/contact">Contact</Link></li>
             <li><Link to="/settings">Settings</Link></li>
-            {userData?.role==="buyer"?<li><Link className="flex gap-1" to="/dashboard/cart"><div><FiShoppingCart></FiShoppingCart></div><div>{cart?.length}</div></Link></li>:""}
+            {userData?.role === "buyer" ? <li><Link className="flex gap-1" to="/dashboard/cart"><div><FiShoppingCart></FiShoppingCart></div><div>{cart?.length}</div></Link></li> : ""}
+            <li>
+            {
+            user ? <button onClick={HandleLogout} className="flex items-center text-md gap-x-0.5 " > <MdLogout></MdLogout> Logout</button> : <Link className="flex items-center text-md  " to="/login" > <p><MdLogin /></p>  <p>Login</p> </Link>
+          }
+          </li>
           </ul>
         </div>
-        <Link to="/" className="text-lg md:text-2xl  font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</Link>
+        <Link to="/" className="hidden md:flex items-center justify-center gap-1 "><img src={logo} width={25} alt="" /> <p className="text-lg md:text-2xl  font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</p></Link>
       </div>
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/products">Products</Link></li>
-          <li><Link to="/about">About</Link></li>
+          
+
           <li><Link to="/contact">Contact</Link></li>
           <li><Link to="/settings">Settings</Link></li>
-          {userData?.role==="buyer"?<li><Link className="flex gap-1" to="/dashboard/cart"><div><FiShoppingCart></FiShoppingCart></div><div>{cart?.length}</div></Link></li>:""}
+          {userData?.role === "buyer" ? <li><Link className="flex gap-1" to="/dashboard/cart"><div><FiShoppingCart></FiShoppingCart></div><div>{cart?.length}</div></Link></li> : ""}
         </ul>
       </div>
-      <div className="navbar-end gap-2 md:gap-4">
-        {
-          user ? <Link to="/dashboard" className="font-semibold hover:text-primary">Dashboard</Link> : <p></p>
-        }
-        {
-          user ? <button onClick={HandleLogout} className="flex items-center text-md font-semibold hover:text-red-600 " > <MdLogout></MdLogout> Logout</button> :    <Link className="flex items-center text-md  font-semibold text-green-600" to="/login" > <p><MdLogin /></p>  <p>Login</p> </Link>
-        }
+
+      <div className="navbar-end ">
+        <div className="hidden md:flex gap-2 md:gap-4">
+          {
+            user ? <Link to="/dashboard" className="font-semibold hover:text-primary">Dashboard</Link> : <p></p>
+          }
+          {
+            user ? <button onClick={HandleLogout} className="flex items-center text-md font-semibold hover:text-red-600 " > <MdLogout></MdLogout> Logout</button> : <Link className="flex items-center text-md  font-semibold text-green-600" to="/login" > <p><MdLogin /></p>  <p>Login</p> </Link>
+          }
+        </div>
+        <div className="flex md:hidden">
+          <Link to="/" className="flex items-center justify-center gap-1 "><img src={logo} width={25} alt="" /> <p className="text-lg md:text-2xl  font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</p></Link>
+        </div>
+
       </div>
     </div>
   );

@@ -8,6 +8,8 @@ const ProductDetailsPage = () => {
     const location = useLocation();
     const product = location.state;
     const user = useUserData()
+    console.log(user);
+    console.log(product);
        const navigate = useNavigate()
 
     product.email = user.email;
@@ -46,7 +48,7 @@ const ProductDetailsPage = () => {
                         </div> : <></>
                     }
                     {
-                        user?.role == "seller" ? <div className="flex justify-between gap-1">
+                        user?.role == "seller" && user.email === product.sellerEmail ?  <div className="flex justify-between gap-1">
                             <button onClick={handleUpdateProduct} className="btn text-xs btn-sm">Update Product</button>
                         </div> : <></>
                     }

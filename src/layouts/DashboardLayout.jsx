@@ -9,25 +9,26 @@ import { FiSettings } from "react-icons/fi";
 import { TbCategoryPlus } from "react-icons/tb";
 import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
+import logo from "../../public/digi_logo.png";
 
 const adminRoute = [
     {
         id: 1,
         route: "/dashboard/allUsers",
         title: "All users",
-        icon: <FaUser></FaUser>
+        icon: <FaUser className="text-xl" ></FaUser>
     },
     {
         id: 2,
         route: "/dashboard/allProducts",
         title: "All products",
-        icon: <FaProductHunt></FaProductHunt>
+        icon: <FaProductHunt className="text-xl"></FaProductHunt>
     },
     {
         id: 2,
         route: "/dashboard/Categories",
         title: "Categories",
-        icon: <TbCategoryPlus></TbCategoryPlus>
+        icon: <TbCategoryPlus className="text-xl"></TbCategoryPlus>
     },
 ]
 const sellerRoute = [
@@ -35,7 +36,7 @@ const sellerRoute = [
         id: 1,
         route: "/dashboard/sellerProducts",
         title: "My Products",
-        icon: <AiFillProduct></AiFillProduct>
+        icon: <AiFillProduct className="text-xl"></AiFillProduct>
     },
     
 ]
@@ -44,13 +45,13 @@ const buyerRoute = [
         id: 1,
         route: "/dashboard/wishList",
         title: "My Wishlist",
-        icon: <FaRegListAlt></FaRegListAlt>
+        icon: <FaRegListAlt className="text-xl"></FaRegListAlt>
     },
     {
         id: 2,
         route: "/dashboard/cart",
         title: "My Cart",
-        icon: <FaCartPlus></FaCartPlus>
+        icon: <FaCartPlus className="text-xl"></FaCartPlus>
     },
 ]
 
@@ -70,7 +71,7 @@ const DashboardLayout = () => {
 
                         <div className="flex items-center md:flex lg:hidden">
                         <div>
-                                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button justify-center items-center bg-transparent pl-0 pr-1 border-0 ml-4 my-2">
+                                <label htmlFor="my-drawer-2" className="btn  drawer-button justify-center items-center bg-transparent pl-0 pr-1 border-0 ml-4 my-2">
                                     <MdMenu className="text-2xl text-blue-600"></MdMenu>
                                 </label>
                             </div>
@@ -79,12 +80,9 @@ const DashboardLayout = () => {
                         </div>
 
 
-                        <div className="mr-4 font-medium flex lg:hidden md:flex gap-1 text-lg md:text-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore
+                        <div className="mr-4 font-medium flex lg:hidden md:flex gap-1 text-lg md:text-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"><img src={logo} width={25} alt="" /> DigiStore
                         </div>
                     </div>
-
-
-
 
                     <Outlet></Outlet>
                 </div>
@@ -92,7 +90,7 @@ const DashboardLayout = () => {
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className={`menu menu-vertical bg-sky-400  min-h-full w-80 p-4`}>
                         {/* Sidebar content here */}
-                        <div className={`my-1 gap-1 hidden md:hidden font-semibold lg:flex text-lg md:text-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent`}>DigiStore
+                        <div className={`my-1 gap-1 hidden md:hidden font-semibold lg:flex text-lg md:text-2xl lg:text-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent`}> <img src={logo} width="30" alt="logo" /> <p> DigiStore</p>
                         </div>
                         <div className="flex items-center md:flex lg:hidden">
                             <div>
@@ -100,15 +98,15 @@ const DashboardLayout = () => {
                                     <RxCross2 className="text-2xl"></RxCross2>
                                 </label>
                             </div>
-                            <p className="text-lg font-semibold my-1">Menu</p>
+                            <p className="text-xl font-semibold my-1">Menu</p>
                         </div>
-                        {userData.role === "seller" && sellerRoute.map(route => <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
-                        {userData.role === "buyer" && buyerRoute.map(route => <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
-                        {userData.role === "admin" && adminRoute.map(route => <li key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
+                        {userData.role === "seller" && sellerRoute.map(route => <li className="text-lg" key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
+                        {userData.role === "buyer" && buyerRoute.map(route => <li className="text-lg" key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
+                        {userData.role === "admin" && adminRoute.map(route => <li className="text-lg" key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
                         
-                        <li><Link to="/"><><FaHome></FaHome></><>Home</></Link></li>
-                        <li><Link onClick={logout} to="/login" ><><FaSignOutAlt></FaSignOutAlt></><>Logout</></Link></li>
-                        <li><Link to="/settings"><FiSettings></FiSettings> Setting</Link></li>
+                        <li className="text-lg"><Link to="/"><><FaHome className="text-xl"></FaHome></><>Home</></Link></li>
+                        <li className="text-lg"><Link onClick={logout} to="/login" ><><FaSignOutAlt className="text-xl"></FaSignOutAlt></><>Logout</></Link></li>
+                        <li className="text-lg"><Link to="/settings"><FiSettings className="text-xl"></FiSettings> Setting</Link></li>
                     </ul>
                 </div>
             </div>

@@ -5,14 +5,17 @@ const Footer = () => {
     return (
         <div>
             <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10 mt-5">
-                <nav className="grid grid-flow-col gap-4">
-                    <a className="link link-hover"><Link to='/about'>About us</Link></a>
-                    <a className="link link-hover"><Link to='/contact'>Contact</Link></a>
-                    <a className="link link-hover">Jobs</a>
+                <nav className="grid grid-flow-col gap-2">
+                   <div className="flex items-center gap-0.5">
+                    <img src="/public/digi_logo.png" width={35} alt="logo" />
+                    <p className="text-3xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</p>
+                   </div>
                     
                 </nav>
+           
                 <nav>
-                    <div className="grid grid-flow-col gap-4">
+                     <p className="mb-2">Follow us on</p>
+                    <div className="grid grid-flow-col gap-2">
                         <a>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +54,7 @@ const Footer = () => {
                     </div>
                 </nav>
                 <aside>
-                    <p>Copyright © {new Date().getFullYear()} - All right reserved by Mobile Shop Ltd.</p>
+                    <p>Copyright © {new Date().getFullYear()} - All right reserved by DigiStore Ltd.</p>
                 </aside>
             </footer>
 
