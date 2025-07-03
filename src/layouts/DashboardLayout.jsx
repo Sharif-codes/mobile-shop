@@ -53,6 +53,12 @@ const buyerRoute = [
         title: "My Cart",
         icon: <FaCartPlus className="text-xl"></FaCartPlus>
     },
+    {
+        id: 3,
+        route: "/dashboard/buyer/purchasedProduct",
+        title: "Purchased",
+        icon: <FaProductHunt className="text-xl"></FaProductHunt>
+    },
 ]
 
 const DashboardLayout = () => {
@@ -88,7 +94,7 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side z-10">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className={`menu menu-vertical bg-sky-400  min-h-full w-80 p-4`}>
+                    <ul className={`menu menu-vertical bg-sky-400 text-gray-800  min-h-full w-80 p-4`}>
                         {/* Sidebar content here */}
                         <div className={`my-1 gap-1 hidden md:hidden font-semibold lg:flex text-lg md:text-2xl lg:text-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent`}> <img src={logo} width="30" alt="logo" /> <p> DigiStore</p>
                         </div>

@@ -85,7 +85,6 @@ const Navbar = () => {
         <div className="flex md:hidden">
           <Link to="/" className="flex items-center justify-center gap-1 "><img src={logo} width={25} alt="" /> <p className="text-lg md:text-2xl  font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</p></Link>
         </div>
-
       </div>
     </div>
   );

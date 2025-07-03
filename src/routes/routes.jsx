@@ -23,6 +23,8 @@ import AddProduct from "../pages/Dashboard/Seller/Products/AddProduct";
 import Categories from "../pages/Dashboard/Admin/Categories/Categories";
 import AddCategory from "../pages/Dashboard/Admin/Categories/AddCategory";
 import UpdateProduct from "../pages/Dashboard/Seller/Products/UpdateProduct";
+import PaymentFail from "../pages/Dashboard/Payment/PaymentFail";
+import PurchasedProduct from "../pages/Dashboard/Buyer/PurchasedProduct";
 
 export const router = createBrowserRouter([
   {
@@ -108,7 +110,15 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/settings",
         element: <SettingsPage></SettingsPage>
-      }
+      },
+      {
+        path: "/dashboard/paymentFail",
+        element: <PaymentFail></PaymentFail>
+      },
+      {
+        path: "/dashboard/buyer/purchasedProduct",
+        element: <PurchasedProduct></PurchasedProduct>
+      },
     ]
   },
   {
