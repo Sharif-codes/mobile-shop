@@ -105,7 +105,7 @@ const AllUsers = () => {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto ">
       <table className="table table-xs table-pin-rows table-pin-cols">
         <thead>
           <tr>

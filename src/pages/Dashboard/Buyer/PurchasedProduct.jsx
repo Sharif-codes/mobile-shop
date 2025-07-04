@@ -93,7 +93,7 @@ const PurchasedProduct = () => {
                 </div>
             </div>
 
-            <div className="md:hidden flex justify-start mx-4 gap-2 my-2 items-center h-4" >
+            <div className="md:hidden flex justify-start mx-2 gap-2 my-1 items-center h-4" >
                 <button onClick={() => toggleFilter === 1 ? setToggleFilter(0) : setToggleFilter(1)} className="flex justify-center items-center">
                     <TbFilter size={16}></TbFilter>
                     <span className="text-md font-semibold">Filter</span>
@@ -116,7 +116,7 @@ const PurchasedProduct = () => {
                     loading ? (
                         <Spinner></Spinner>
                     ) : (
-                        <div className="overflow-x-auto">
+                        <div className="overflow-x-auto h-[calc(100vh-265px)] md:h-[calc(100vh-190px)]">
                             <table className="table table-xs">
                                 <thead>
                                     <tr>
@@ -157,7 +157,7 @@ const PurchasedProduct = () => {
 
                             </table>
                             {
-                                products?.length === 0 && <div className="w-full h-[calc(100vh-100px)] flex items-center justify-center">
+                                products?.length === 0 && <div className="w-full h-[calc(100vh-120px)] flex items-center justify-center">
                                     <p className="text-3xl font-bold">No product found</p>
                                 </div>}
                         </div>

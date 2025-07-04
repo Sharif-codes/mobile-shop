@@ -143,14 +143,14 @@ const ProductCard = ({ product, refetchWishlist, refetchCart }) => {
                 <img
                     src={product?.photo_url}
                     alt="product image"
-                    className="h-20 md:h-40 object-cover bg-transparent " />
+                    className="h-20 md:h-24 object-cover bg-transparent " />
             </div>
 
             <div className="p-2 text-center">
                 <h2 className="text-sm text-center font-semibold">{product?.name}</h2>
                 <h2 className="text-xs font-semibold ">Brand: {product?.brand}</h2>
                 <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>
-                <h2 className="text-xs font-semibold">Category: {product?.category}</h2>
+                
                 <div className="mt-2">
                     {user.role === "buyer" && location.pathname === "/products" && (
                         <div className="flex justify-between gap-1 ">

@@ -120,14 +120,14 @@ const SellerProducts = () => {
 
             </div>
 
-            <div >
+            <div className="md:h-[calc(100vh-184px)]" >
                 {
                     loading ? (
                         <Spinner></Spinner>
                     ) : (
                         <>
                             {
-                                products?.length === 0 ? (<div className="w-full h-[calc(100vh-100px)] flex items-center justify-center">
+                                products?.length === 0 ? (<div className="w-full md:h-[calc(100vh-100px)] flex items-center justify-center">
                                     <p className="text-xl md:text-2xl lg:text-3xl font-bold  ">No product found!</p>
                                 </div>) : (<div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2">
                                     {

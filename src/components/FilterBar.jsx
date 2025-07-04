@@ -5,7 +5,7 @@ import { TbFilter } from "react-icons/tb";
 const FilterBar = ({setBrand,setCategory,setSeller,handleReset,uniqueBrands,uniqueCategory,uniqueSeller}) => {
     
     return (
-        <div className="bg-gray-200 h-fit md:min-h-screen p-2 md:p-4 rounded-md ">
+        <div className="bg-gray-200 h-fit md:h-[calc(100vh-160px)] p-2 md:p-4 rounded-md ">
             <div className="md:flex hidden items-center gap-2">
                 <h2 className="text-xl font-semibold flex justify-center items-center"><span><TbFilter size={20}></TbFilter></span><span>Filters</span>
                 </h2>

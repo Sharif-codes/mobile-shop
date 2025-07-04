@@ -30,7 +30,7 @@ const Products = () => {
             setLoading(true);
             try {
                 const { data } = await axiosPublic.get(
-                    `/allProducts?name=${search}&page=${page}&$limit=${8}&sort=${sort}&brand=${brand}&category=${category}&seller=${seller}`);
+                    `/allProducts?name=${search}&page=${page}&limit=${8}&sort=${sort}&brand=${brand}&category=${category}&seller=${seller}`);
 
                 console.log("API Response:", data);
                 setProducts(data.products || []);
@@ -117,7 +117,7 @@ const Products = () => {
                         ) : (
                             <>
                                 {
-                                    products?.length === 0 ? (<div className="w-full h-screen flex items-center justify-center">
+                                    products?.length === 0 ? (<div className="w-full h-[calc(100vh-300px)] flex items-center justify-center">
                                         <p className="text-3xl font-bold">No product found</p>
                                     </div>) : (<div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2">
                                         {

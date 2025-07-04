@@ -44,7 +44,7 @@ const Cart = () => {
         <div className="h-screen">
 
             <div className="h-16 md:h-16 m-2 flex justify-between px-2 md:px-4 bg-slate-100 rounded-t-lg   text-gray-600">
-                <div className="flex items-center text-sm md:text-lg lg:text-xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                <div className="flex items-center text-sm md:text-lg lg:text-2xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                     My Cart
                 </div>
                 {
@@ -66,8 +66,8 @@ const Cart = () => {
                         )
                         )}</div>
             ) : (
-                <div className="flex  justify-center items-center  text-blue-500 h-screen ">
-                    <div className="text-xl font-bold p-2 animate-bounce "> No Items...</div>
+                <div className="flex  justify-center items-center   h-[calc(100vh-100px)]  ">
+                    <div className="text-xl font-bold p-2 "> No items found!</div>
                 </div>
             )}
         </div>

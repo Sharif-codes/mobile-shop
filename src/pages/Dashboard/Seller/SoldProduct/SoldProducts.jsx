@@ -71,10 +71,10 @@ const SoldProducts = () => {
     }
 
     return (
-        <div className=" flex flex-col mt-0 lg:mt-2 md:mt-0">
+        <div className=" flex flex-col mt-1 lg:mt-2 md:mt-0">
 
             {/*  */}
-            <div className=" h-12 md:h-16 grid md:grid-cols-10 grid-cols-2 mx-4 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold">
+            <div className=" h-12 md:h-16 grid md:grid-cols-10 grid-cols-2 mx-2 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold">
                 <div className="col-span-1 md:col-span-3 flex  ">
                     <Searchbar handleSearch={handleSearch} ></Searchbar>
                     <SortByPrice setSort={setSort}></SortByPrice>
@@ -98,7 +98,7 @@ const SoldProducts = () => {
 
             </div>
 
-            <div className="md:hidden flex justify-start mx-4 gap-2 my-2 items-center h-4" >
+            <div className="md:hidden flex justify-start mx-4 gap-2 my-1 items-center h-4" >
                 <button onClick={() => toggleFilter === 1 ? setToggleFilter(0) : setToggleFilter(1)} className="flex justify-center items-center">
                     <TbFilter size={16}></TbFilter>
                     <span className="text-md font-semibold">Filter</span>
@@ -122,7 +122,7 @@ const SoldProducts = () => {
                     loading ? (
                         <Spinner></Spinner>
                     ) : (
-                        <div className="overflow-x-auto">
+                        <div className="overflow-x-auto mt-1 h-[calc(100vh-265px)] md:h-[calc(100vh-190px)]">
                             <table className="table table-xs">
                                 <thead>
                                     <tr>
