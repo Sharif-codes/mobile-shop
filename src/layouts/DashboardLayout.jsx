@@ -1,6 +1,6 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useUserData from "../Hooks/useUserData";
-import { AiFillProduct } from "react-icons/ai";
+import { AiFillDollarCircle, AiFillProduct } from "react-icons/ai";
 import { FaCartPlus, FaHome, FaProductHunt, FaRegListAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
 import { FaMessage } from "react-icons/fa6";
@@ -37,6 +37,12 @@ const sellerRoute = [
         route: "/dashboard/sellerProducts",
         title: "My Products",
         icon: <AiFillProduct className="text-xl"></AiFillProduct>
+    },
+    {
+        id: 2,
+        route: "/dashboard/sellerSoldProducts",
+        title: "Sells",
+        icon: <AiFillDollarCircle className="text-xl"></AiFillDollarCircle>
     },
     
 ]

@@ -127,8 +127,8 @@ const SellerProducts = () => {
                     ) : (
                         <>
                             {
-                                products?.length === 0 ? (<div className="w-full h-screen flex items-center justify-center">
-                                    <p className="text-3xl font-bold">No product found</p>
+                                products?.length === 0 ? (<div className="w-full h-[calc(100vh-100px)] flex items-center justify-center">
+                                    <p className="text-xl md:text-2xl lg:text-3xl font-bold  ">No product found!</p>
                                 </div>) : (<div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2">
                                     {
                                         products?.map(item =>

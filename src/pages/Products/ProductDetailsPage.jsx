@@ -2,12 +2,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useUserData from "../../Hooks/useUserData";
 import addToWishList from "../../Api/addToWishList";
 import addToCart from "../../Api/addToCart";
+import ProductReview from "./ProductReview";
 
 
 const ProductDetailsPage = () => {
     const location = useLocation();
     const product = location.state;
     const user = useUserData()
+
     console.log(user);
     console.log(product);
        const navigate = useNavigate()
@@ -27,6 +29,9 @@ const ProductDetailsPage = () => {
             navigate("/dashboard/updateProduct", { state: product })
        
     }
+    const handleReview =()=>{
+        
+    }
     return (
         <div className="w-full flex justify-center items-center lg:mt-5 mt-1">
             <div className="sm:flex-col md:flex lg:flex-row items-center" >
@@ -41,7 +46,7 @@ const ProductDetailsPage = () => {
                     <p className="text-blue-500">Price: {product.price}Tk.</p>
                     <p>Description: {product.description}</p>
                 </div>
-                <div className="mt-2 flex justify-center">
+                <div className="mt-2 flex  items-center gap-2 justify-center">
                     {
                         user?.role == "buyer" ? <div className="flex justify-between gap-1">
                             <button onClick={handleAddToCart} className="btn text-xs btn-sm">Add to Cart</button>
@@ -52,7 +57,10 @@ const ProductDetailsPage = () => {
                             <button onClick={handleUpdateProduct} className="btn text-xs btn-sm">Update Product</button>
                         </div> : <></>
                     }
+                   
+                    
                 </div>
+               
                 </div>
                 
             </div>

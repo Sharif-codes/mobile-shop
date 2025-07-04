@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
-import ProductCard from "../../../components/ProductCard/ProductCard";
-import Spinner from "../../../components/spinner/spinner";
-import useAllProducts from "../../../Hooks/useAllProducts";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import Products from "../../Products/Products";
-import useAuth from "../../../Hooks/useAuth";
-import Searchbar from "../../../components/Searchbar";
-import SortByPrice from "../../../components/SortByPrice";
-import SellerFilterProducts from "../../../components/SellerFilterProducts";
-import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import Searchbar from "../../../../components/Searchbar";
+import SortByPrice from "../../../../components/SortByPrice";
+import SellerFilterProducts from "../../../../components/SellerFilterProducts";
 import { TbFilter } from "react-icons/tb";
+import Spinner from "../../../../components/spinner/spinner";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import useUserData from "../../../../Hooks/useUserData";
 
-const AllProducts = () => {
+const SoldProducts = () => {
     const axiosPublic = useAxiosPublic()
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -26,22 +22,21 @@ const AllProducts = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [toggleFilter, setToggleFilter] = useState(1);
-    const [uniqueSeller, setUniqueSeller] = useState([])
 
 
+    const user = useUserData()
 
     useEffect(() => {
         const fetch = async () => {
             setLoading(true);
             try {
                 const { data } = await axiosPublic.get(
-                    `/allProducts?name=${search}&page=${page}&limit=${15}&sort=${sort}&brand=${brand}&category=${category}&seller=${seller}`);
-
+                    `/soldProducts?name=${search}&page=${page}&limit=${15}&sort=${sort}&brand=${brand}&category=${category}&seller=${user?.email}`);
                 setProducts(data.products || []);
                 setUniqueBrands(data.brands || []);
                 setUniqueCategory(data.categories || []);
-                setTotalPages(Math.ceil(data.totalProducts /15))
-                setUniqueSeller(data.sellers || []);
+                setTotalPages(Math.ceil(data.totalProducts / 15))
+
             } catch (error) {
                 console.error("Error fetching products:", error);
             } finally {
@@ -49,7 +44,9 @@ const AllProducts = () => {
             }
         };
         fetch();
-    }, [axiosPublic, brand, category, page, search, seller, sort]);
+    }, [axiosPublic, brand, category, page, search, seller, sort, user?.email]);
+
+    console.log("new:", products);
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -90,7 +87,7 @@ const AllProducts = () => {
                         handleReset={handleReset}
                         uniqueBrands={uniqueBrands}
                         uniqueCategory={uniqueCategory}
-                        uniqueSeller={uniqueSeller}>
+                    >
                     </SellerFilterProducts>
                 </div>
 
@@ -114,7 +111,7 @@ const AllProducts = () => {
                         handleReset={handleReset}
                         uniqueBrands={uniqueBrands}
                         uniqueCategory={uniqueCategory}
-                        uniqueSeller={uniqueSeller}
+
                     />
                 </div>
 
@@ -132,41 +129,54 @@ const AllProducts = () => {
                                         <th>#</th>
                                         <th>Product</th>
                                         <th>Product name</th>
-                                        <th>Category</th>
-                                        <th>Seller</th>
-                                        <th>Brand</th>
+
+                                        <th>Date</th>
+                                         <th>Buyer_Email</th>
+                                        <th>Trx_id</th>
+                                       
                                         <th>Price</th>
+                                        <th>Brand</th>
                                     </tr>
                                 </thead>
+
+
                                 <tbody>
 
+
+
                                     {
-                                        products?.length === 0 ? (<div className="w-full h-screen flex items-center justify-center">
-                                            <p className="text-3xl font-bold">No product found</p>
-                                        </div>) : (
-                                            <>
-                                                {
-                                                products?.map((item,idx) =>
-                                                    <tr key={idx}>
-                                                        <th>{(page - 1) * 15 + idx + 1}</th>
-                                                        <td> <img src={item.photo_url} alt="product" width={20} height={15} /> </td>
-                                                        <td>{item.name}</td>
-                                                        <td>{item.category}</td>
-                                                        <td>{item.seller}</td>
-                                                        <td>{item.brand}</td>
-                                                        <td>{item.price}</td>
-                                                    </tr>
-                                                )
-                                            }
-                                            </>
-                                        
-                                       )
+                                        products?.length > 0 &&
+                                        products?.map((item, idx) =>
+                                            <tr key={idx}>
+                                                <th>{(page - 1) * 15 + idx + 1}</th>
+                                                <td> <img src={item.photo_url} alt="product" width={20} height={15} /> </td>
+                                                <td>{item.name}</td>
+                                                <td>{item.purchased_time?.slice(0, 10)}</td>
+                                                 <td>{item.email}</td>
+                                                <td>{item.trx_id}</td>
+                                               
+                                                
+                                                <td>{item.price}</td>
+                                                <td>{item.brand}</td>
+                                            </tr>
+                                        )
                                     }
+
+
+
+
 
 
                                 </tbody>
 
                             </table>
+                            {
+                                products?.length === 0 && <div className=" h-[calc(100vh-100px)] w-full flex items-center justify-center border">
+
+
+                                    <p className="text-xl md:text-2xl lg:text-3xl font-bold  ">No product found!</p>
+                                </div>
+                            }
                         </div>
                     )
                 }
@@ -187,4 +197,4 @@ const AllProducts = () => {
     );
 };
 
-export default AllProducts;
+export default SoldProducts;

@@ -29,10 +29,11 @@ const Cart = () => {
             const res = await axiosPublic.post('/user/make-payment', paymentData,
             )
             if(res.data.success){
-                toast.success(`${cart?.length} product purchased successfully!`)
-                navigate("/dashboard/buyer/purchasedProduct")
+                // toast.success(`${cart?.length} product purchased successfully!`)
+                // navigate("/dashboard/buyer/purchasedProduct")
                 window.location.replace(res.data.url)
             }
+               console.log("payment success:",res.data);
         } catch (error) {
             console.log(error.message);
         }

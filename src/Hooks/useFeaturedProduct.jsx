@@ -5,7 +5,7 @@ import useAuth from "./useAuth";
 
 const useFeaturedProduct = () => {
     const [allProducts,setAllProducts]= useState([])
-    const {user}=useAuth()
+
     const axiosPublic= useAxiosPublic()
     useEffect(()=>{
             const fetchAllUsers= async ()=>{
@@ -16,7 +16,7 @@ const useFeaturedProduct = () => {
                 
                     fetchAllUsers()
                 
-        },[user, axiosPublic])
+        },[axiosPublic])
         return allProducts;
 };
 

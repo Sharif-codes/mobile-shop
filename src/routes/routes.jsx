@@ -25,6 +25,7 @@ import AddCategory from "../pages/Dashboard/Admin/Categories/AddCategory";
 import UpdateProduct from "../pages/Dashboard/Seller/Products/UpdateProduct";
 import PaymentFail from "../pages/Dashboard/Payment/PaymentFail";
 import PurchasedProduct from "../pages/Dashboard/Buyer/PurchasedProduct";
+import SoldProducts from "../pages/Dashboard/Seller/SoldProduct/SoldProducts";
 
 export const router = createBrowserRouter([
   {
@@ -118,6 +119,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/buyer/purchasedProduct",
         element: <PurchasedProduct></PurchasedProduct>
+      },
+      {
+        path: "/dashboard/sellerSoldProducts",
+        element: <SoldProducts></SoldProducts>
       },
     ]
   },

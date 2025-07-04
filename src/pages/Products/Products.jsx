@@ -47,8 +47,6 @@ const Products = () => {
         fetch();
     }, [axiosPublic, brand, category, page, search, seller, sort]);
 
-    console.log("all product:", products);
-
     const handleSearch = (e) => {
         e.preventDefault()
         setSearch(e.target.search.value)

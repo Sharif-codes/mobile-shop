@@ -8,7 +8,6 @@ import FeatureCard from "./FeatureCard";
 
 const FeaturedProducts = () => {
     const allProducts= useFeaturedProduct()
-console.log("feature:", allProducts);
 
 const responsive = {
         superLargeDesktop: {
