@@ -9,7 +9,6 @@ import SortByPrice from "../../../../components/SortByPrice";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import SellerFilterProducts from "../../../../components/SellerFilterProducts";
 import { TbFilter } from "react-icons/tb";
-import FilterBar from "../../../../components/FilterBar";
 
 
 const SellerProducts = () => {
@@ -77,12 +76,12 @@ const SellerProducts = () => {
         <div className=" flex flex-col mt-0 lg:mt-2 md:mt-0">
 
             {/*  */}
-            <div className=" h-12 md:h-16 grid md:grid-cols-9 grid-cols-2 mx-4 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold">
+            <div className=" h-12 md:h-16 grid md:flex md:justify-between lg:grid-cols-9 grid-cols-2 mx-4 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold">
                 <div className="col-span-1 md:col-span-3 flex gap-2">
                     <Searchbar handleSearch={handleSearch} ></Searchbar>
                     <SortByPrice setSort={setSort}></SortByPrice>
                 </div>
-                <div className="col-span-3 hidden md:flex justify-center">
+                <div className="lg:col-span-3 hidden lg:flex justify-center">
                     <SellerFilterProducts
                         setBrand={setBrand}
                         setCategory={setCategory}
@@ -102,12 +101,12 @@ const SellerProducts = () => {
 
             </div>
 
-            <div className="md:hidden flex justify-start mx-4 gap-2 my-2 items-center h-4" >
+            <div className="lg:hidden flex justify-start mx-4 gap-2 my-4 items-center h-4" >
                 <button onClick={() => toggleFilter === 1 ? setToggleFilter(0) : setToggleFilter(1)} className="flex justify-center items-center">
                     <TbFilter size={16}></TbFilter>
                     <span className="text-md font-semibold">Filter</span>
                 </button>
-                <div className={`md:hidden transition-all duration-300 ease-in-out transform origin-top ${toggleFilter === 1 ? 'scale-y-100 opacity-100 max-h-[1000px]' : 'scale-y-0 opacity-0 max-h-0 overflow-hidden'}`}>
+                <div className={`lg:hidden transition-all duration-300 ease-in-out transform origin-top ${toggleFilter === 1 ? 'scale-y-100 opacity-100 max-h-[1000px]' : 'scale-y-0 opacity-0 max-h-0 overflow-hidden'}`}>
                     <SellerFilterProducts
                         setBrand={setBrand}
                         setCategory={setCategory}
@@ -120,29 +119,32 @@ const SellerProducts = () => {
 
             </div>
 
-            <div className="md:h-[calc(100vh-184px)]" >
+            <div  >
                 {
                     loading ? (
                         <Spinner></Spinner>
                     ) : (
-                        <>
+                        <div>
                             {
-                                products?.length === 0 ? (<div className="w-full md:h-[calc(100vh-100px)] flex items-center justify-center">
+                                products?.length === 0 && <div className="w-full h-[calc(100vh-100px)] md:h-[calc(100vh-0px)] lg:h-[calc(100vh-100px)]  flex items-center justify-center">
                                     <p className="text-xl md:text-2xl lg:text-3xl font-bold  ">No product found!</p>
-                                </div>) : (<div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2">
+                                </div>
+                            }
+                            { products?.length > 0 &&
+                                <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2">
                                     {
                                         products?.map(item =>
                                             <ProductCard key={item?.objectId} product={item}></ProductCard>
                                         )
                                     }
-                                </div>)
+                                </div>
                             }
-                        </>
+                        </div>
                     )
                 }
             </div>
 
-            {products?.length === 0 ? "" : <div className="flex justify-center items-center gap-2 my-8">
+            <div className="flex justify-center items-center gap-2 my-4">
                 <button className="btn  p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
                     disabled={page === 1}>
                     <FaArrowLeft  ></FaArrowLeft>
@@ -152,7 +154,7 @@ const SellerProducts = () => {
                     disabled={page === totalPages}>
                     <FaArrowRight className="" ></FaArrowRight>
                 </button>
-            </div>}
+            </div>
         </div>
     );
 };

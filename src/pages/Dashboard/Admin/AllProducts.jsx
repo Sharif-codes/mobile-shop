@@ -40,7 +40,7 @@ const AllProducts = () => {
                 setProducts(data.products || []);
                 setUniqueBrands(data.brands || []);
                 setUniqueCategory(data.categories || []);
-                setTotalPages(Math.ceil(data.totalProducts /15))
+                setTotalPages(Math.ceil(data.totalProducts / 15))
                 setUniqueSeller(data.sellers || []);
             } catch (error) {
                 console.error("Error fetching products:", error);
@@ -77,12 +77,15 @@ const AllProducts = () => {
         <div className=" flex flex-col mt-1 lg:mt-2 md:mt-0">
 
             {/*  */}
-            <div className=" h-12 md:h-16 grid md:grid-cols-10 grid-cols-2 mx-4 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold">
-                <div className="col-span-1 md:col-span-3 flex  ">
+            <div className=" h-12 md:h-16   lg:grid flex justify-between  md:flex md:justify-between lg:grid-cols-10 grid-cols-2 mx-2 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold items-center">
+                <div className="lg:col-span-3">
+                    <p className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">All Product</p>
+                </div>
+                <div className="col-span-1 lg:col-span-3  flex  ">
                     <Searchbar handleSearch={handleSearch} ></Searchbar>
                     <SortByPrice setSort={setSort}></SortByPrice>
                 </div>
-                <div className="col-span-4 hidden md:flex justify-center">
+                <div className="lg:col-span-4 hidden md:hidden lg:flex justify-center">
                     <SellerFilterProducts
                         setBrand={setBrand}
                         setCategory={setCategory}
@@ -95,18 +98,16 @@ const AllProducts = () => {
                 </div>
 
 
-                <div className="col-span-1 md:col-span-3 flex justify-end items-center">
-
-                </div>
+                
 
             </div>
 
-            <div className="md:hidden flex justify-start mx-2 gap-2 my-1 items-center h-4" >
+            <div className="lg:hidden  flex justify-start mx-2 gap-2 my-4 items-center h-4" >
                 <button onClick={() => toggleFilter === 1 ? setToggleFilter(0) : setToggleFilter(1)} className="flex justify-center items-center">
                     <TbFilter size={16}></TbFilter>
                     <span className="text-md font-semibold">Filter</span>
                 </button>
-                <div className={`md:hidden transition-all duration-300 ease-in-out transform origin-top ${toggleFilter === 1 ? 'scale-y-100 opacity-100 max-h-[1000px]' : 'scale-y-0 opacity-0 max-h-0 overflow-hidden'}`}>
+                <div className={`lg:hidden transition-all duration-300 ease-in-out transform origin-top ${toggleFilter === 1 ? 'scale-y-100 opacity-100 max-h-[1000px]' : 'scale-y-0 opacity-0 max-h-0 overflow-hidden'}`}>
                     <SellerFilterProducts
                         setBrand={setBrand}
                         setCategory={setCategory}
@@ -125,54 +126,63 @@ const AllProducts = () => {
                     loading ? (
                         <Spinner></Spinner>
                     ) : (
-                        <div className="overflow-x-auto mt-1 h-[calc(100vh-265px)] md:h-[calc(100vh-190px)]">
-                            <table className="table table-xs">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Product</th>
-                                        <th>Product name</th>
-                                        <th>Category</th>
-                                        <th>Seller</th>
-                                        <th>Brand</th>
-                                        <th>Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    {
-                                        products?.length === 0 ? (<div className="w-full h-screen flex items-center justify-center">
-                                            <p className="text-3xl font-bold">No product found</p>
-                                        </div>) : (
-                                            <>
-                                                {
-                                                products?.map((item,idx) =>
-                                                    <tr key={idx}>
-                                                        <th>{(page - 1) * 15 + idx + 1}</th>
-                                                        <td> <img src={item.photo_url} alt="product" width={20} height={15} /> </td>
-                                                        <td>{item.name}</td>
-                                                        <td>{item.category}</td>
-                                                        <td>{item.seller}</td>
-                                                        <td>{item.brand}</td>
-                                                        <td>{item.price}</td>
-                                                    </tr>
-                                                )
-                                            }
-                                            </>
-                                        
-                                       )
-                                    }
+                        <div>
+                             {
+                                products?.length <= 0 && <div className="w-full h-[calc(100vh-165px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-100px)] flex items-center justify-center">
+                                    <p className="text-3xl font-bold">No product found</p>
+                                </div>
+                            }
+                            {
+                                products.length > 0 && <div className="overflow-x-auto mt-1 h-[calc(100vh-225px)] md:h-[calc(100vh-236px)]  lg:h-[calc(100vh-150px)]">
+                                <table className="table table-xs">
+                                    <thead className=""
+                                    >
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Product</th>
+                                            <th>Product name</th>
+                                            <th>Category</th>
+                                            <th>Seller</th>
+                                            <th>Brand</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
 
-                                </tbody>
+                                        {
+                                            products?.map((item, idx) =>
+                                                <tr key={idx}>
+                                                    <th>{(page - 1) * 15 + idx + 1}</th>
+                                                    <td> <img src={item.photo_url} alt="product" width={20} height={15} /> </td>
+                                                    <td>{item.name}</td>
+                                                    <td>{item.category}</td>
+                                                    <td>{item.seller}</td>
+                                                    <td>{item.brand}</td>
+                                                    <td>{item.price}</td>
+                                                </tr>
+                                            )
+                                        }
 
-                            </table>
+
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                            }
+                           
+                           
                         </div>
+
+
                     )
                 }
             </div>
 
-            {products?.length === 0 ? "" : <div className="flex justify-center items-center gap-2 my-8">
+            {products?.length === 0 ? "" : 
+            <div className="flex justify-center items-center gap-2 my-1">
                 <button className="btn  p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
                     disabled={page === 1}>
                     <FaArrowLeft  ></FaArrowLeft>

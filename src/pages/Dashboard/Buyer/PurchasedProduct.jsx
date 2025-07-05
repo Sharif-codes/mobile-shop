@@ -116,56 +116,60 @@ const PurchasedProduct = () => {
                     loading ? (
                         <Spinner></Spinner>
                     ) : (
-                        <div className="overflow-x-auto h-[calc(100vh-265px)] md:h-[calc(100vh-190px)]">
-                            <table className="table table-xs">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Product</th>
-                                        <th>Product name</th>
-                                        <th>Date</th>
-                                        <th>Trx_id</th>
-                                        <th>Price</th>
-                                        <th>Seller</th>
-                                        <th>Seller_Email</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    
-                                        { products?.length > 0 &&
-                                            products?.map((item, idx) =>
-                                                <tr key={idx}>
-                                                    <th>{(page - 1) * 15 + idx + 1}</th>
-                                                    <td> <img src={item.photo_url} alt="product" width={20} height={15} /> </td>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.purchased_time?.slice(0, 10)}</td>
-                                                    <td>{item.trx_id}</td>
-                                                    <td>{item.price}Tk.</td>
-                                                    <td>{item.seller}</td>
-                                                    <td>{item.sellerEmail}</td>
-                                                </tr>
-                                            )
-                                        }
-                                    
-
-                                    
-
-
-
-                                </tbody>
-
-                            </table>
+                        <div>
                             {
-                                products?.length === 0 && <div className="w-full h-[calc(100vh-120px)] flex items-center justify-center">
+                                products?.length <= 0 && <div className="w-full h-[calc(100vh-155px)] md:h-[calc(100vh-145px)] lg:h-[calc(100vh-100px)] flex items-center justify-center">
                                     <p className="text-3xl font-bold">No product found</p>
-                                </div>}
+                                </div>
+                            }
+                            {
+                                products?.length > 0 &&
+                                <div className="overflow-x-auto h-[calc(100vh-210px)] md:h-[calc(100vh-200px)] lg:h-[calc(100vh-145px)]">
+                                    <table className="table table-xs">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Product</th>
+                                                <th>Product name</th>
+                                                <th>Date</th>
+                                                <th>Trx_id</th>
+                                                <th>Price</th>
+                                                <th>Seller</th>
+                                                <th>Seller_Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            {products?.length > 0 &&
+                                                products?.map((item, idx) =>
+                                                    <tr key={idx}>
+                                                        <th>{(page - 1) * 15 + idx + 1}</th>
+                                                        <td> <img src={item.photo_url} alt="product" width={20} height={15} /> </td>
+                                                        <td>{item.name}</td>
+                                                        <td>{item.purchased_time?.slice(0, 10)}</td>
+                                                        <td>{item.trx_id}</td>
+                                                        <td>{item.price}Tk.</td>
+                                                        <td>{item.seller}</td>
+                                                        <td>{item.sellerEmail}</td>
+                                                    </tr>
+                                                )
+                                            }
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                            }
+
                         </div>
+
                     )
                 }
             </div>
 
-            {products?.length === 0 ? "" : <div className="flex justify-center items-center gap-2 my-8">
+            {products?.length === 0 ? "" : <div className="flex justify-center items-center gap-2 my-1">
                 <button className="btn  p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
                     disabled={page === 1}>
                     <FaArrowLeft  ></FaArrowLeft>

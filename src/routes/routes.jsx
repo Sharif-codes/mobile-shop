@@ -11,7 +11,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 
 import SellerProducts from "../pages/Dashboard/Seller/Products/SellerProducts";
-import AllUsers from "../pages/Dashboard/Admin/AllUsers";
+
 import Cart from "../pages/Dashboard/Buyer/Cart";
 import Wishlist from "../pages/Dashboard/Buyer/Wishlist";
 import DashboardHome from "../pages/Dashboard/DashboardHome";
@@ -26,6 +26,7 @@ import UpdateProduct from "../pages/Dashboard/Seller/Products/UpdateProduct";
 import PaymentFail from "../pages/Dashboard/Payment/PaymentFail";
 import PurchasedProduct from "../pages/Dashboard/Buyer/PurchasedProduct";
 import SoldProducts from "../pages/Dashboard/Seller/SoldProduct/SoldProducts";
+import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
   {

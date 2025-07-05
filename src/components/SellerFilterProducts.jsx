@@ -17,7 +17,6 @@ const location = useLocation()
                         <option  value="" hidden>Category</option>
                         {uniqueCategory.map((category) => <option key={category} value={category}>{category}</option>)}
                     </select>
-                {/* <CategoryDropdown setCategory={setCategory} uniqueCategory={uniqueCategory} ></CategoryDropdown> */}
             </div>
 
             <div className="w-md">
@@ -37,7 +36,7 @@ const location = useLocation()
             
 
             <button type="button" onClick={handleReset} className="flex items-center">
-                <GrPowerReset className="text-xl"  /> <p>Reset</p>
+                <GrPowerReset className="text-xl"  /> <p></p>
             </button>
         </div>
     );
