@@ -34,8 +34,9 @@ const ProductCard = ({ product, refetchWishlist, refetchCart }) => {
             toast.error(`${product.name} is already in the cart`);
             return { message: "already added" };
         }
-        delete product._id;
+        const product_Id= product._id;
         product.email = user.email;
+        product.product_Id= product_Id
         refetch()
         addToCart(product)
     }

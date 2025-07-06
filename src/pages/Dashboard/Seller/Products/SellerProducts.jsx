@@ -144,7 +144,9 @@ const SellerProducts = () => {
                 }
             </div>
 
-            <div className="flex justify-center items-center gap-2 my-4">
+{
+    products?.length>0 &&
+    <div className="flex justify-center items-center gap-2 my-4">
                 <button className="btn  p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
                     disabled={page === 1}>
                     <FaArrowLeft  ></FaArrowLeft>
@@ -155,6 +157,8 @@ const SellerProducts = () => {
                     <FaArrowRight className="" ></FaArrowRight>
                 </button>
             </div>
+}
+            
         </div>
     );
 };

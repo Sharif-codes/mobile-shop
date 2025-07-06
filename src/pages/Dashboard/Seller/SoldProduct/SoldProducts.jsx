@@ -95,7 +95,7 @@ const SoldProducts = () => {
                 </div>
 
 
-                
+
 
             </div>
 
@@ -129,7 +129,7 @@ const SoldProducts = () => {
                                     <p className="text-xl md:text-2xl lg:text-3xl font-bold  ">No product found!</p>
                                 </div>
                             }
-                            { products?.length >0 &&
+                            {products?.length > 0 &&
                                 <div className="overflow-x-auto mt-1 h-[calc(100vh-225px)] md:h-[calc(100vh-236px)] lg:h-[calc(100vh-135px)]">
                                     <table className="table table-xs">
                                         <thead>
@@ -182,19 +182,22 @@ const SoldProducts = () => {
                 }
             </div>
 
-           
-            {products?.length === 0 ? "" : 
-            <div className="flex justify-center items-center gap-2 my-1">
-                <button className="btn  p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
-                    disabled={page === 1}>
-                    <FaArrowLeft  ></FaArrowLeft>
-                </button>
-                <p>Page {page} of {totalPages}</p>
-                <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
-                    disabled={page === totalPages}>
-                    <FaArrowRight className="" ></FaArrowRight>
-                </button>
-            </div>}
+
+
+            {
+                products?.length > 0 &&
+                <div className="flex justify-center items-center gap-2 my-1">
+                    <button className="btn  p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
+                        disabled={page === 1}>
+                        <FaArrowLeft  ></FaArrowLeft>
+                    </button>
+                    <p>Page {page} of {totalPages}</p>
+                    <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
+                        disabled={page === totalPages}>
+                        <FaArrowRight className="" ></FaArrowRight>
+                    </button>
+                </div>
+            }
         </div>
     );
 };

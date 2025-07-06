@@ -9,6 +9,10 @@ import { TbFilter } from "react-icons/tb";
 import Spinner from "../../../components/spinner/spinner";
 import ProductCard from "../../../components/ProductCard/ProductCard";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import Review from "../../../components/Review";
+import toast from "react-hot-toast";
+import useGetBuyerReview from "../../../Hooks/useGetBuyerReview";
+
 
 
 const PurchasedProduct = () => {
@@ -26,10 +30,17 @@ const PurchasedProduct = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [toggleFilter, setToggleFilter] = useState(1);
+    const [reviewOn, setReviewOn] = useState(false);
+
+    const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+    const [productToReview, setProductToReview] = useState(null);
 
     const { user } = useAuth()
 
+    const token = localStorage.getItem('access-token')
 
+    const [reviews, reviewLoading,refetch]= useGetBuyerReview();
+    console.log("review: ", reviews);
     useEffect(() => {
         const fetch = async () => {
             setLoading(true);
@@ -71,6 +82,50 @@ const PurchasedProduct = () => {
         setSort("asc");
         setPage(1);
     }
+
+    const openReviewModal = (product) => {
+        setProductToReview(product);
+        setIsReviewModalOpen(true);
+    };
+
+    const closeReviewModal = () => {
+        setIsReviewModalOpen(false);
+        setProductToReview(null);
+    };
+    const handleReviewSubmission = async ({ productId, reviewer, reviewText, rating }) => {
+
+        try {
+
+            const reviewData = {
+                productId,
+                reviewer,
+                reviewerEmail: user?.email,
+                reviewText,
+                rating: parseInt(rating),
+                reviewedAt: new Date().toISOString(),
+
+            };
+
+            const res = await axiosPublic.post("/buyer-review", reviewData, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            })
+
+            if(res.data?.insertedId){
+                toast.success("Review submitted successfully!");  
+            }
+            else{
+                toast.error("Failed to submit review")
+            }
+
+        } catch (error) {
+            console.error("Error submitting review:", error);
+            toast.error("Failed to submit review. Please try again.");
+        } finally {
+            closeReviewModal();
+        }
+    };
 
     return (
         <div className=" flex flex-col mt-0 lg:mt-2 md:mt-0">
@@ -136,6 +191,7 @@ const PurchasedProduct = () => {
                                                 <th>Price</th>
                                                 <th>Seller</th>
                                                 <th>Seller_Email</th>
+                                                <th>Review</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -152,6 +208,17 @@ const PurchasedProduct = () => {
                                                         <td>{item.price}Tk.</td>
                                                         <td>{item.seller}</td>
                                                         <td>{item.sellerEmail}</td>
+
+
+                                                        {
+                                                        reviews.filter(review=> review.productId === item?.product_Id)[0] ?<button className=" my-1 w-20 disabled">Reviewed</button>:
+                                                            <button
+                                                            onClick={() => openReviewModal(item)} // Pass the product item to the handler
+                                                            className="w-20 my-1 text-xs btn-sm btn hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0"
+                                                        >
+                                                            Review
+                                                        </button>
+                                                        }
                                                     </tr>
                                                 )
                                             }
@@ -180,6 +247,15 @@ const PurchasedProduct = () => {
                     <FaArrowRight className="" ></FaArrowRight>
                 </button>
             </div>}
+
+            {isReviewModalOpen && productToReview && (
+                <Review
+                    isOpen={isReviewModalOpen}
+                    onClose={closeReviewModal}
+                    onSubmitReview={handleReviewSubmission}
+                    product={productToReview}
+                />
+            )}
         </div>
     );
 };

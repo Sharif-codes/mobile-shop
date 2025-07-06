@@ -35,7 +35,8 @@ const responsive = {
                            {
                             allProducts?.map((product, idx) => (
                                 <div key={idx} className="p-4 bg-transparent rounded flex flex-col items-center justify-center">
-                                    <img className="w-24 " src={product.photo_url} alt="product" />
+                                    <img className="w-24 h-28 " src={product.photo_url} alt="product" />
+                                    <p>{product?.name}</p>
                                     
                                 </div>
                             ))
