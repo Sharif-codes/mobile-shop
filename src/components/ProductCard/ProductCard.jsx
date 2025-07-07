@@ -25,13 +25,12 @@ const ProductCard = ({ product }) => {
         navigate("/products/details", { state: product })
     }
     const handleAddToCart = () => {
-        refetch()
         const product_Id= product?._id
         product.product_Id= product_Id
         
         product.buyerEmail = user?.email
-        addToCart(product)
-        refetch()
+        addToCart(product,refetch)
+       
     }
     const handleAddToWishList = () => {
         delete product._id
@@ -53,7 +52,7 @@ const ProductCard = ({ product }) => {
                 const res = await axiosPublic.delete(`/wishlistRemove/${product._id}`);
                 console.log("delete id:", product._id);
                 console.log(res.data);
-                refetchWishlist()
+                // refetchWishlist()
                 if (res.data.deletedCount > 0) {
                     Swal.fire({
                         title: "Deleted!",
@@ -132,8 +131,8 @@ const ProductCard = ({ product }) => {
     }
     return (
 
-        <div className="rounded-md mx-4 mt-4 border-1 shadow-lg shadow-slate-200 flex flex-col justify-between" >
-            <div onClick={handleDetailsPage} className="cursor-pointer flex justify-center p-1   " >
+        <div className="rounded-md mx-4 mt-4 border-1 shadow-lg shadow-slate-200 flex flex-col justify-between md:w-40 lg:w-52" >
+            <div onClick={handleDetailsPage} className="cursor-pointer flex justify-center p-1" >
                 <img
                     src={product?.photo_url}
                     alt="product image"
@@ -148,10 +147,10 @@ const ProductCard = ({ product }) => {
                 <div className="mt-2">
                     {user.role === "buyer" && location.pathname === "/products" && (
                         <div className="flex justify-between gap-1 ">
-                            <button onClick={handleDetailsPage} className="btn w-1/2 btn-sm text-xs">
+                            <button onClick={handleDetailsPage} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
                                 Details
                             </button>
-                            <button onClick={handleAddToCart} className="btn w-1/2 btn-sm text-xs">
+                            <button onClick={handleAddToCart} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
                                 Add to Cart
                             </button>
                         </div>
@@ -159,7 +158,7 @@ const ProductCard = ({ product }) => {
 
 
                     {user.role === "buyer" && location.pathname === "/dashboard/cart" && (
-                        <button onClick={() => handleDeleteCart(product)} className="btn btn-error text-white w-full btn-sm">
+                        <button onClick={() => handleDeleteCart(product)} className="btn btn-error text-white w-full btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0 ">
                             Delete
                         </button>
                     )
@@ -167,10 +166,10 @@ const ProductCard = ({ product }) => {
 
                     {user.role === "seller" && location.pathname === "/dashboard/sellerProducts" && (
                         <div className="flex justify-between gap-1">
-                            <button onClick={() => handleDeleteSellerProduct(product)} className="btn w-1/2 btn-sm">
+                            <button onClick={() => handleDeleteSellerProduct(product)} className="btn w-1/2 btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
                                 Delete
                             </button>
-                            <button onClick={handleUpdateProduct} className="btn w-1/2 btn-sm">Update</button>
+                            <button onClick={handleUpdateProduct} className="btn w-1/2 btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">Update</button>
                         </div>
                     )}
                 </div>

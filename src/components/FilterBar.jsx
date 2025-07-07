@@ -31,7 +31,7 @@ const FilterBar = ({setBrand,setCategory,setSeller,handleReset,uniqueBrands,uniq
                         {uniqueSeller.slice(1).map((seller)=> <option key={seller} value={seller}>{seller}</option>)}
                     </select>
                 </div>
-                <button className="btn btn-md btn-primary w-36 lg:w-44 md:w-40 mt-2 flex items-center" onClick={handleReset}>Reset<GrPowerReset></GrPowerReset></button>
+                <button className="btn btn-md  w-36 lg:w-44 md:w-40 mt-2 flex items-center hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0" onClick={handleReset}>Reset<GrPowerReset></GrPowerReset></button>
             </div>
             
         </div>

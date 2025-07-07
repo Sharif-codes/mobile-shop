@@ -73,7 +73,7 @@ const Products = () => {
 
             <div className="h-16 md:h-16 flex justify-between md:grid grid-cols-9 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold ">
                 <div className="col-span-2 flex  items-center ">
-                    <p>Products</p>
+                    <p >Products</p>
                 </div>
                 <div className="md:col-span-7 flex justify-end items-center gap-4">
                     <SortByPrice setSort={setSort}></SortByPrice>
@@ -134,12 +134,12 @@ const Products = () => {
                     {products?.length >= 1 && <div className="flex justify-center items-center gap-2 my-8">
                         <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
                             disabled={page === 1}>
-                            <FaArrowLeft  ></FaArrowLeft>
+                            <FaArrowLeft className="hover:text-purple-700 hover:text-md"  ></FaArrowLeft>
                         </button>
                         <p>Page {page} of {totalPages}</p>
                         <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
                             disabled={page === totalPages}>
-                            <FaArrowRight ></FaArrowRight>
+                            <FaArrowRight className="hover:text-purple-700 hover:text-md" ></FaArrowRight>
                         </button>
                     </div>}
                 </div>

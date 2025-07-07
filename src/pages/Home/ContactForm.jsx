@@ -24,7 +24,7 @@ const ContactForm = () => {
 
                 </div>
                 <div className="form-control mt-6">
-                    <button className="btn btn-primary rounded-md">Submit</button>
+                    <button className="btn  rounded-md hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 border-0">Submit</button>
                 </div>
             </form>
         </div>
