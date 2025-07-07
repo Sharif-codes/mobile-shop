@@ -8,15 +8,14 @@ import addToCart from "../../Api/addToCart";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useCart from "../../Hooks/useCart";
-import toast from "react-hot-toast";
 
 
-const ProductCard = ({ product, refetchWishlist, refetchCart }) => {
+const ProductCard = ({ product }) => {
     const location = useLocation()
     const user = useUserData()
     const axiosPublic = useAxiosPublic()
-    const [cart, cartLoading, refetch] = useCart();
     const token = localStorage.getItem('access-token')
+    const [cart, cartLoading, refetch] = useCart();
 
     const navigate = useNavigate()
     const handleDetailsPage = () => {
@@ -26,19 +25,13 @@ const ProductCard = ({ product, refetchWishlist, refetchCart }) => {
         navigate("/products/details", { state: product })
     }
     const handleAddToCart = () => {
-        console.log("cart ityems", cart);
-        console.log("producyt", product);
         refetch()
-        const alreadyInCart = cart.find(item => item.name === product.name);
-        if (alreadyInCart) {
-            toast.error(`${product.name} is already in the cart`);
-            return { message: "already added" };
-        }
-        const product_Id= product._id;
-        product.email = user.email;
+        const product_Id= product?._id
         product.product_Id= product_Id
-        refetch()
+        
+        product.buyerEmail = user?.email
         addToCart(product)
+        refetch()
     }
     const handleAddToWishList = () => {
         delete product._id
@@ -88,7 +81,7 @@ const ProductCard = ({ product, refetchWishlist, refetchCart }) => {
                 const res = await axiosPublic.delete(`/cartRemove/${product._id}`);
                 console.log("delete id:", product._id);
                 console.log(res.data);
-                refetchCart()
+                refetch()
                 if (res.data.deletedCount > 0) {
                     Swal.fire({
                         title: "Deleted!",

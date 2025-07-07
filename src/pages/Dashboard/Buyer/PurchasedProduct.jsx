@@ -12,6 +12,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import Review from "../../../components/Review";
 import toast from "react-hot-toast";
 import useGetBuyerReview from "../../../Hooks/useGetBuyerReview";
+import { TiTick } from "react-icons/ti";
 
 
 
@@ -119,6 +120,8 @@ const PurchasedProduct = () => {
                 toast.error("Failed to submit review")
             }
 
+            refetch()
+
         } catch (error) {
             console.error("Error submitting review:", error);
             toast.error("Failed to submit review. Please try again.");
@@ -211,7 +214,7 @@ const PurchasedProduct = () => {
 
 
                                                         {
-                                                        reviews.filter(review=> review.productId === item?.product_Id)[0] ?<button className=" my-1 w-20 disabled">Reviewed</button>:
+                                                        reviews.filter(review=> review.productId === item?.product_Id)[0] ?<p className=" my-1 flex justify-center "><TiTick className="text-xl text-green-700" /></p>:
                                                             <button
                                                             onClick={() => openReviewModal(item)} // Pass the product item to the handler
                                                             className="w-20 my-1 text-xs btn-sm btn hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0"

@@ -10,7 +10,7 @@ import logo from "../../../public/digi_logo.png"
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const userData = useUserData();
-  const [cart, cartLoading, refetch] = useCart();
+  const [cart, cartLoading,refetch]= useCart()
   const HandleLogout = () => {
     logOut()
     toast.success(`${user.displayName} Logged out Successfully!`)

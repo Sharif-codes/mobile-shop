@@ -11,7 +11,7 @@ const Cart = () => {
     const navigate= useNavigate()
     const user = useUserData()
     const axiosPublic = useAxiosPublic()
-    const [cart, cartLoading, refetchCart] = useCart()
+    const [cart, cartLoading, refetch] = useCart()
     console.log("cart data: ", cart)
     const prices = []
     cart?.map(product => prices.push(product.price))
@@ -61,7 +61,7 @@ const Cart = () => {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 mx-auto gap-6 md:gap-12 lg:gap-12 ">
                     {
                         cart?.map((product, idx) => (
-                            <ProductCard key={idx} product={product} refetchCart={refetchCart}></ProductCard>
+                            <ProductCard key={idx} product={product} refetchCart={refetch}></ProductCard>
 
                         )
                         )}</div>
