@@ -5,9 +5,12 @@ import toast from "react-hot-toast";
 import { ImSpinner3 } from "react-icons/im";
 import { saveUser } from "../../Api/saveUser";
 import { useState } from "react";
+import photoUpload from "../../Api/photoUpload";
 
 
 const Register = () => {
+  const [loadingImageUpload, setLoadingImageUpload]= useState(false);
+  const [imageUrl, setImageUrl]= useState("")
   const navigate = useNavigate()
   const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
   const numberRegex = /\d/;
@@ -16,8 +19,18 @@ const Register = () => {
   const location = useLocation()
   const from = location?.state?.from?.pathname || "/";
 
+  const handleFileUpload = async (event) => {
+    setLoadingImageUpload(true)
+    const file = event.target.files[0];
+    if (!file) return;
+    const data = new FormData()
+    data.append("file", file)
+    const UploadedImgUrl= await photoUpload(data)
+    setImageUrl(UploadedImgUrl);
+    setLoadingImageUpload(false)
+  }
   const handleSignUp = async e => {
-    e.preventDefault()
+    e.preventDefault();
     const form = e.target
     const name = form.name.value
     const role = form.role.value
@@ -43,6 +56,8 @@ const Register = () => {
       return;
     }
 
+
+
     try {
       // upload image
       //   const imageData = await imgUpload(image)
@@ -51,7 +66,7 @@ const Register = () => {
       updateUserProfile(name)
       console.log(result)
       // save user in database
-      const dbResponse = await saveUser(result?.user, name, role)
+      const dbResponse = await saveUser(result?.user, name, role,imageUrl)
       console.log(dbResponse);
       // get token
       // await getToken(result?.user?.email)
@@ -69,13 +84,16 @@ const Register = () => {
     try {
       signInWithGoogle()
         .then(result => {
-          console.log(result.user);
-          saveUser(result?.user, result?.user?.displayName)
+        
+        
+          const img= result?.user?.photoURL;
+        
+        
+          saveUser(result?.user, result?.user?.displayName,null, img )
           //get token
           // getToken(result?.user?.email)
           toast.success('Successfullly Registered with google')
           navigate(from, { replace: true })
-          console.log(loading);
           setLoading(0)
         })
     }
@@ -128,10 +146,13 @@ const Register = () => {
                 <option value="seller">Seller</option>
               </select>
             </div>
-            {/* <div>
+            <div>
               <label htmlFor='image' className='block mb-2 text-sm'>
                 Select Image:
               </label>
+              {
+                loadingImageUpload? "Uploading image...":  "" 
+              }
               <input
                 className="file-input file-input-bordered file-input-info w-full max-w-x"
                 required
@@ -139,8 +160,10 @@ const Register = () => {
                 id='image'
                 name='image'
                 accept='image/*'
+                onChange={handleFileUpload}
               />
-            </div> */}
+            
+            </div>
             <div>
               <label htmlFor='email' className='block mb-2 text-sm'>
                 Email address

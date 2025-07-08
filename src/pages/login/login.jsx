@@ -45,7 +45,8 @@ const Login = () => {
       signInWithGoogle()
         .then(result => {
           console.log(result);
-          saveUser(result?.user, result?.user?.displayName)
+          const img = result?.user?.photoURL;
+          saveUser(result?.user, result?.user?.displayName, null, img)
           //get token
           // getToken(result?.user?.email)
           toast.success('successfully Logged In!')

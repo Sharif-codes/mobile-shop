@@ -160,7 +160,7 @@ const SoldProducts = () => {
                                                         <td> <img src={item.photo_url} alt="product" width={20} height={15} /> </td>
                                                         <td>{item.name}</td>
                                                         <td>{item.purchased_time?.slice(0, 10)}</td>
-                                                        <td>{item.email}</td>
+                                                        <td>{item.buyerEmail}</td>
                                                         <td>{item.trx_id}</td>
 
 
