@@ -9,7 +9,7 @@ const photoUpload = async (data) => {
     })
     const uploadImageURL= await res.json()
     console.log(uploadImageURL?.secure_url);
-    return uploadImageURL.secure_url;
+    return uploadImageURL?.secure_url;
 };
 
 export default photoUpload;

@@ -10,7 +10,7 @@ import photoUpload from "../../Api/photoUpload";
 
 const Register = () => {
   const [loadingImageUpload, setLoadingImageUpload]= useState(false);
-  const [imageUrl, setImageUrl]= useState("")
+  const [imageUrl, setImageUrl]= useState("");
   const navigate = useNavigate()
   const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
   const numberRegex = /\d/;
@@ -146,6 +146,7 @@ const Register = () => {
                 <option value="seller">Seller</option>
               </select>
             </div>
+
             <div>
               <label htmlFor='image' className='block mb-2 text-sm'>
                 Select Image:
@@ -162,7 +163,6 @@ const Register = () => {
                 accept='image/*'
                 onChange={handleFileUpload}
               />
-            
             </div>
             <div>
               <label htmlFor='email' className='block mb-2 text-sm'>

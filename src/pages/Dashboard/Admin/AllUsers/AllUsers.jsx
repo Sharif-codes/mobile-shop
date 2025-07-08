@@ -226,7 +226,7 @@ const AllUsers = () => {
                           {
                             item.role == "admin" ? <></> : item.role == "buyer" ? <button
                               onClick={() => handleUpdateToSeller(item.email)}
-                              className='btn w-24 h-2 btn-sm text-xs btn-success'>Make Seller</button> : <button onClick={() => handleUpdateToBuyer(item.email)} className='btn w-24 h-2 btn-sm text-xs btn-accent'>Make Buyer</button>
+                              className='btn w-24 h-2 btn-sm text-xs hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100'>Make Seller</button> : <button onClick={() => handleUpdateToBuyer(item.email)} className='btn w-24 h-2 btn-sm text-xs hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100'>Make Buyer</button>
                           }
 
                         </td>
@@ -234,7 +234,7 @@ const AllUsers = () => {
                           {
                             item.role == "admin" ? <></> : <button
                               onClick={() => handleMemberRemove(item.email)}
-                              className="btn w-24 h-2 btn-sm text-xs btn-primary"
+                              className="btn w-24 h-2 btn-sm text-xs hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100"
                             >
                               Delete
                             </button>
