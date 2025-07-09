@@ -3,15 +3,18 @@ import useUserData from "../Hooks/useUserData";
 import { AiFillDollarCircle, AiFillProduct } from "react-icons/ai";
 import { FaCartPlus, FaHome, FaProductHunt, FaRegListAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
-import { FaMessage } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { FiSettings } from "react-icons/fi";
 import { TbCategoryPlus } from "react-icons/tb";
 import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import logo from "../../public/digi_logo.png";
+import useCart from "../Hooks/useCart";
 
-const adminRoute = [
+
+const DashboardLayout = () => {
+     const [cart, cartLoading, refetch] = useCart()
+    const adminRoute = [
     {
         id: 1,
         route: "/dashboard/allUsers",
@@ -25,7 +28,7 @@ const adminRoute = [
         icon: <FaProductHunt className="text-xl"></FaProductHunt>
     },
     {
-        id: 2,
+        id: 3,
         route: "/dashboard/Categories",
         title: "Categories",
         icon: <TbCategoryPlus className="text-xl"></TbCategoryPlus>
@@ -56,7 +59,7 @@ const buyerRoute = [
     {
         id: 2,
         route: "/dashboard/cart",
-        title: "My Cart",
+        title: <p>My Cart ({cart?.length})</p> ,
         icon: <FaCartPlus className="text-xl"></FaCartPlus>
     },
     {
@@ -67,10 +70,10 @@ const buyerRoute = [
     },
 ]
 
-const DashboardLayout = () => {
     const userData = useUserData()
     const { logout } = useAuth()
     const theme = useSelector((state) => state.theme.value)
+    
 
     return (
         <div className="container mx-auto" data-theme={theme}>

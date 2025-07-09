@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
+
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import ProductCard from "../../../../components/ProductCard/ProductCard";
 import Spinner from "../../../../components/spinner/spinner";
-import { Link, useLocation } from "react-router-dom";
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
-import useAuth from "../../../../Hooks/useAuth";
-import Searchbar from "../../../../components/Searchbar";
-import SortByPrice from "../../../../components/SortByPrice";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import SellerFilterProducts from "../../../../components/SellerFilterProducts";
 import { TbFilter } from "react-icons/tb";
+import { Link } from "react-router-dom";
+import SortByPrice from "../../../../components/SortByPrice";
+import Searchbar from "../../../../components/Searchbar";
+import { useEffect, useState } from "react";
+import useAuth from "../../../../Hooks/useAuth";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 
 
-const SellerProducts = () => {
 
+
+const Wishlist = () => {
     const axiosPublic = useAxiosPublic()
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -94,8 +96,8 @@ const SellerProducts = () => {
 
 
                 <div className="col-span-1 md:col-span-3 flex justify-end items-center">
-                    <Link to="/dashboard/addProducts">
-                        <button className="flex justify-center items-center hover:bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text hover:text-transparent "> <span className="">+</span> <span>Add Product</span></button>
+                    <Link to="/dashboard/addWishlist">
+                        <button className="flex justify-center items-center hover:bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text hover:text-transparent "> <span className="">+</span> <span>Add to wishlist</span></button>
                     </Link>
                 </div>
 
@@ -126,7 +128,7 @@ const SellerProducts = () => {
                     ) : (
                         <div>
                             {
-                                products?.length === 0 && <div className="w-full h-[calc(100vh-165px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-100px)]  flex items-center justify-center">
+                                products?.length === 0 && <div className="w-full h-[calc(100vh-165px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-100px)]   flex items-center justify-center">
                                     <p className="text-xl md:text-2xl lg:text-3xl font-bold  ">No product found!</p>
                                 </div>
                             }
@@ -163,6 +165,4 @@ const SellerProducts = () => {
     );
 };
 
-export default SellerProducts;
-
-
+export default Wishlist;

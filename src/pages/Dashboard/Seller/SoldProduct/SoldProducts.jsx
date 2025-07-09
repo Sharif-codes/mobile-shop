@@ -45,9 +45,6 @@ const SoldProducts = () => {
         };
         fetch();
     }, [axiosPublic, brand, category, page, search, seller, sort, user?.email]);
-
-    console.log("new:", products);
-
     const handleSearch = (e) => {
         e.preventDefault()
         setSearch(e.target.search.value)
@@ -93,10 +90,6 @@ const SoldProducts = () => {
                     >
                     </SellerFilterProducts>
                 </div>
-
-
-
-
             </div>
 
             <div className="lg:hidden flex justify-start mx-4 gap-2 my-4 items-center h-4" >
@@ -129,7 +122,9 @@ const SoldProducts = () => {
                                     <p className="text-xl md:text-2xl lg:text-3xl font-bold  ">No product found!</p>
                                 </div>
                             }
-                            {products?.length > 0 &&
+
+                            {
+                                products?.length > 0 &&
                                 <div className="overflow-x-auto mt-1 h-[calc(100vh-225px)] md:h-[calc(100vh-236px)] lg:h-[calc(100vh-135px)]">
                                     <table className="table table-xs">
                                         <thead>
@@ -181,8 +176,6 @@ const SoldProducts = () => {
                     )
                 }
             </div>
-
-
 
             {
                 products?.length > 0 &&

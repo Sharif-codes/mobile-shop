@@ -13,6 +13,7 @@ import Review from "../../../components/Review";
 import toast from "react-hot-toast";
 import useGetBuyerReview from "../../../Hooks/useGetBuyerReview";
 import { TiTick } from "react-icons/ti";
+import useCart from "../../../Hooks/useCart";
 
 
 
@@ -31,7 +32,7 @@ const PurchasedProduct = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [toggleFilter, setToggleFilter] = useState(1);
-    const [reviewOn, setReviewOn] = useState(false);
+    
 
     const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
     const [productToReview, setProductToReview] = useState(null);
@@ -180,7 +181,7 @@ const PurchasedProduct = () => {
                     ) : (
                         <div>
                             {
-                                products?.length <= 0 && <div className="w-full h-[calc(100vh-165px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-100px)] flex items-center justify-center">
+                                products?.length === 0 && <div className="w-full h-[calc(100vh-165px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-100px)] flex items-center justify-center">
                                     <p className="text-3xl font-bold">No product found</p>
                                 </div>
                             }
@@ -218,7 +219,7 @@ const PurchasedProduct = () => {
 
 
                                                         {
-                                                        reviews.filter(review=> review.productId === item?.product_Id)[0] ?<p className=" my-1 flex justify-center "><TiTick className="text-xl text-green-700" /></p>:
+                                                        reviews.filter(review=> review.productId === item?.product_Id)[0] ?<p className=" my-1 flex justify-center items-center  "><TiTick className="text-xl text-green-700 text-center" /></p>:
                                                             <button
                                                             onClick={() => openReviewModal(item)} // Pass the product item to the handler
                                                             className="w-20 my-1 text-xs btn-sm btn hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0"

@@ -105,11 +105,10 @@ const Register = () => {
 
   }
   return (
-    <div className='flex justify-center items-center min-h-screen'>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
-        <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
-          <p className='text-sm text-gray-400'>Welcome to Building Hub</p>
+    <div className='my-4 flex justify-center items-center min-h-screen'>
+      <div className='flex flex-col max-w-lg p-12 rounded-md  bg-gray-100 text-gray-900'>
+        <div className='mb-2 text-center'>
+          <h1 className=' text-4xl h-12 font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent'>Sign Up</h1>
         </div>
         <form onSubmit={handleSignUp}
           noValidate=''
@@ -155,7 +154,7 @@ const Register = () => {
                 loadingImageUpload? "Uploading image...":  "" 
               }
               <input
-                className="file-input file-input-bordered file-input-info w-full max-w-x"
+                className="file-input file-input-bordered file-input-info w-full max-w-x border-gray-300 focus:outline-info bg-gray-200 text-gray-900"
                 required
                 type='file'
                 id='image'
@@ -199,7 +198,7 @@ const Register = () => {
           <div>
             <button
               type='submit'
-              className='bg-info w-full rounded-md py-3 text-white'
+              className='bg-info w-full rounded-md py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-slate-100'
             >
               {loading ? (<ImSpinner3 className='animate-spin m-auto'></ImSpinner3>) : ("Continue")}
             </button>
@@ -213,10 +212,10 @@ const Register = () => {
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div>
-        <div onClick={handleGoogleSignIn} className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+        <div onClick={handleGoogleSignIn} className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100'>
           <FcGoogle size={32} />
 
-          <p>Continue with Google</p>
+          <p >Continue with Google</p>
         </div>
         <p className='px-6 text-sm text-center text-gray-400'>
           Already have an account?{' '}

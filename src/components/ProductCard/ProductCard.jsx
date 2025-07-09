@@ -25,12 +25,12 @@ const ProductCard = ({ product }) => {
         navigate("/products/details", { state: product })
     }
     const handleAddToCart = () => {
-        const product_Id= product?._id
-        product.product_Id= product_Id
-        
+        const product_Id = product?._id
+        product.product_Id = product_Id
+
         product.buyerEmail = user?.email
-        addToCart(product,refetch)
-       
+        addToCart(product, refetch)
+
     }
     const handleAddToWishList = () => {
         delete product._id
@@ -132,18 +132,33 @@ const ProductCard = ({ product }) => {
     return (
 
         <div className="rounded-md mx-4 mt-4 border-1 shadow-lg shadow-slate-200 flex flex-col justify-between md:w-40 lg:w-52" >
-            <div onClick={handleDetailsPage} className="cursor-pointer flex justify-center p-1" >
+            {/* <div  >
                 <img
                     src={product?.photo_url}
                     alt="product image"
-                    className="h-20 md:h-24 object-cover bg-transparent " />
+                    className="h-20 md:h-24 object-cover bg-transparent transition-transform duration-300 ease-in-out
+              group-hover:scale-110  " />
+            </div> */}
+
+            <div onClick={handleDetailsPage} className="group  cursor-pointer flex justify-center p-1">
+                <img src={product?.photo_url} alt="A beautiful landscape"
+                    className=" flex justify-center h-20 md:h-24 object-cover bg-transparent 
+              transition-transform duration-300 ease-in-out
+              group-hover:scale-125"></img>
+                {/* <div className="absolute inset-0 bg-black bg-opacity-25 opacity-0
+              transition-opacity duration-300 ease-in-out
+              group-hover:opacity-100 flex items-center justify-center">
+                    <div>
+                       
+                    </div>
+                </div> */}
             </div>
 
             <div className="p-2 text-center">
                 <h2 className="text-sm text-center font-semibold">{product?.name}</h2>
                 <h2 className="text-xs font-semibold ">Brand: {product?.brand}</h2>
                 <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>
-                
+
                 <div className="mt-2">
                     {user.role === "buyer" && location.pathname === "/products" && (
                         <div className="flex justify-between gap-1 ">

@@ -18,7 +18,7 @@ const SettingsPage = () => {
                     {THEMES.map((t) => (
                         <button
                             key={t}
-                            className={` group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors ${theme === t ? "bg-base-200" : "hover:bg-base-200/50"}`}
+                            className={` group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 ${theme === t ? "bg-base-200" : "hover:bg-base-200/50"}`}
                             onClick={() => dispatch(setTheme(t))}
                         >
                             <div className="relative h-8 w-full rounded-md overflow-hidden" data-theme={t}>

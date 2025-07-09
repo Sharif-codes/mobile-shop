@@ -13,7 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import SellerProducts from "../pages/Dashboard/Seller/Products/SellerProducts";
 
 import Cart from "../pages/Dashboard/Buyer/Cart";
-import Wishlist from "../pages/Dashboard/Buyer/Wishlist";
+import Wishlist from "../pages/Dashboard/Buyer/Wishlist/Wishlist";
 import DashboardHome from "../pages/Dashboard/DashboardHome";
 import ProductDetailsPage from "../pages/Products/ProductDetailsPage";
 import SettingsPage from "../pages/Settings/SettingsPage";
@@ -27,6 +27,7 @@ import PaymentFail from "../pages/Dashboard/Payment/PaymentFail";
 import PurchasedProduct from "../pages/Dashboard/Buyer/PurchasedProduct";
 import SoldProducts from "../pages/Dashboard/Seller/SoldProduct/SoldProducts";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
+import AddWishlist from "../pages/Dashboard/Buyer/Wishlist/AddWishlist";
 
 export const router = createBrowserRouter([
   {
@@ -124,6 +125,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/sellerSoldProducts",
         element: <SoldProducts></SoldProducts>
+      },
+      {
+        path: "/dashboard/addWishlist",
+        element: <AddWishlist></AddWishlist>
       },
     ]
   },
