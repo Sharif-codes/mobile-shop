@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useUserData from "../Hooks/useUserData";
-import { AiFillDollarCircle, AiFillProduct } from "react-icons/ai";
-import { FaCartPlus, FaHome, FaProductHunt, FaRegListAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { AiFillDollarCircle, AiFillProduct, AiFillProfile, AiOutlineProfile } from "react-icons/ai";
+import { FaCartPlus, FaHome, FaProductHunt, FaRegListAlt, FaSignOutAlt, FaUser, FaUserCircle } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
 import { useSelector } from "react-redux";
 import { FiSettings } from "react-icons/fi";
@@ -10,6 +10,7 @@ import { MdMenu } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import logo from "../../public/digi_logo.png";
 import useCart from "../Hooks/useCart";
+import { CiUser } from "react-icons/ci";
 
 
 const DashboardLayout = () => {
@@ -47,6 +48,12 @@ const sellerRoute = [
         title: "Sells",
         icon: <AiFillDollarCircle className="text-xl"></AiFillDollarCircle>
     },
+    {
+        id: 3,
+        route: "/dashboard/SellerStats",
+        title: "My Profile",
+        icon: <FaUserCircle className="text-xl"></FaUserCircle>
+    },
     
 ]
 const buyerRoute = [
@@ -70,6 +77,13 @@ const buyerRoute = [
         title: "My Wishlist",
         icon: <FaRegListAlt className="text-xl"></FaRegListAlt>
     },
+      {
+        id: 4,
+        route: "/dashboard/buyerStats",
+        title: "My Profile",
+        icon: <FaUserCircle className="text-xl"></FaUserCircle>
+    },
+    
 ]
 
     const userData = useUserData()

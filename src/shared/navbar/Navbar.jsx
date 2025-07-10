@@ -3,9 +3,9 @@ import useAuth from "../../Hooks/useAuth";
 import { FiShoppingCart } from "react-icons/fi";
 import useCart from "../../Hooks/useCart";
 import useUserData from "../../Hooks/useUserData";
-import { MdLogin, MdLogout, MdMenu } from "react-icons/md";
+import { MdLogin, MdLogout } from "react-icons/md";
 import toast from "react-hot-toast";
-import logo from "../../../public/digi_logo.png"
+import logo from "/digi_logo.png"
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 

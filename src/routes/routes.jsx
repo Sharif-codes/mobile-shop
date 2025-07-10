@@ -28,6 +28,10 @@ import PurchasedProduct from "../pages/Dashboard/Buyer/PurchasedProduct";
 import SoldProducts from "../pages/Dashboard/Seller/SoldProduct/SoldProducts";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers/AllUsers";
 import AddWishlist from "../pages/Dashboard/Buyer/Wishlist/AddWishlist";
+import Stats from "../pages/Dashboard/Seller/Stats/SellerStats";
+import SellerStats from "../pages/Dashboard/Seller/Stats/SellerStats";
+import BuyerStats from "../pages/Dashboard/Buyer/Stats/BuyerStats";
+
 
 export const router = createBrowserRouter([
   {
@@ -129,6 +133,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/addWishlist",
         element: <AddWishlist></AddWishlist>
+      },
+      {
+        path: "/dashboard/SellerStats",
+        element: <SellerStats></SellerStats>
+      },
+      {
+        path: "/dashboard/buyerStats",
+        element: <BuyerStats></BuyerStats>
       },
     ]
   },

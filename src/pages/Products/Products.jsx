@@ -72,7 +72,7 @@ const Products = () => {
         <div className="mx-auto ">
 
             <div className="h-16 md:h-16 flex justify-between md:grid grid-cols-9 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold ">
-                <div className="col-span-2 flex  items-center ">
+                <div className="col-span-2 flex  items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent ">
                     <p >Products</p>
                 </div>
                 <div className="md:col-span-7 flex justify-end items-center gap-4">
