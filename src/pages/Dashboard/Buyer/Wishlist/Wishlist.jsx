@@ -36,7 +36,7 @@ const Wishlist = () => {
             setLoading(true);
             try {
                 const { data } = await axiosPublic.get(
-                    `/getSellerProducts?name=${search}&page=${page}&$limit=${8}&sort=${sort}&brand=${brand}&category=${category}&seller=${user?.email}`);
+                    `/getWishlistProducts?name=${search}&page=${page}&$limit=${8}&sort=${sort}&brand=${brand}&category=${category}&buyerEmail=${user?.email}`);
 
                 console.log("API Response:", data);
                 setProducts(data.products || []);
@@ -51,7 +51,7 @@ const Wishlist = () => {
             }
         };
         fetch();
-    }, [axiosPublic, brand, category, page, search, seller, sort, user?.email]);
+    }, [axiosPublic, brand, category, page, search, sort, user?.email]);
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -75,10 +75,10 @@ const Wishlist = () => {
     }
 
     return (
-        <div className=" flex flex-col mt-0 lg:mt-2 md:mt-0">
+        <div className=" flex flex-col mt-0 lg:mt-2 md:mt-0 lg:h-[calc(100vh-8px)] md:h-full h-full">
 
             {/*  */}
-            <div className=" h-12 md:h-16 grid md:flex md:justify-between lg:grid-cols-9 grid-cols-2 mx-4 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold">
+            <div className=" h-12 lg:h-16 md:h-24  grid md:flex md:justify-between lg:grid-cols-9 grid-cols-2 mx-4 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold mt-1">
                 <div className="col-span-1 md:col-span-3 flex gap-2">
                     <Searchbar handleSearch={handleSearch} ></Searchbar>
                     <SortByPrice setSort={setSort}></SortByPrice>
@@ -121,19 +121,19 @@ const Wishlist = () => {
 
             </div>
 
-            <div  >
+            <div className="h-full lg:h-[calc(100vh-160px)]">
                 {
                     loading ? (
                         <Spinner></Spinner>
                     ) : (
                         <div>
                             {
-                                products?.length === 0 && <div className="w-full h-[calc(100vh-165px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-100px)]   flex items-center justify-center">
+                                products?.length === 0 && <div className="w-full h-[calc(100vh-165px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-120px)]   flex items-center justify-center">
                                     <p className="text-xl md:text-2xl lg:text-3xl font-bold  ">No product found!</p>
                                 </div>
                             }
                             {products?.length > 0 &&
-                                <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2">
+                                <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2 ">
                                     {
                                         products?.map(item =>
                                             <ProductCard key={item?.objectId} product={item}></ProductCard>

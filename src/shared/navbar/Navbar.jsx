@@ -3,7 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import { FiShoppingCart } from "react-icons/fi";
 import useCart from "../../Hooks/useCart";
 import useUserData from "../../Hooks/useUserData";
-import { MdLogin, MdLogout } from "react-icons/md";
+import { MdLogin, MdLogout, MdMenu } from "react-icons/md";
 import toast from "react-hot-toast";
 import logo from "../../../public/digi_logo.png"
 import 'react-tooltip/dist/react-tooltip.css'
@@ -26,18 +26,10 @@ const Navbar = () => {
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16" />
-            </svg>
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg>
+            
+
+
           </div>
           <ul
             tabIndex={0}
@@ -60,7 +52,9 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link to="/" className="hidden md:flex items-center justify-center gap-1 "><img src={logo} width={25} alt="" /> <p className="text-lg md:text-2xl  font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</p></Link>
+        <Link to="/" className="hidden md:flex items-center justify-center gap-1 ">
+        <img src={logo} width={25} alt="" /> 
+        <p className="text-lg md:text-2xl  font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</p></Link>
       </div>
 
       <div className="navbar-center hidden lg:flex">
@@ -94,7 +88,7 @@ const Navbar = () => {
             user ? <button onClick={HandleLogout} className="flex items-center text-md font-semibold hover:text-red-600 " > <MdLogout></MdLogout> Logout</button> : <Link className="flex items-center text-md  font-semibold text-green-600" to="/login" > <p><MdLogin /></p>  <p>Login</p> </Link>
           }
         </div>
-        <div className="flex md:hidden items-center gap-2 ">
+        <div className="flex md:hidden items-center justify-center gap-2 ">
           {
             user && <div>
 
@@ -105,7 +99,9 @@ const Navbar = () => {
               </div>
             </div>
           }
-          <Link to="/" className="flex items-center justify-center gap-1 "><img src={logo} width={25} alt="" /> <p className="text-lg md:text-2xl  font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</p></Link>
+          <Link to="/" className="flex items-center justify-center gap-1 ">
+          <img src={logo} width={25} alt="" /> 
+          <p className="text-lg md:text-2xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</p></Link>
         </div>
       </div>
       <Tooltip id="my-tooltip" />

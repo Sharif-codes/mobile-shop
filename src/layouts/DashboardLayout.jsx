@@ -50,23 +50,25 @@ const sellerRoute = [
     
 ]
 const buyerRoute = [
-    {
+     {
         id: 1,
-        route: "/dashboard/wishList",
-        title: "My Wishlist",
-        icon: <FaRegListAlt className="text-xl"></FaRegListAlt>
-    },
-    {
-        id: 2,
         route: "/dashboard/cart",
         title: <p>My Cart ({cart?.length})</p> ,
         icon: <FaCartPlus className="text-xl"></FaCartPlus>
     },
+   
+   
     {
-        id: 3,
+        id: 2,
         route: "/dashboard/buyer/purchasedProduct",
         title: "Purchased",
         icon: <FaProductHunt className="text-xl"></FaProductHunt>
+    },
+     {
+        id: 3,
+        route: "/dashboard/wishList",
+        title: "My Wishlist",
+        icon: <FaRegListAlt className="text-xl"></FaRegListAlt>
     },
 ]
 

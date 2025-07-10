@@ -19,9 +19,9 @@ const ProductCard = ({ product }) => {
 
     const navigate = useNavigate()
     const handleDetailsPage = () => {
-        // if (location.pathname === "/products") {
-        //     navigate("/products/details", { state: product })
-        // }
+        if (location.pathname === "/dashboard/wishList") {
+           return
+        }
         navigate("/products/details", { state: product })
     }
     const handleAddToCart = () => {
@@ -32,39 +32,7 @@ const ProductCard = ({ product }) => {
         addToCart(product, refetch)
 
     }
-    const handleAddToWishList = () => {
-        delete product._id
-        product.email = user.email
-        addToWishList(product)
-    }
-
-    const handleDeleteWishlist = (product) => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Remove Product",
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                const res = await axiosPublic.delete(`/wishlistRemove/${product._id}`);
-                console.log("delete id:", product._id);
-                console.log(res.data);
-                // refetchWishlist()
-                if (res.data.deletedCount > 0) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "The product is deleted from wishlist",
-                        icon: "success",
-                    });
-                    // window.location.reload()
-                }
-
-            }
-        });
-    };
+   
 
     const handleDeleteCart = (product) => {
         Swal.fire({
@@ -123,9 +91,39 @@ const ProductCard = ({ product }) => {
             }
         });
     }
+    const handleDeleteWishlist = (product) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Remove Product",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosPublic.delete(`/wishlistDelete/${product._id}`, {
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
+                });
+                console.log("delete id:", product._id);
+                console.log(res.data);
+
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "The product is deleted",
+                        icon: "success",
+                    });
+                    window.location.reload()
+                }
+            }
+        });
+    }
 
     const handleUpdateProduct = () => {
-        if (location.pathname === "/dashboard/sellerProducts") {
+        if (location?.pathname === "/dashboard/sellerProducts") {
             navigate("/dashboard/updateProduct", { state: product })
         }
     }
@@ -145,19 +143,13 @@ const ProductCard = ({ product }) => {
                     className=" flex justify-center h-20 md:h-24 object-cover bg-transparent 
               transition-transform duration-300 ease-in-out
               group-hover:scale-125"></img>
-                {/* <div className="absolute inset-0 bg-black bg-opacity-25 opacity-0
-              transition-opacity duration-300 ease-in-out
-              group-hover:opacity-100 flex items-center justify-center">
-                    <div>
-                       
-                    </div>
-                </div> */}
+               
             </div>
 
             <div className="p-2 text-center">
                 <h2 className="text-sm text-center font-semibold">{product?.name}</h2>
                 <h2 className="text-xs font-semibold ">Brand: {product?.brand}</h2>
-                <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>
+                {location.pathname === "/dashboard/wishList"?"": <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>}
 
                 <div className="mt-2">
                     {user.role === "buyer" && location.pathname === "/products" && (
@@ -187,6 +179,14 @@ const ProductCard = ({ product }) => {
                             <button onClick={handleUpdateProduct} className="btn w-1/2 btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">Update</button>
                         </div>
                     )}
+
+                    {
+                        user.role ==="buyer" && location.pathname=== "/dashboard/wishList" && (
+                             <button onClick={() => handleDeleteWishlist(product)} className="btn btn-error text-white w-full btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0 ">
+                            Delete
+                        </button>
+                        )
+                    }
                 </div>
             </div>
         </div>

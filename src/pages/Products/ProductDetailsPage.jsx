@@ -57,7 +57,7 @@ const ProductDetailsPage = () => {
                 </div>
                     <div className="mt-2 flex  items-center gap-2 justify-center">
                         {
-                            user?.role == "buyer" && <div className="flex justify-between gap-1">
+                            user?.role == "buyer" &&  <div className="flex justify-between gap-1">
                                 <button onClick={handleAddToCart} className="btn text-xs btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">Add to Cart</button>
                             </div>
                         }
