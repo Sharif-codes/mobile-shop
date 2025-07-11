@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useAllCategories from "../../../../Hooks/useAllCategories";
 import { useState } from "react";
 import photoUpload from "../../../../Api/photoUpload";
+import Rating from "react-rating";
 
 
 const AddProduct = () => {
@@ -39,10 +40,12 @@ const AddProduct = () => {
 
         const description = form.description.value
         const sellerEmail = user?.email
-        const seller = user?.displayName
+        const seller = user?.displayName;
+
+        const rating = 0;
 
         const brand = form.brand.value.toLowerCase();
-        const data = { name, photo_url, price, brand, category, description, seller, sellerEmail };
+        const data = { name, photo_url, price, brand, category, description, seller, sellerEmail,rating };
         console.log("data:", data);
         const token = localStorage.getItem('access-token')
         axiosPublic.post("/addProduct", data, {

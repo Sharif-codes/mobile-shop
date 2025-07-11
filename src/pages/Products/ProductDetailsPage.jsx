@@ -6,6 +6,9 @@ import ProductReview from "./ProductReview";
 import useAuth from "../../Hooks/useAuth";
 import useCart from "../../Hooks/useCart";
 
+import { Rating } from '@smastrom/react-rating'
+
+import '@smastrom/react-rating/style.css'
 
 const ProductDetailsPage = () => {
     const location = useLocation();
@@ -20,13 +23,13 @@ const ProductDetailsPage = () => {
     const navigate = useNavigate()
 
 
-    const handleAddToCart = () => {
+    const handleAddToCart = (product) => {
 
         const product_Id = product?._id
         product.product_Id = product_Id
         product.buyerEmail = user?.email
-        addToCart(product)
-        refetch()
+        addToCart(product, refetch)
+        
     }
     const handleAddToWishList = () => {
 
@@ -38,9 +41,7 @@ const ProductDetailsPage = () => {
         navigate("/dashboard/updateProduct", { state: product })
 
     }
-    const handleReview = () => {
 
-    }
     return (
         <div className="w-full flex justify-center items-center lg:mt-5 mt-1">
             <div className="sm:flex-col md:flex lg:flex-row items-center" >
@@ -54,11 +55,17 @@ const ProductDetailsPage = () => {
                     <p>brand: {product.brand}</p>
                     <p className="text-blue-500">Price: {product.price}Tk.</p>
                     <p>Description: {product.description}</p>
+                    <p>Ratings:</p>
+                    <p className="flex justify-center"><Rating
+                        style={{ maxWidth: 140 }}
+                        value={product?.rating}
+                        readOnly
+                    />  </p>
                 </div>
                     <div className="mt-2 flex  items-center gap-2 justify-center">
                         {
-                            user?.role == "buyer" &&  <div className="flex justify-between gap-1">
-                                <button onClick={handleAddToCart} className="btn text-xs btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">Add to Cart</button>
+                            user?.role == "buyer" && <div className="flex justify-between gap-1">
+                                <button onClick={()=>handleAddToCart(product)} className="btn text-xs btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">Add to Cart</button>
                             </div>
                         }
                         {

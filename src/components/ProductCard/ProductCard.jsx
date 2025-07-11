@@ -10,6 +10,14 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useCart from "../../Hooks/useCart";
 
 
+import { Rating } from '@smastrom/react-rating'
+
+import '@smastrom/react-rating/style.css'
+
+
+
+
+
 const ProductCard = ({ product }) => {
     const location = useLocation()
     const user = useUserData()
@@ -18,21 +26,24 @@ const ProductCard = ({ product }) => {
     const [cart, cartLoading, refetch] = useCart();
 
     const navigate = useNavigate()
+
     const handleDetailsPage = () => {
         if (location.pathname === "/dashboard/wishList") {
-           return
+            return
         }
         navigate("/products/details", { state: product })
     }
-    const handleAddToCart = () => {
+
+    const handleAddToCart = (product) => {
         const product_Id = product?._id
         product.product_Id = product_Id
+        
 
         product.buyerEmail = user?.email
         addToCart(product, refetch)
 
     }
-   
+
 
     const handleDeleteCart = (product) => {
         Swal.fire({
@@ -143,13 +154,19 @@ const ProductCard = ({ product }) => {
                     className=" flex justify-center h-20 md:h-24 object-cover bg-transparent 
               transition-transform duration-300 ease-in-out
               group-hover:scale-125"></img>
-               
+
             </div>
 
             <div className="p-2 text-center">
                 <h2 className="text-sm text-center font-semibold">{product?.name}</h2>
                 <h2 className="text-xs font-semibold ">Brand: {product?.brand}</h2>
-                {location.pathname === "/dashboard/wishList"?"": <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>}
+                {location.pathname === "/dashboard/wishList" ? "" : <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>}
+                {location.pathname === "/dashboard/cart" ? "" : <h2 className="text-xs text-red-600 flex items-center justify-center"> <Rating
+                    style={{ maxWidth: 100 }}
+                    value={product?.rating}
+                    readOnly
+                /> </h2>}
+
 
                 <div className="mt-2">
                     {user.role === "buyer" && location.pathname === "/products" && (
@@ -157,7 +174,7 @@ const ProductCard = ({ product }) => {
                             <button onClick={handleDetailsPage} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
                                 Details
                             </button>
-                            <button onClick={handleAddToCart} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
+                            <button onClick={()=>handleAddToCart(product)} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
                                 Add to Cart
                             </button>
                         </div>
@@ -181,10 +198,10 @@ const ProductCard = ({ product }) => {
                     )}
 
                     {
-                        user.role ==="buyer" && location.pathname=== "/dashboard/wishList" && (
-                             <button onClick={() => handleDeleteWishlist(product)} className="btn btn-error text-white w-full btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0 ">
-                            Delete
-                        </button>
+                        user.role === "buyer" && location.pathname === "/dashboard/wishList" && (
+                            <button onClick={() => handleDeleteWishlist(product)} className="btn btn-error text-white w-full btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0 ">
+                                Delete
+                            </button>
                         )
                     }
                 </div>

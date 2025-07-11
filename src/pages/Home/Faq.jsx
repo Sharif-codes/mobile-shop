@@ -40,7 +40,7 @@ const Faq = () => {
           >
             <button
               onClick={() => toggleFAQ(index)}
-              className="w-full flex justify-between items-center p-2 md:p-4 text-left font-medium text-sm md:text-xl bg-white hover:bg-gray-100 transition "
+              className="w-full flex justify-between items-center p-2 md:p-4 text-left font-medium text-sm md:text-xl bg-white hover:bg-gray-100 transition text-primary "
             >
               {faq.question}
               <span className="text-lg md:text-xl">
