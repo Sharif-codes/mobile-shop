@@ -138,7 +138,7 @@ const PurchasedProduct = () => {
             {/*  */}
             <div className=" h-12 md:h-16 grid md:flex md:justify-between lg:grid-cols-10 grid-cols-2 mx-2 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold items-center mt-1">
                 <div className="lg:col-span-3 ">
-                    <p className="flex items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Purchased</p>
+                    <p className="text-sm md:text-lg lg:text-2xl flex items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Purchased</p>
                 </div>
                 <div className="col-span-1 lg:col-span-3 flex">
                     <Searchbar handleSearch={handleSearch} ></Searchbar>

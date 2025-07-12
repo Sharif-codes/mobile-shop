@@ -1,6 +1,6 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useUserData from "../Hooks/useUserData";
-import { AiFillDollarCircle, AiFillProduct, AiFillProfile, AiOutlineProfile } from "react-icons/ai";
+import { AiFillDollarCircle, AiFillProduct } from "react-icons/ai";
 import { FaCartPlus, FaHome, FaProductHunt, FaRegListAlt, FaSignOutAlt, FaUser, FaUserCircle } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
 import { useSelector } from "react-redux";
@@ -50,7 +50,7 @@ const sellerRoute = [
     },
     {
         id: 3,
-        route: "/dashboard/SellerStats",
+        route: "/dashboard/profile",
         title: "My Profile",
         icon: <FaUserCircle className="text-xl"></FaUserCircle>
     },
@@ -63,7 +63,6 @@ const buyerRoute = [
         title: <p>My Cart ({cart?.length})</p> ,
         icon: <FaCartPlus className="text-xl"></FaCartPlus>
     },
-   
    
     {
         id: 2,
@@ -79,24 +78,23 @@ const buyerRoute = [
     },
       {
         id: 4,
-        route: "/dashboard/buyerStats",
+        route: "/dashboard/profile",
         title: "My Profile",
         icon: <FaUserCircle className="text-xl"></FaUserCircle>
     },
     
 ]
 
-    const userData = useUserData()
+    const [userData, userLoading,refetchUser] = useUserData()
+    console.log("user:", userData);
     const { logout } = useAuth()
     const theme = useSelector((state) => state.theme.value)
     
-
     return (
         <div className="container mx-auto" data-theme={theme}>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
-                    {/* Page content here */}
                     <div className="flex items-center justify-between sticky top-0 overflow-hidden bg-slate-200 z-10">
 
 
@@ -121,7 +119,7 @@ const buyerRoute = [
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className={`menu menu-vertical bg-sky-400 text-gray-800  min-h-full w-80 p-4`}>
                         {/* Sidebar content here */}
-                        <div className={`my-1 gap-1 hidden md:hidden font-semibold lg:flex text-lg md:text-2xl lg:text-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent`}> <img src={logo} width="30" alt="logo" /> <p> DigiStore</p>
+                        <div className={`my-1 gap-1 hidden md:hidden font-semibold lg:flex text-lg md:text-2xl lg:text-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent`}> <img src={logo} width="28"  alt="logo" /> <p> DigiStore</p>
                         </div>
                         <div className="flex items-center md:flex lg:hidden">
                             <div>
@@ -131,9 +129,10 @@ const buyerRoute = [
                             </div>
                             <p className="text-xl font-semibold my-1">Menu</p>
                         </div>
-                        {userData.role === "seller" && sellerRoute.map(route => <li className="text-lg" key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
-                        {userData.role === "buyer" && buyerRoute.map(route => <li className="text-lg" key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
-                        {userData.role === "admin" && adminRoute.map(route => <li className="text-lg" key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
+
+                        {userData?.role === "seller" && sellerRoute.map(route => <li className="text-lg" key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
+                        {userData?.role === "buyer" && buyerRoute.map(route => <li className="text-lg" key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
+                        {userData?.role === "admin" && adminRoute.map(route => <li className="text-lg" key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}
                         
                         <li className="text-lg"><Link to="/"><><FaHome className="text-xl"></FaHome></><>Home</></Link></li>
                         <li className="text-lg"><Link onClick={logout} to="/login" ><><FaSignOutAlt className="text-xl"></FaSignOutAlt></><>Logout</></Link></li>

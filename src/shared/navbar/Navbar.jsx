@@ -11,7 +11,7 @@ import { Tooltip } from 'react-tooltip'
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const userData = useUserData();
+  const [userData, userLoading, refetchUser] = useUserData();
   const [cart, cartLoading, refetch] = useCart()
   const HandleLogout = () => {
     logOut()

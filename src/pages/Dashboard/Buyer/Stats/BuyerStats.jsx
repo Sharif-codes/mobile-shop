@@ -2,7 +2,7 @@
 const BuyerStats = () => {
     return (
         <div>
-            
+            buyer
         </div>
     );
 };

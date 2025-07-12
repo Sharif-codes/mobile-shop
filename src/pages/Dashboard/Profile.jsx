@@ -1,0 +1,121 @@
+import { CiCamera } from "react-icons/ci";
+import useUserData from "../../Hooks/useUserData";
+import BuyerStats from "../Dashboard/Buyer/Stats/BuyerStats"
+import SellerStats from "../Dashboard/Seller/Stats/SellerStats"
+import { Tooltip } from "react-tooltip";
+import { useState } from "react";
+import photoUpload from "../../Api/photoUpload";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { FaCamera } from "react-icons/fa6";
+
+const Profile = () => {
+    const [loadingImageUpload, setLoadingImageUpload] = useState(false);
+    const [imageUrl, setImageUrl] = useState("");
+    const [user, userLoading,refetch] = useUserData()
+
+    const axiosPublic = useAxiosPublic()
+
+    const userEmail = user?.email
+
+
+    const handleFileUpload = async (event) => {
+        setLoadingImageUpload(true)
+        const file = event.target.files[0];
+        if (!file) return;
+        const data = new FormData()
+        data.append("file", file)
+        const UploadedImgUrl = await photoUpload(data)
+        setImageUrl(UploadedImgUrl);
+        setLoadingImageUpload(false)
+    }
+
+    const saveUploadedPhoto = async () => {
+        const photoUpdate = { imageUrl, userEmail }
+        await axiosPublic.patch("/photo-change", photoUpdate)
+        refetch()
+    }
+    return (
+        <div>
+            <div className="mt-2 md:mt-4 flex flex-col justify-center items-center ">
+                <div className="avatar ">
+                    <div className="ring-primary ring-offset-base-100 w-32 rounded-full ring-2 ring-offset-2 ">
+                        <img src={user?.imageUrl} alt={user?.name} className="relative" />
+
+                        <button className="absolute bottom-3 right-6" onClick={() => document.getElementById('my_modal_3').showModal()}>
+
+
+                            <FaCamera className="text-2xl text-pink-600" data-tooltip-id="my-tooltip" data-tooltip-content="Change Photo" />
+                        </button>
+
+
+                        <dialog id="my_modal_3" className="modal">
+                            <div className="modal-box">
+                                <form method="dialog">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                </form>
+                                <div className=" ">
+                                    <label htmlFor='image' className='block mb-2 text-sm'>
+                                        Select Image:
+                                    </label>
+                                    {
+                                        loadingImageUpload ? "Uploading image..." : ""
+                                    }
+                                    <div className="flex items-center justify-center">
+                                        
+                                             <input
+                                                className=" file-input file-input-bordered file-input-info w-2/3 max-w-x border-gray-300 focus:outline-info bg-gray-200 text-gray-900"
+                                                required
+                                                type='file'
+                                                id='image'
+                                                name='image'
+                                                accept='image/*'
+                                                onChange={handleFileUpload}
+                                            />
+                                        
+
+
+                                        <div className="modal-action">
+                                            <form method="dialog">
+                                                {/* if there is a button, it will close the modal */}
+                                                <button onClick={saveUploadedPhoto} className="btn mb-6 btn-md   ml-2 hover:bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:text-slate-100 ">submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </dialog>
+                    </div>
+
+
+
+                </div>
+
+                <div>
+                    <p>{user?.name}</p>
+                </div>
+                <div>
+                    <p><span>{user?.role} id: </span>{user?._id}</p>
+                </div>
+                <div>
+                    <p><span>Email: </span>{user?.email}</p>
+                </div>
+            </div>
+
+
+            <div>
+                {
+                    user?.role === "buyer" && <BuyerStats></BuyerStats>
+                }
+                {
+                    user?.role === "seller" && <SellerStats></SellerStats>
+                }
+            </div>
+            <Tooltip id="my-tooltip" />
+        </div>
+    );
+};
+
+export default Profile;

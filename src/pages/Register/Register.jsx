@@ -29,6 +29,7 @@ const Register = () => {
     setImageUrl(UploadedImgUrl);
     setLoadingImageUpload(false)
   }
+  
   const handleSignUp = async e => {
     e.preventDefault();
     const form = e.target
