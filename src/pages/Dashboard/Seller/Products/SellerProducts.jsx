@@ -10,7 +10,6 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import SellerFilterProducts from "../../../../components/SellerFilterProducts";
 import { TbFilter } from "react-icons/tb";
 
-
 const SellerProducts = () => {
 
     const axiosPublic = useAxiosPublic()
@@ -28,6 +27,8 @@ const SellerProducts = () => {
     const [toggleFilter, setToggleFilter] = useState(1);
 
     const { user } = useAuth()
+
+    
 
     useEffect(() => {
         const fetch = async () => {
@@ -119,14 +120,14 @@ const SellerProducts = () => {
 
             </div>
 
-            <div  >
+            <div  className=" md:h-full lg:h-[calc(100vh-155px)] " >
                 {
                     loading ? (
                         <Spinner></Spinner>
                     ) : (
                         <div>
                             {
-                                products?.length === 0 && <div className="w-full h-[calc(100vh-165px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-100px)]  flex items-center justify-center">
+                                products?.length === 0 && <div className="w-full   flex items-center justify-center h-[calc(100vh-165px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-100px)] ">
                                     <p className="text-xl md:text-2xl lg:text-3xl font-bold  ">No product found!</p>
                                 </div>
                             }

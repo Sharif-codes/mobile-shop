@@ -98,7 +98,7 @@ const AllProducts = () => {
                 </div>
 
 
-                
+
 
             </div>
 
@@ -127,53 +127,53 @@ const AllProducts = () => {
                         <Spinner></Spinner>
                     ) : (
                         <div>
-                             {
+                            {
                                 products?.length <= 0 && <div className="w-full h-[calc(100vh-165px)] md:h-[calc(100vh-180px)] lg:h-[calc(100vh-100px)] flex items-center justify-center">
                                     <p className="text-3xl font-bold">No product found</p>
                                 </div>
                             }
                             {
                                 products.length > 0 && <div className="overflow-x-auto mt-1 h-[calc(100vh-225px)] md:h-[calc(100vh-236px)]  lg:h-[calc(100vh-150px)]">
-                                <table className="table table-xs">
-                                    <thead className=""
-                                    >
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Product</th>
-                                            <th>Product name</th>
-                                            <th>Category</th>
-                                            <th>Seller</th>
-                                            <th>Brand</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                    <table className="table table-xs">
+                                        <thead className=""
+                                        >
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Product</th>
+                                                <th>Product name</th>
+                                                <th>Category</th>
+                                                <th>Seller</th>
+                                                <th>Brand</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
 
-                                        {
-                                            products?.map((item, idx) =>
-                                                <tr key={idx}>
-                                                    <th>{(page - 1) * 15 + idx + 1}</th>
-                                                    <td> <img src={item.photo_url} alt="product" width={20} height={15} /> </td>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.category}</td>
-                                                    <td>{item.seller}</td>
-                                                    <td>{item.brand}</td>
-                                                    <td>{item.price}</td>
-                                                </tr>
-                                            )
-                                        }
+                                            {
+                                                products?.map((item, idx) =>
+                                                    <tr key={idx}>
+                                                        <th>{(page - 1) * 15 + idx + 1}</th>
+                                                        <td> <img src={item.photo_url} alt="product" width={20} height={15} /> </td>
+                                                        <td>{item.name}</td>
+                                                        <td>{item.category}</td>
+                                                        <td>{item.seller}</td>
+                                                        <td>{item.brand}</td>
+                                                        <td>{item.price}</td>
+                                                    </tr>
+                                                )
+                                            }
 
 
 
-                                    </tbody>
+                                        </tbody>
 
-                                </table>
+                                    </table>
 
-                            </div>
+                                </div>
                             }
-                           
-                           
+
+
                         </div>
 
 
@@ -181,18 +181,18 @@ const AllProducts = () => {
                 }
             </div>
 
-            {products?.length === 0 ? "" : 
-            <div className="flex justify-center items-center gap-2 my-1">
-                <button className="btn  p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
-                    disabled={page === 1}>
-                    <FaArrowLeft  ></FaArrowLeft>
-                </button>
-                <p>Page {page} of {totalPages}</p>
-                <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
-                    disabled={page === totalPages}>
-                    <FaArrowRight className="" ></FaArrowRight>
-                </button>
-            </div>}
+            {products?.length === 0 ? "" :
+                <div className="flex justify-center items-center gap-2 my-1">
+                    <button className="btn  p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
+                        disabled={page === 1}>
+                        <FaArrowLeft  ></FaArrowLeft>
+                    </button>
+                    <p>Page {page} of {totalPages}</p>
+                    <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
+                        disabled={page === totalPages}>
+                        <FaArrowRight className="" ></FaArrowRight>
+                    </button>
+                </div>}
         </div>
     );
 };

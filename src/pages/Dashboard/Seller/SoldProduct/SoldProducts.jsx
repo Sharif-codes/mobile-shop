@@ -24,14 +24,15 @@ const SoldProducts = () => {
     const [toggleFilter, setToggleFilter] = useState(1);
 
 
-    const user = useUserData()
+    const [userData, userLoading, refetch] = useUserData()
+ 
 
     useEffect(() => {
         const fetch = async () => {
             setLoading(true);
             try {
                 const { data } = await axiosPublic.get(
-                    `/soldProducts?name=${search}&page=${page}&limit=${15}&sort=${sort}&brand=${brand}&category=${category}&seller=${user?.email}`);
+                    `/soldProducts?name=${search}&page=${page}&limit=${15}&sort=${sort}&brand=${brand}&category=${category}&sellerEmail=${userData?.email}`);
                 setProducts(data.products || []);
                 setUniqueBrands(data.brands || []);
                 setUniqueCategory(data.categories || []);
@@ -44,7 +45,8 @@ const SoldProducts = () => {
             }
         };
         fetch();
-    }, [axiosPublic, brand, category, page, search, seller, sort, user?.email]);
+    }, [axiosPublic, brand, category, page, search, seller, sort, userData?.email]);
+    
     const handleSearch = (e) => {
         e.preventDefault()
         setSearch(e.target.search.value)

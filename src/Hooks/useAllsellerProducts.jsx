@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
 import useAuth from "./useAuth";
 import useAxiosPublic from "./useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 
 
-const useAllsellerProducts = ({search,page,sort,brand,category}) => {
+const useAllsellerProducts = () => {
     // const {user,loading}= useAuth();
     // const axiosPublic= useAxiosPublic()
     // const [allProducts,setAllProducts]= useState({})
     // useEffect(()=>{
     //     const fetchSellerProducts= async ()=>{
-        
-    //             const res= await axiosPublic.get(`/getSellerProducts/${user?.email}`)
+
+    //             const res= await axiosPublic.get(`/sellerProductStats/${user?.email}`)
     //             setAllProducts(res?.data)
     //     }
     //     if(user?.email)
@@ -20,19 +19,19 @@ const useAllsellerProducts = ({search,page,sort,brand,category}) => {
     //         }
     // },[user, loading, axiosPublic])
     // return allProducts;
-    
 
-    const axiosPublic= useAxiosPublic()
-    const {user}= useAuth()
-    const {data: allSellerProducts, isPending: productLoading}= useQuery({
-     queryKey: [user?.email, "allProducts"],
-     queryFn: async()=>{
-         const res= await axiosPublic.get(`/getSellerProducts?&name=${search}&page=${page}&$limit=${8}&sort=${sort}&brand=${brand}&category=${category}&seller=${user?.email}`)
-         console.log(res.data)
-         return res.data
-     }
+    const axiosPublic = useAxiosPublic()
+    const { user } = useAuth()
+
+    const { data: sellerProduct, isPending: productLoading, refetch } = useQuery({
+        queryKey: [user?.email, "sellerProduct"],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/sellerProductStats/${user?.email}`)
+            return res.data;
+        }
     })
-    return [allSellerProducts,productLoading];
+    return [sellerProduct, productLoading, refetch];
+
 };
 
 export default useAllsellerProducts;

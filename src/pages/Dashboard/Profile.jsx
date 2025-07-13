@@ -8,6 +8,7 @@ import photoUpload from "../../Api/photoUpload";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { FaCamera } from "react-icons/fa6";
 
+
 const Profile = () => {
     const [loadingImageUpload, setLoadingImageUpload] = useState(false);
     const [imageUrl, setImageUrl] = useState("");
@@ -34,6 +35,9 @@ const Profile = () => {
         await axiosPublic.patch("/photo-change", photoUpdate)
         refetch()
     }
+
+   
+
     return (
         <div>
             <div className="mt-2 md:mt-4 flex flex-col justify-center items-center ">
@@ -72,9 +76,7 @@ const Profile = () => {
                                                 accept='image/*'
                                                 onChange={handleFileUpload}
                                             />
-                                        
-
-
+                                
                                         <div className="modal-action">
                                             <form method="dialog">
                                                 {/* if there is a button, it will close the modal */}
@@ -88,8 +90,6 @@ const Profile = () => {
                             </div>
                         </dialog>
                     </div>
-
-
 
                 </div>
 
