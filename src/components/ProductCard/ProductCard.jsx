@@ -21,6 +21,7 @@ import '@smastrom/react-rating/style.css'
 const ProductCard = ({ product }) => {
     const location = useLocation()
     const user = useUserData()
+    const role= user[0]?.role;
     const axiosPublic = useAxiosPublic()
     const token = localStorage.getItem('access-token')
     const [cart, cartLoading, refetch] = useCart();
@@ -39,7 +40,7 @@ const ProductCard = ({ product }) => {
         product.product_Id = product_Id
         
 
-        product.buyerEmail = user?.email
+        product.buyerEmail = user[0]?.email
         addToCart(product, refetch)
 
     }
@@ -141,14 +142,7 @@ const ProductCard = ({ product }) => {
     return (
 
         <div className="rounded-md mx-4 mt-4 border-1 shadow-lg shadow-slate-200 flex flex-col justify-between md:w-40 lg:w-52" >
-            {/* <div  >
-                <img
-                    src={product?.photo_url}
-                    alt="product image"
-                    className="h-20 md:h-24 object-cover bg-transparent transition-transform duration-300 ease-in-out
-              group-hover:scale-110  " />
-            </div> */}
-
+          
             <div onClick={handleDetailsPage} className="group  cursor-pointer flex justify-center p-1">
                 <img src={product?.photo_url} alt="A beautiful landscape"
                     className=" flex justify-center h-20 md:h-24 object-cover bg-transparent 
@@ -169,7 +163,7 @@ const ProductCard = ({ product }) => {
 
 
                 <div className="mt-2">
-                    {user.role === "buyer" && location.pathname === "/products" && (
+                    {role == "buyer" && location.pathname === "/products" && (
                         <div className="flex justify-between gap-1 ">
                             <button onClick={handleDetailsPage} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
                                 Details
@@ -181,14 +175,14 @@ const ProductCard = ({ product }) => {
                     )}
 
 
-                    {user.role === "buyer" && location.pathname === "/dashboard/cart" && (
+                    {role === "buyer" && location.pathname === "/dashboard/cart" && (
                         <button onClick={() => handleDeleteCart(product)} className="btn btn-error text-white w-full btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0 ">
                             Delete
                         </button>
                     )
                     }
 
-                    {user.role === "seller" && location.pathname === "/dashboard/sellerProducts" && (
+                    {role === "seller" && location.pathname === "/dashboard/sellerProducts" && (
                         <div className="flex justify-between gap-1">
                             <button onClick={() => handleDeleteSellerProduct(product)} className="btn w-1/2 btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
                                 Delete
@@ -198,7 +192,7 @@ const ProductCard = ({ product }) => {
                     )}
 
                     {
-                        user.role === "buyer" && location.pathname === "/dashboard/wishList" && (
+                        role === "buyer" && location.pathname === "/dashboard/wishList" && (
                             <button onClick={() => handleDeleteWishlist(product)} className="btn btn-error text-white w-full btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0 ">
                                 Delete
                             </button>

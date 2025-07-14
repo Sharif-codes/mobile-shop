@@ -12,15 +12,18 @@ const Cart = () => {
     const user = useUserData()
     const axiosPublic = useAxiosPublic()
     const [cart, cartLoading, refetch] = useCart()
-    console.log("cart data: ", cart)
+  
+
     const prices = []
     cart?.map(product => prices.push(product.price))
     const sum = prices.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
 
+    const userData= user[0]
     const paymentData = {
-        user,
+        userData,
         amount: sum
     }
+  
 
     const handlePayment = async (paymentInfo) => {
         console.log(paymentInfo);
