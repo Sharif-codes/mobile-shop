@@ -12,7 +12,7 @@ import { FaCamera } from "react-icons/fa6";
 const Profile = () => {
     const [loadingImageUpload, setLoadingImageUpload] = useState(false);
     const [imageUrl, setImageUrl] = useState("");
-    const [user, userLoading,refetch] = useUserData()
+    const [user, userLoading, refetch] = useUserData()
 
     const axiosPublic = useAxiosPublic()
 
@@ -36,16 +36,16 @@ const Profile = () => {
         refetch()
     }
 
-   
+
 
     return (
         <div>
             <div className="mt-2 md:mt-4 flex flex-col justify-center items-center ">
                 <div className="avatar ">
-                    <div className="ring-primary ring-offset-base-100 w-32 rounded-full ring-2 ring-offset-2 ">
+                    <div className="ring-primary ring-offset-base-100 w-40 rounded-full ring-2 ring-offset-2 ">
                         <img src={user?.imageUrl} alt={user?.name} className="relative" />
 
-                        <button className="absolute bottom-3 right-6" onClick={() => document.getElementById('my_modal_3').showModal()}>
+                        <button className="absolute bottom-3 right-8" onClick={() => document.getElementById('my_modal_3').showModal()}>
 
 
                             <FaCamera className="text-2xl text-pink-600" data-tooltip-id="my-tooltip" data-tooltip-content="Change Photo" />
@@ -66,21 +66,21 @@ const Profile = () => {
                                         loadingImageUpload ? "Uploading image..." : ""
                                     }
                                     <div className="flex items-center justify-center">
-                                        
-                                             <input
-                                                className=" file-input file-input-bordered file-input-info w-2/3 max-w-x border-gray-300 focus:outline-info bg-gray-200 text-gray-900"
-                                                required
-                                                type='file'
-                                                id='image'
-                                                name='image'
-                                                accept='image/*'
-                                                onChange={handleFileUpload}
-                                            />
-                                
+
+                                        <input
+                                            className=" file-input file-input-bordered file-input-info w-2/3 max-w-x border-gray-300 focus:outline-info bg-gray-200 text-gray-900"
+                                            required
+                                            type='file'
+                                            id='image'
+                                            name='image'
+                                            accept='image/*'
+                                            onChange={handleFileUpload}
+                                        />
+
                                         <div className="modal-action">
                                             <form method="dialog">
                                                 {/* if there is a button, it will close the modal */}
-                                                <button onClick={saveUploadedPhoto} className="btn mb-6 btn-md   ml-2 hover:bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:text-slate-100 ">submit</button>
+                                                <button onClick={saveUploadedPhoto} disabled={loadingImageUpload} className="btn mb-6 btn-md   ml-2 hover:bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:text-slate-100 ">submit</button>
                                             </form>
                                         </div>
                                     </div>
@@ -92,16 +92,23 @@ const Profile = () => {
                     </div>
 
                 </div>
+                <div className="flex flex-col justify-around  mt-4 text-lg font-extralight">
+                    <div>
+                        <p > <span className="font-semibold ">User: </span>{user?.name}</p>
+                    </div>
+                    <div>
+                        <p><span className="font-semibold ">Role: </span>{user?.role}</p>
+                    </div>
+                    <div>
+                        <p><span className="font-semibold ">User id: </span>{user?._id}</p>
+                    </div>
+                   
+                    <div>
+                        <p><span className="font-semibold ">Email: </span>{user?.email}</p>
+                    </div>
+                </div>
 
-                <div>
-                    <p>{user?.name}</p>
-                </div>
-                <div>
-                    <p><span>{user?.role} id: </span>{user?._id}</p>
-                </div>
-                <div>
-                    <p><span>Email: </span>{user?.email}</p>
-                </div>
+
             </div>
 
 

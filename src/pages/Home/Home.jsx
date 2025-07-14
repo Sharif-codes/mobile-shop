@@ -60,7 +60,7 @@ const Home = () => {
 
             </div>
             <div className="">
-                <p className="font-extrabold flex justify-center mb-10 text-2xl md:text-4xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Categories</p>
+                <p className="h-12 font-extrabold flex justify-center mb-10 text-2xl md:text-4xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Categories</p>
                 <div className="flex justify-center">
                     <Categories></Categories>
                 </div>
