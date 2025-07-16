@@ -17,8 +17,8 @@ const Searchbar = ({handleSearch}) => {
              
              placeholder={`${user.role === "admin"? "search user" : "search product" }`}
              name="search"
-              className="input w-40 md:w-52 h-[33px] md:h-12 text-xs md:text-md outline-none border-0 hover:outline-none"  />
-            <button className="btn btn-sm md:btn-md rounded-l-none border-2 rounded-r-md absolute right-0  "><IoMdSearch size={20}> </IoMdSearch></button>
+              className="input w-40 md:w-52 lg:w-52 h-[33px] md:h-[33px] lg:h-12 text-xs md:text-md outline-none border-0 hover:outline-none"  />
+            <button className="btn btn-sm md:btn-sm lg:btn-md rounded-l-none border-2 rounded-r-md absolute right-0  "><IoMdSearch size={20}> </IoMdSearch></button>
             
         </form>
     );

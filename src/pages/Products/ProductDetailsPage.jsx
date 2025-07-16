@@ -30,6 +30,8 @@ const ProductDetailsPage = () => {
         const product_Id = product?._id
         product.product_Id = product_Id
         product.buyerEmail = email
+        product.cartQuantity= 1;
+        product.cartPrice= product.price;
         addToCart(product, refetch)
         
     }
@@ -56,6 +58,7 @@ const ProductDetailsPage = () => {
                     <p className="">category: {product?.category}</p>
                     <p>brand: {product?.brand}</p>
                     <p className="text-blue-500">Price: {product?.price}Tk.</p>
+                    <p className="text-green-600"> In Stock: {product?.quantity}</p>
                     <p>Description: {product?.description}</p>
                     <p>Ratings:</p>
                     <p className="flex justify-center"><Rating

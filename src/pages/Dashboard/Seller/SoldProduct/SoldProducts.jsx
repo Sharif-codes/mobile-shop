@@ -77,7 +77,7 @@ const SoldProducts = () => {
                 <div className="lg:col-span-3">
                     <p className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Sold Product</p>
                 </div>
-                <div className="col-span-1 lg:col-span-3 flex  ">
+                <div className="col-span-1 lg:col-span-3 flex gap-1 md:gap-4  ">
                     <Searchbar handleSearch={handleSearch} ></Searchbar>
                     <SortByPrice setSort={setSort}></SortByPrice>
                 </div>

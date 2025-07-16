@@ -36,8 +36,12 @@ const UpdateProduct = () => {
         const productId = product._id
         const name = form.name.value
         const photo_url = imageUrl;
-        const priceString = form.price.value
+        const priceString = form.price.value;
         const price = parseInt(priceString)
+
+        const quantityString = form.quantity.value
+        const quantity = parseInt(quantityString)
+
         const category = form.category.value
 
         const description = form.description.value
@@ -45,7 +49,7 @@ const UpdateProduct = () => {
         const seller = user?.displayName
 
         const brand = form.brand.value.toLowerCase();
-        const data = { productId, name, photo_url, price, brand, category, description, seller, sellerEmail };
+        const data = { productId, name, photo_url, price, quantity, brand, category, description, seller, sellerEmail };
         console.log("data:", data);
         const token = localStorage.getItem('access-token')
         axiosPublic.patch("sellerProduct/update", data, {
@@ -70,7 +74,7 @@ const UpdateProduct = () => {
                 <h1 className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent text-center mb-4 md:mb-8 text-2xl md:text-3xl font-bold " >Update Product</h1>
                 <form onSubmit={handleUpdateProduct} className="max-w-md mx-auto">
                     <div className="relative z-0 w-full mb-5 group">
-                        <input defaultValue={product.name} type="text" name="name" id="floating_email" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <input defaultValue={product?.name} type="text" name="name" id="floating_email" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                         <label for="floating_email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Product Name</label>
                     </div>
                     <div>
@@ -81,6 +85,7 @@ const UpdateProduct = () => {
                             loadingImageUpload ? "Uploading image..." : ""
                         }
                         <input
+                           
                             className="file-input file-input-bordered file-input-info w-full max-w-x"
                             required
                             type='file'
@@ -94,15 +99,19 @@ const UpdateProduct = () => {
 
                     <div className="grid md:grid-cols-2 md:gap-6 mt-4">
                         <div className="relative z-0 w-full mb-5 group">
-                            <input defaultValue={product.price} type="number" name="price" id="floating_first_name" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <input defaultValue={product?.price} type="number" name="price" id="floating_first_name" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                             <label for="floating_first_name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Price</label>
+                        </div>
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input defaultValue={product?.quantity} type="number" name="quantity" id="floating_first_name" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <label for="floating_first_name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Quantity</label>
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
                             <select
                                 type="text"
                                 name="category"
                                 id="floating_last_name"
-                                defaultValue={product.brand}
+                                defaultValue={product?.category}
                                 className="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 required
                             >
@@ -137,7 +146,7 @@ const UpdateProduct = () => {
                     </div>
                     <div className="grid md:grid-cols-2 md:gap-6">
                         <div className="relative z-0 w-full mb-5 group">
-                            <input defaultValue={product.brand} type="text" name="brand" id="floating_phone" className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                            <input defaultValue={product?.brand} type="text" name="brand" id="floating_phone" className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                             <label for="floating_phone" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Brand</label>
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
