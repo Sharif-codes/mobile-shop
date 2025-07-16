@@ -5,8 +5,8 @@ import useUserData from "./useUserData";
 
 
 const useGetBuyerReview = () => {
-    const axiosPublic = useAxiosPublic()
-     const { user } = useAuth()
+    const axiosPublic = useAxiosPublic();
+     const { user } = useAuth();
     const token = localStorage.getItem('access-token')
     const { data: reviews, isPending: reviewLoading, refetch } = useQuery({
         queryKey: ["reviews"],

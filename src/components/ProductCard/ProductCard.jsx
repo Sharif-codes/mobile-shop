@@ -142,13 +142,11 @@ const ProductCard = ({ product }) => {
     return (
 
         <div className="rounded-md mx-4 mt-4 border-1 shadow-lg shadow-slate-200 flex flex-col justify-between md:w-40 lg:w-52" >
-          
             <div onClick={handleDetailsPage} className="group  cursor-pointer flex justify-center p-1">
                 <img src={product?.photo_url} alt="A beautiful landscape"
                     className=" flex justify-center h-20 md:h-24 object-cover bg-transparent 
               transition-transform duration-300 ease-in-out
               group-hover:scale-125"></img>
-
             </div>
 
             <div className="p-2 text-center">
@@ -181,7 +179,6 @@ const ProductCard = ({ product }) => {
                         </button>
                     )
                     }
-
                     {role === "seller" && location.pathname === "/dashboard/sellerProducts" && (
                         <div className="flex justify-between gap-1">
                             <button onClick={() => handleDeleteSellerProduct(product)} className="btn w-1/2 btn-sm hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">

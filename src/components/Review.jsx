@@ -2,7 +2,10 @@
 import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 
+
 const Review = ({ isOpen, onClose, onSubmitReview, product }) => {
+
+  
     const dialogRef = useRef(null);
 
     useEffect(() => {
@@ -34,7 +37,7 @@ const Review = ({ isOpen, onClose, onSubmitReview, product }) => {
 
         onSubmitReview({
             productId: product?.product_Id,
-            reviewer: product?.email,
+            
             reviewText,
             rating: selectedRating,
 

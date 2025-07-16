@@ -14,11 +14,11 @@ import toast from "react-hot-toast";
 import useGetBuyerReview from "../../../Hooks/useGetBuyerReview";
 import { TiTick } from "react-icons/ti";
 import useCart from "../../../Hooks/useCart";
+import useUserData from "../../../Hooks/useUserData";
 
 
 
 const PurchasedProduct = () => {
-
     const axiosPublic = useAxiosPublic()
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -32,17 +32,23 @@ const PurchasedProduct = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [toggleFilter, setToggleFilter] = useState(1);
-    
+
 
     const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
     const [productToReview, setProductToReview] = useState(null);
 
-    const { user } = useAuth()
+    const { user } = useAuth();
+
+    const [userData, userLoading, refetchUser] = useUserData();
+    console.log(userData);
+    // const userinfo = userData[0];
+  
+
 
     const token = localStorage.getItem('access-token')
 
-    const [reviews, reviewLoading,refetch]= useGetBuyerReview();
-    console.log("review: ", reviews);
+    const [reviews, reviewLoading, refetch] = useGetBuyerReview();
+   
     useEffect(() => {
         const fetch = async () => {
             setLoading(true);
@@ -94,19 +100,23 @@ const PurchasedProduct = () => {
         setIsReviewModalOpen(false);
         setProductToReview(null);
     };
-    const handleReviewSubmission = async ({ productId, reviewer, reviewText, rating }) => {
+
+    const handleReviewSubmission = async ({ productId, reviewText, rating }) => {
 
         try {
 
             const reviewData = {
                 productId,
-                reviewer,
-                reviewerEmail: user?.email,
+                reviewer: userData?.name,
+                reviewerEmail: userData?.email,
+                reviewerImg: userData?.imageUrl,
                 reviewText,
                 rating: parseInt(rating),
                 reviewedAt: new Date().toISOString(),
 
             };
+
+
 
             const res = await axiosPublic.post("/buyer-review", reviewData, {
                 headers: {
@@ -114,11 +124,11 @@ const PurchasedProduct = () => {
                 }
             })
 
-            console.log("review patch",res.data);
-            if(res.data?.modifiedCount > 0){
-                toast.success("Review submitted successfully!");  
+            console.log("review patch", res.data);
+            if (res.data?.modifiedCount > 0) {
+                toast.success("Review submitted successfully!");
             }
-            else{
+            else {
                 toast.error("Failed to submit review")
             }
 
@@ -220,13 +230,13 @@ const PurchasedProduct = () => {
 
 
                                                         {
-                                                        reviews?.filter(review=> review.productId === item?.product_Id)[0] ?<p className=" my-1 flex justify-center items-center  "><TiTick className="text-xl text-green-700 text-center" /></p>:
-                                                            <button
-                                                            onClick={() => openReviewModal(item)} // Pass the product item to the handler
-                                                            className="w-20 my-1 text-xs btn-sm btn hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0"
-                                                        >
-                                                            Review
-                                                        </button>
+                                                            reviews?.filter(review => review.productId === item?.product_Id)[0] ? <p className=" my-1 flex justify-center items-center  "><TiTick className="text-xl text-green-700 text-center" /></p> :
+                                                                <button
+                                                                    onClick={() => openReviewModal(item)} // Pass the product item to the handler
+                                                                    className="w-20 my-1 text-xs btn-sm btn hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0"
+                                                                >
+                                                                    Review
+                                                                </button>
                                                         }
                                                     </tr>
                                                 )
