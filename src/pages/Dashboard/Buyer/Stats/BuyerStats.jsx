@@ -5,7 +5,6 @@ import usePurchashedProducts from "../../../../Hooks/usePurchashedProducts";
 const BuyerStats = () => {
     const [cart, cartLoading,refetch]= useCart()
     const [buyerProducts, productLoading]= usePurchashedProducts()
-    console.log("buyer prod:", buyerProducts?.latest);
     return (
          <div className="m-8">
             <div className="flex md:flex-row flex-col gap-2 md:gap-4 lg:gap-12 justify-center items-center">

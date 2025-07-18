@@ -26,13 +26,17 @@ const SoldProducts = () => {
 
     const [userData, userLoading, refetch] = useUserData()
  
-
+const token = localStorage.getItem('access-token')
     useEffect(() => {
         const fetch = async () => {
             setLoading(true);
             try {
                 const { data } = await axiosPublic.get(
-                    `/soldProducts?name=${search}&page=${page}&limit=${15}&sort=${sort}&brand=${brand}&category=${category}&sellerEmail=${userData?.email}`);
+                    `/soldProducts?name=${search}&page=${page}&limit=${15}&sort=${sort}&brand=${brand}&category=${category}&sellerEmail=${userData?.email}`,{
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
+                });
                 setProducts(data.products || []);
                 setUniqueBrands(data.brands || []);
                 setUniqueCategory(data.categories || []);
@@ -45,7 +49,7 @@ const SoldProducts = () => {
             }
         };
         fetch();
-    }, [axiosPublic, brand, category, page, search, seller, sort, userData?.email]);
+    }, [axiosPublic, brand, category, page, search, seller, sort, token, userData?.email]);
     
     const handleSearch = (e) => {
         e.preventDefault()
@@ -107,7 +111,6 @@ const SoldProducts = () => {
                         handleReset={handleReset}
                         uniqueBrands={uniqueBrands}
                         uniqueCategory={uniqueCategory}
-
                     />
                 </div>
 
@@ -134,21 +137,15 @@ const SoldProducts = () => {
                                                 <th>#</th>
                                                 <th>Product</th>
                                                 <th>Product name</th>
-
                                                 <th>Date</th>
                                                 <th>Buyer_Email</th>
                                                 <th>Trx_id</th>
-
                                                 <th>Price</th>
                                                 <th>Brand</th>
                                             </tr>
                                         </thead>
 
-
                                         <tbody>
-
-
-
                                             {
                                                 products?.length > 0 &&
                                                 products?.map((item, idx) =>
@@ -159,8 +156,6 @@ const SoldProducts = () => {
                                                         <td>{item.purchased_time?.slice(0, 10)}</td>
                                                         <td>{item.buyerEmail}</td>
                                                         <td>{item.trx_id}</td>
-
-
                                                         <td>{item.price}</td>
                                                         <td>{item.brand}</td>
                                                     </tr>

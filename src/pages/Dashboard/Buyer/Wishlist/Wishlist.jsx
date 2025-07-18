@@ -30,13 +30,17 @@ const Wishlist = () => {
     const [toggleFilter, setToggleFilter] = useState(1);
 
     const { user } = useAuth()
-
+const token = localStorage.getItem('access-token')
     useEffect(() => {
         const fetch = async () => {
             setLoading(true);
             try {
                 const { data } = await axiosPublic.get(
-                    `/getWishlistProducts?name=${search}&page=${page}&$limit=${8}&sort=${sort}&brand=${brand}&category=${category}&buyerEmail=${user?.email}`);
+                    `/getWishlistProducts?name=${search}&page=${page}&$limit=${8}&sort=${sort}&brand=${brand}&category=${category}&buyerEmail=${user?.email}`,{
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
 
                 console.log("API Response:", data);
                 setProducts(data.products || []);
@@ -51,7 +55,7 @@ const Wishlist = () => {
             }
         };
         fetch();
-    }, [axiosPublic, brand, category, page, search, sort, user?.email]);
+    }, [axiosPublic, brand, category, page, search, sort, token, user?.email]);
 
     const handleSearch = (e) => {
         e.preventDefault()

@@ -79,12 +79,12 @@ const Products = () => {
                     <SortByPrice setSort={setSort}></SortByPrice>
                     <Searchbar handleSearch={handleSearch} ></Searchbar>
                 </div>
-
-
             </div>
+
             <div className="md:hidden flex justify-center my-2 items-center" onClick={() => toggleFilter === 1 ? setToggleFilter(0) : setToggleFilter(1)}>
                 <TbFilter size={24}></TbFilter><span className="text-xl font-semibold">Filter</span>
             </div>
+
             <div className={`md:hidden ${toggleFilter === 1 ? 'block' : 'hidden'}`}>
                 <FilterBar
                     setBrand={setBrand}
@@ -130,8 +130,9 @@ const Products = () => {
                             </>
                         )
                     }
-                    {/* pagination */}
-                    {products?.length >= 1 && <div className="flex justify-center items-center gap-2 my-8">
+                  
+                    {
+                    products?.length >= 1 && <div className="flex justify-center items-center gap-2 my-4">
                         <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
                             disabled={page === 1}>
                             <FaArrowLeft className="hover:text-purple-700 hover:text-md"  ></FaArrowLeft>
@@ -141,7 +142,8 @@ const Products = () => {
                             disabled={page === totalPages}>
                             <FaArrowRight className="hover:text-purple-700 hover:text-md" ></FaArrowRight>
                         </button>
-                    </div>}
+                    </div>
+                    }
                 </div>
             </div>
         </div>

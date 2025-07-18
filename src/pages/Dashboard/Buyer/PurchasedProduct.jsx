@@ -48,13 +48,17 @@ const PurchasedProduct = () => {
     const token = localStorage.getItem('access-token')
 
     const [reviews, reviewLoading, refetch] = useGetBuyerReview();
-   
+   console.log("products:", products);
     useEffect(() => {
         const fetch = async () => {
             setLoading(true);
             try {
                 const { data } = await axiosPublic.get(
-                    `/getBuyerProducts?name=${search}&page=${page}&limit=${15}&sort=${sort}&brand=${brand}&category=${category}&buyer=${user?.email}`);
+                    `/getBuyerProducts?name=${search}&page=${page}&limit=${15}&sort=${sort}&brand=${brand}&category=${category}&buyer=${user?.email}`,{
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
 
                 setProducts(data.products || []);
                 setUniqueBrands(data.brands || []);
@@ -68,7 +72,7 @@ const PurchasedProduct = () => {
             }
         };
         fetch();
-    }, [axiosPublic, brand, category, page, search, buyer, sort, user?.email]);
+    }, [axiosPublic, brand, category, page, search, buyer, sort, user?.email, token]);
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -205,6 +209,7 @@ const PurchasedProduct = () => {
                                                 <th>#</th>
                                                 <th>Product</th>
                                                 <th>Product name</th>
+                                                <th>Quantity</th>
                                                 <th>Date</th>
                                                 <th>Trx_id</th>
                                                 <th>Price</th>
@@ -222,6 +227,7 @@ const PurchasedProduct = () => {
                                                         <th>{(page - 1) * 15 + idx + 1}</th>
                                                         <td> <img src={item.photo_url} alt="product" width={20} height={15} /> </td>
                                                         <td>{item.name}</td>
+                                                        <td>{item.cartQuantity}</td>
                                                         <td>{item.purchased_time?.slice(0, 10)}</td>
                                                         <td>{item.trx_id}</td>
                                                         <td>{item.price}Tk.</td>

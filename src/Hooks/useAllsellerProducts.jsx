@@ -22,11 +22,16 @@ const useAllsellerProducts = () => {
 
     const axiosPublic = useAxiosPublic()
     const { user } = useAuth()
+    const token = localStorage.getItem('access-token')
 
     const { data: sellerProduct, isPending: productLoading, refetch } = useQuery({
         queryKey: [user?.email, "sellerProduct"],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/sellerProductStats/${user?.email}`)
+            const res = await axiosPublic.get(`/sellerProductStats/${user?.email}`,{
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
+                })
             return res.data;
         }
     })

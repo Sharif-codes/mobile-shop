@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
     const token = localStorage.getItem('access-token')
     const [cart, cartLoading, refetch] = useCart();
 
-    const cartItem= cart[0]
+    const cartItem= cart
 
     const navigate = useNavigate()
 
@@ -58,7 +58,11 @@ const ProductCard = ({ product }) => {
             confirmButtonText: "Remove Product",
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = await axiosPublic.delete(`/cartRemove/${product._id}`);
+                const res = await axiosPublic.delete(`/cartRemove/${product._id}`,{
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
+                });
                 console.log("delete id:", product._id);
                 console.log(res.data);
                 refetch()
@@ -154,7 +158,7 @@ const ProductCard = ({ product }) => {
                 <h2 className="text-sm text-center font-semibold">{product?.name}</h2>
                 <h2 className="text-xs font-semibold ">Brand: {product?.brand}</h2>
                 {location.pathname === "/dashboard/wishList" ? "" : <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>}
-                {location.pathname === "/dashboard/wishList" ? "" : location.pathname === "/dashboard/cart" ? <h2 className="text-xs font-semibold">Quantity: {cartItem?.cartQuantity}</h2> : <h2 className="text-xs text-red-600">Quantity: {product?.quantity}</h2>}
+                {location.pathname === "/dashboard/wishList" ? "" : location.pathname === "/dashboard/cart" ? <h2 className="text-xs font-semibold">Quantity: {cartItem?.cartQuantity}</h2> : <h2 className="text-xs text-green-600">In stock: {product?.quantity}</h2>}
                 {location.pathname === "/dashboard/cart" ? "" : <h2 className="text-xs text-red-600 flex items-center justify-center"> <Rating
                     style={{ maxWidth: 100 }}
                     value={product?.rating}

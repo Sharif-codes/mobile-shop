@@ -12,7 +12,7 @@ const Cart = () => {
     const user = useUserData()
     const axiosPublic = useAxiosPublic()
     const [cart, cartLoading, refetch] = useCart()
-  
+ 
     const prices = [];
     cart?.map(product => prices.push(product.cartPrice))
     const sum = prices.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
@@ -28,7 +28,11 @@ const Cart = () => {
         console.log(paymentInfo);
 
         try {
-            const res = await axiosPublic.post('/user/make-payment', paymentData,
+            const res = await axiosPublic.post('/user/make-payment', paymentData, {
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
+                }
             )
             if(res.data.success){
                 // toast.success(`${cart?.length} product purchased successfully!`)
