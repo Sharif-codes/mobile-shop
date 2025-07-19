@@ -115,11 +115,11 @@ const Products = () => {
                         loading ? (
                             <Spinner></Spinner>
                         ) : (
-                            <>
+                            <div className="h-[calc(100vh-100px)]">
                                 {
                                     products?.length === 0 ? (<div className="w-full h-[calc(100vh-300px)] flex items-center justify-center">
                                         <p className="text-3xl font-bold">No product found</p>
-                                    </div>) : (<div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2">
+                                    </div>) : (<div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2 ">
                                         {
                                             products?.map(item =>
                                                 <ProductCard key={item?.objectId} product={item}></ProductCard>
@@ -127,22 +127,23 @@ const Products = () => {
                                         }
                                     </div>)
                                 }
-                            </>
+                            </div>
                         )
                     }
-                  
+
                     {
-                    products?.length >= 1 && <div className="flex justify-center items-center gap-2 my-4">
-                        <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
-                            disabled={page === 1}>
-                            <FaArrowLeft className="hover:text-purple-700 hover:text-md"  ></FaArrowLeft>
-                        </button>
-                        <p>Page {page} of {totalPages}</p>
-                        <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
-                            disabled={page === totalPages}>
-                            <FaArrowRight className="hover:text-purple-700 hover:text-md" ></FaArrowRight>
-                        </button>
-                    </div>
+                        products?.length > 0 &&
+                        <div className="flex justify-center items-center gap-2 my-4">
+                            <button className="btn  p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page - 1)}
+                                disabled={page === 1}>
+                                <FaArrowLeft  ></FaArrowLeft>
+                            </button>
+                            <p>Page {page} of {totalPages}</p>
+                            <button className="btn p-[15px] border rounded-full border-black" onClick={() => handlePageChange(page + 1)}
+                                disabled={page === totalPages}>
+                                <FaArrowRight className="" ></FaArrowRight>
+                            </button>
+                        </div>
                     }
                 </div>
             </div>

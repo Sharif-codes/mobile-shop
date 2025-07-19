@@ -47,7 +47,7 @@ const AddProduct = () => {
         const rating = 0;
 
         const brand = form.brand.value.toLowerCase();
-        const data = { name, photo_url, price,quantity, brand, category, description, seller, sellerEmail,rating };
+        const data = { name, photo_url, price, quantity, brand, category, description, seller, sellerEmail, rating };
         console.log("data:", data);
         const token = localStorage.getItem('access-token')
         axiosPublic.post("/addProduct", data, {
@@ -81,11 +81,12 @@ const AddProduct = () => {
                         <label htmlFor='image' className='block mb-2 text-sm text-gray-500'>
                             Select Image:
                         </label>
+
                         {
-                            loadingImageUpload ? "Uploading image..." : ""
+                            loadingImageUpload ? <p className="text-sm animate-pulse text-center">Uploading image...</p> : ""
                         }
                         <input
-                            className="file-input file-input-bordered file-input-info w-full max-w-x"
+                            className={`${loadingImageUpload && 'hidden'} file-input file-input-bordered file-input-info w-full max-w-x border-gray-300 focus:outline-info bg-gray-200 text-gray-900`}
                             required
                             type='file'
                             id='image'

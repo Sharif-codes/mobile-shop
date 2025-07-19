@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 const addToCart = async (product,refetch) => {
     const token = localStorage.getItem('access-token')
     console.log("abhdabd:", product);
-    const res= await axios.post("http://localhost:4000/addToCart",product,{
+    const res= await axios.post("https://digi-store-sharif-server.vercel.app/addToCart",product,{
                     headers: {
                         authorization: `Bearer ${token}`
                     }

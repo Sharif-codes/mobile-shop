@@ -14,6 +14,6 @@ export const saveUser= async (user,name,role,imageUrl) =>{
         imageUrl
     }
     console.log("user datra:", currentUser);
-    const {data}= await axios.post(`http://localhost:4000/users/${user.email}`, currentUser)
+    const {data}= await axios.post(`https://digi-store-sharif-server.vercel.app/users/${user.email}`, currentUser)
     return data;
 }

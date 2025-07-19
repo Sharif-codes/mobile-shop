@@ -6,11 +6,13 @@ import { ImSpinner3 } from "react-icons/im";
 import { saveUser } from "../../Api/saveUser";
 import { useState } from "react";
 import photoUpload from "../../Api/photoUpload";
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 
 
 const Register = () => {
-  const [loadingImageUpload, setLoadingImageUpload]= useState(false);
-  const [imageUrl, setImageUrl]= useState("");
+  const [showPass, setShowPass] = useState(0)
+  const [loadingImageUpload, setLoadingImageUpload] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
   const navigate = useNavigate()
   const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
   const numberRegex = /\d/;
@@ -25,11 +27,11 @@ const Register = () => {
     if (!file) return;
     const data = new FormData()
     data.append("file", file)
-    const UploadedImgUrl= await photoUpload(data)
+    const UploadedImgUrl = await photoUpload(data)
     setImageUrl(UploadedImgUrl);
     setLoadingImageUpload(false)
   }
-  
+
   const handleSignUp = async e => {
     e.preventDefault();
     const form = e.target
@@ -56,9 +58,6 @@ const Register = () => {
       toast.error(`Password must contain uppercase and lowercase letters`)
       return;
     }
-
-
-
     try {
       // upload image
       //   const imageData = await imgUpload(image)
@@ -67,7 +66,7 @@ const Register = () => {
       updateUserProfile(name)
       console.log(result)
       // save user in database
-      const dbResponse = await saveUser(result?.user, name, role,imageUrl)
+      const dbResponse = await saveUser(result?.user, name, role, imageUrl)
       console.log(dbResponse);
       // get token
       // await getToken(result?.user?.email)
@@ -85,12 +84,8 @@ const Register = () => {
     try {
       signInWithGoogle()
         .then(result => {
-        
-        
-          const img= result?.user?.photoURL;
-        
-        
-          saveUser(result?.user, result?.user?.displayName,null, img )
+          const img = result?.user?.photoURL;
+          saveUser(result?.user, result?.user?.displayName, null, img)
           //get token
           // getToken(result?.user?.email)
           toast.success('Successfullly Registered with google')
@@ -152,10 +147,10 @@ const Register = () => {
                 Select Image:
               </label>
               {
-                loadingImageUpload? "Uploading image...":  "" 
+                loadingImageUpload ? <p className="text-sm animate-pulse text-center">Uploading image...</p>  : ""
               }
               <input
-                className="file-input file-input-bordered file-input-info w-full max-w-x border-gray-300 focus:outline-info bg-gray-200 text-gray-900"
+                className={`${loadingImageUpload && 'hidden'} file-input file-input-bordered file-input-info w-full max-w-x border-gray-300 focus:outline-info bg-gray-200 text-gray-900`}
                 required
                 type='file'
                 id='image'
@@ -184,15 +179,25 @@ const Register = () => {
                   Password
                 </label>
               </div>
-              <input
-                type='password'
-                name='password'
-                autoComplete='new-password'
-                id='password'
-                required
-                placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-info bg-gray-200 text-gray-900'
-              />
+              <div className='relative'>
+               <input
+                  type={`${showPass ? "text" : "password"}`}
+                  name='password'
+                  autoComplete='current-password'
+                  id='password'
+                  required
+                  placeholder='*******'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-info bg-gray-200 text-gray-900 '
+                >
+
+                </input>
+                <div onClick={() => setShowPass(!showPass)} className='absolute top-[11px] right-4 cursor-pointer'>
+                  {
+                    showPass === true ? <IoEyeOffSharp className='text-xl' /> : <IoEyeSharp className='text-xl' />
+                  }
+
+                </div>
+              </div>
             </div>
           </div>
 

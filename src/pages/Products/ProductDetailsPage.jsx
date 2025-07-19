@@ -57,7 +57,9 @@ const ProductDetailsPage = () => {
                     <p className="text-xl font-semibold">{product?.name}</p>
                     <p className="">category: {product?.category}</p>
                     <p>brand: {product?.brand}</p>
+                    <p className="">Seller: {product?.seller}</p>
                     <p className="text-blue-500">Price: {product?.price}Tk.</p>
+                    
                     <p className="text-green-600"> In Stock: {product?.quantity}</p>
                     <p>Description: {product?.description}</p>
                     <p>Ratings:</p>

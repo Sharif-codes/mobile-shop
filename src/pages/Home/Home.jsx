@@ -68,7 +68,7 @@ const Home = () => {
             </div>
             <div className="">
                 <div className="mx-auto max-w-sm ">
-                    <h2 className="tracking-tight font-extrabold text-center mb-1 md:mb-10 text-2xl md:text-4xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Testimonials</h2>
+                    <h2 className="tracking-tight font-extrabold text-center mb-1 md:mb-4 text-2xl md:text-4xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Testimonials</h2>
                     <p className=" font-light text-gray-500 lg:mb-10 sm:text-xl dark:text-gray-400 text-center">What our client says about us!</p>
                 </div>
                 <Testomonial></Testomonial>

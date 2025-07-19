@@ -5,7 +5,7 @@ import { AuthContext } from "../Provider/Authprovider";
 
 const useAxiosSecure = () => {
     const axiosSecure = axios.create({
-        baseURL: 'http://localhost:4000'
+        baseURL: 'https://digi-store-sharif-server.vercel.app'
     })
     const { logOut } = useContext(AuthContext)
     const navigate = useNavigate()

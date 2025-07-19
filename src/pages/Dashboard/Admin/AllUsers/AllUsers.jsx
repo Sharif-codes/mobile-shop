@@ -1,8 +1,5 @@
-import axios from 'axios';
-import useAllUser from '../../../../Hooks/useAllUser';
+
 import Swal from 'sweetalert2';
-import { useQuery } from '@tanstack/react-query';
-import { deleteDoc, doc } from 'firebase/firestore';
 import useAxiosPublic from '../../../../Hooks/useAxiosPublic';
 import Searchbar from '../../../../components/Searchbar';
 import { useEffect, useState } from 'react';
@@ -11,27 +8,15 @@ import Spinner from '../../../../components/spinner/spinner';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
 
 const AllUsers = () => {
-  // const allUsers = useAllUser()
+
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
   const [role, setRole] = useState("")
   const [search, setSearch] = useState("")
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
-
-
   const axiosPublic = useAxiosPublic()
 
-
-
-  // const { data: fetchedData = [], refetch } = useQuery({
-  //   queryKey: ["users"],
-  //   queryFn: async () => {
-
-  //     return data;
-  //   },
-  // });
   useEffect(() => {
     const fetch = async () => {
       setLoading(true);

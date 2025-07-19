@@ -27,23 +27,28 @@ const ProductCard = ({ product }) => {
     const [cart, cartLoading, refetch] = useCart();
 
     const cartItem= cart
+    console.log(cartItem)
+ 
 
     const navigate = useNavigate()
 
     const handleDetailsPage = () => {
-        if (location.pathname === "/dashboard/wishList") {
-            return
+        if (location.pathname === "/dashboard/wishList" || location.pathname ==="/dashboard/cart") {
+            return;
         }
         navigate("/products/details", { state: product })
     }
 
-    const handleAddToCart = (product) => {
+    const handleAddToCart = () => {
         const product_Id = product?._id
         product.product_Id = product_Id
         product.buyerEmail = user[0]?.email;
         product.cartQuantity= 1;
         product.cartPrice= product.price;
+
         addToCart(product, refetch)
+
+        
     }
 
 
@@ -158,7 +163,7 @@ const ProductCard = ({ product }) => {
                 <h2 className="text-sm text-center font-semibold">{product?.name}</h2>
                 <h2 className="text-xs font-semibold ">Brand: {product?.brand}</h2>
                 {location.pathname === "/dashboard/wishList" ? "" : <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>}
-                {location.pathname === "/dashboard/wishList" ? "" : location.pathname === "/dashboard/cart" ? <h2 className="text-xs font-semibold">Quantity: {cartItem?.cartQuantity}</h2> : <h2 className="text-xs text-green-600">In stock: {product?.quantity}</h2>}
+                {location.pathname === "/dashboard/wishList" ? "" : location.pathname === "/dashboard/cart" ? <h2 className="text-xs font-semibold">Quantity: {product?.cartQuantity}</h2> : <h2 className="text-xs text-green-600">In stock: {product?.quantity}</h2>}
                 {location.pathname === "/dashboard/cart" ? "" : <h2 className="text-xs text-red-600 flex items-center justify-center"> <Rating
                     style={{ maxWidth: 100 }}
                     value={product?.rating}
@@ -172,7 +177,7 @@ const ProductCard = ({ product }) => {
                             <button onClick={handleDetailsPage} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
                                 Details
                             </button>
-                            <button onClick={()=>handleAddToCart(product)} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
+                            <button onClick={()=>handleAddToCart()} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
                                 Add to Cart
                             </button>
                         </div>

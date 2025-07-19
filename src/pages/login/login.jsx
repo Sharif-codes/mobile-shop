@@ -5,15 +5,21 @@ import toast from 'react-hot-toast'
 import { ImSpinner3 } from "react-icons/im";
 import useAuth from '../../Hooks/useAuth';
 import { saveUser } from '../../Api/saveUser';
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
+import { useState } from 'react';
 // import useSaveUser from '../../hooks/useSaveUser';
 
 // import { saveUser } from '../../api/auth';
 
 const Login = () => {
+const [showPass, setShowPass]= useState(0)
   const navigate = useNavigate()
   const { signIn, signInWithGoogle, loading, setLoading } = useAuth()
   const location = useLocation()
   const from = location?.state?.from?.pathname || "/";
+
+
+  console.log("click:", showPass);
   const handleLogin = async e => {
     e.preventDefault()
     const form = e.target
@@ -97,15 +103,30 @@ const Login = () => {
                   Password
                 </label>
               </div>
+
+              <div className='relative'>
+
+              
               <input
-                type='password'
+              
+                type={`${showPass ? "text": "password" }`}
                 name='password'
                 autoComplete='current-password'
                 id='password'
                 required
                 placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-info bg-gray-200 text-gray-900'
-              />
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-info bg-gray-200 text-gray-900 '
+              >
+                
+              </input>
+              <div onClick={()=> setShowPass(!showPass)}  className='absolute top-[11px] right-4 cursor-pointer'>
+                {
+                  showPass === true ? <IoEyeOffSharp className='text-xl' /> : <IoEyeSharp className='text-xl' />
+                }
+               
+              </div>
+              </div>
+             
             </div>
           </div>
 
