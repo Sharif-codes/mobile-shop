@@ -115,7 +115,7 @@ const Products = () => {
                         loading ? (
                             <Spinner></Spinner>
                         ) : (
-                            <div className="h-[calc(100vh-100px)]">
+                            <div className="">
                                 {
                                     products?.length === 0 ? (<div className="w-full h-[calc(100vh-300px)] flex items-center justify-center">
                                         <p className="text-3xl font-bold">No product found</p>

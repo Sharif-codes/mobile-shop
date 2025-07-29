@@ -33,13 +33,11 @@ const AddWishlist = () => {
         const form = e.target
         const name = form.name.value
         const photo_url = imgUrl
-       
         const category = form.category.value
-
         const buyerEmail = user?.email;
         const buyer = user?.displayName
-
         const brand = form.brand.value.toLowerCase();
+        
         const data = { name, photo_url,brand, category,buyer, buyerEmail };
         console.log("data:", data);
         const token = localStorage.getItem('access-token')

@@ -82,10 +82,10 @@ const token = localStorage.getItem('access-token')
         <div className=" flex flex-col mt-0 lg:mt-2 md:mt-0 lg:h-[calc(100vh-8px)] md:h-full h-full">
 
             {/*  */}
-            <div className=" h-12 lg:h-16 md:h-24  grid md:flex md:justify-between lg:grid-cols-9 grid-cols-2 mx-4 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold mt-1">
+            <div className=" h-24 lg:h-16 md:h-24  grid md:flex md:justify-between lg:grid-cols-9 grid-cols-2 mx-2 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold mt-1">
                 <div className="col-span-1 md:col-span-3 flex gap-2">
                     <Searchbar handleSearch={handleSearch} ></Searchbar>
-                    <SortByPrice setSort={setSort}></SortByPrice>
+                    
                 </div>
                 <div className="lg:col-span-3 hidden lg:flex justify-center">
                     <SellerFilterProducts

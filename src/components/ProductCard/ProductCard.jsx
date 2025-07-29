@@ -164,7 +164,7 @@ const ProductCard = ({ product }) => {
                 <h2 className="text-xs font-semibold ">Brand: {product?.brand}</h2>
                 {location.pathname === "/dashboard/wishList" ? "" : <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>}
                 {location.pathname === "/dashboard/wishList" ? "" : location.pathname === "/dashboard/cart" ? <h2 className="text-xs font-semibold">Quantity: {product?.cartQuantity}</h2> : <h2 className="text-xs text-green-600">In stock: {product?.quantity}</h2>}
-                {location.pathname === "/dashboard/cart" ? "" : <h2 className="text-xs text-red-600 flex items-center justify-center"> <Rating
+                {location.pathname === "/dashboard/cart" || location.pathname === "/dashboard/wishList" ? "" : <h2 className="text-xs text-red-600 flex items-center justify-center"> <Rating
                     style={{ maxWidth: 100 }}
                     value={product?.rating}
                     readOnly

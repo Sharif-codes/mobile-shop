@@ -36,22 +36,15 @@ const Profile = () => {
         refetch()
     }
 
-
-
     return (
         <div>
             <div className="mt-2 md:mt-4 flex flex-col justify-center items-center ">
                 <div className="avatar ">
                     <div className="ring-primary ring-offset-base-100 w-40 rounded-full ring-2 ring-offset-2 ">
                         <img src={user?.imageUrl} alt={user?.name} className="relative" />
-
                         <button className="absolute bottom-3 right-8" onClick={() => document.getElementById('my_modal_3').showModal()}>
-
-
                             <FaCamera className="text-2xl text-pink-600" data-tooltip-id="my-tooltip" data-tooltip-content="Change Photo" />
                         </button>
-
-
                         <dialog id="my_modal_3" className="modal">
                             <div className="modal-box">
                                 <form method="dialog">
@@ -84,8 +77,6 @@ const Profile = () => {
                                             </form>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </dialog>
@@ -112,7 +103,7 @@ const Profile = () => {
             </div>
 
 
-            <div>
+            <div className="mx-2 md:mx-0">
                 {
                     user?.role === "buyer" && <BuyerStats></BuyerStats>
                 }

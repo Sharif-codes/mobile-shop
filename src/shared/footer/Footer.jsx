@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import logo from "/digi_logo.png"
 
 const Footer = () => {
     return (
@@ -7,7 +7,7 @@ const Footer = () => {
             <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10 mt-5">
                 <nav className="grid grid-flow-col gap-2">
                    <div className="flex items-center gap-0.5">
-                    <img src="/public/digi_logo.png" width={35} alt="logo" />
+                    <img src={logo} width={35} alt="logo" />
                     <p className="text-3xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">DigiStore</p>
                    </div>
                     

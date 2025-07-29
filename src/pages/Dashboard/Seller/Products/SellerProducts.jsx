@@ -77,7 +77,7 @@ const SellerProducts = () => {
         <div className="  flex flex-col mt-1 lg:mt-2 md:mt-0">
 
             {/*  */}
-            <div className=" h-12 md:h-16 grid md:flex md:justify-between lg:grid-cols-9 grid-cols-2 mx-4 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold">
+            <div className=" h-12 md:h-16 grid md:flex md:justify-between lg:grid-cols-9 grid-cols-2 mx-2 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold">
                 <div className="col-span-1 md:col-span-3 flex gap-2">
                     <Searchbar handleSearch={handleSearch} ></Searchbar>
                     <SortByPrice setSort={setSort}></SortByPrice>

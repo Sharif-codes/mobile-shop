@@ -96,8 +96,6 @@ const buyerRoute = [
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     <div className="flex items-center justify-between sticky top-0 overflow-hidden bg-slate-200 z-10">
-
-
                         <div className="flex items-center md:flex lg:hidden">
                         <div>
                                 <label htmlFor="my-drawer-2" className="btn  drawer-button justify-center items-center bg-transparent pl-0 pr-1 border-0 ml-4 my-2">
@@ -127,7 +125,7 @@ const buyerRoute = [
                                     <RxCross2 className="text-2xl"></RxCross2>
                                 </label>
                             </div>
-                            <p className="text-xl font-semibold my-1">Menu</p>
+                            <p className="text-xl font-semibold my-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Menu</p>
                         </div>
 
                         {userData?.role === "seller" && sellerRoute.map(route => <li className="text-lg" key={route.id}> <NavLink to={route.route}><>{route.icon}</> <>{route.title}</></NavLink></li>)}

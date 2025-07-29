@@ -8,20 +8,19 @@ import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
     const token = localStorage.getItem('access-token')
-    const navigate= useNavigate()
+    const navigate = useNavigate()
     const user = useUserData()
     const axiosPublic = useAxiosPublic()
     const [cart, cartLoading, refetch] = useCart()
- 
+
     const prices = [];
     cart?.map(product => prices.push(product.cartPrice))
     const sum = prices.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
 
-    const userData= user[0];
+    const userData = user[0];
 
     const paymentData = {
         userData,
-       
         amount: sum
     }
     const handlePayment = async (paymentInfo) => {
@@ -29,17 +28,17 @@ const Cart = () => {
 
         try {
             const res = await axiosPublic.post('/user/make-payment', paymentData, {
-                    headers: {
-                        authorization: `Bearer ${token}`
-                    }
+                headers: {
+                    authorization: `Bearer ${token}`
                 }
+            }
             )
-            if(res.data.success){
+            if (res.data.success) {
                 // toast.success(`${cart?.length} product purchased successfully!`)
                 // navigate("/dashboard/buyer/purchasedProduct")
                 window.location.replace(res.data.url)
             }
-               console.log("payment success:",res.data);
+            console.log("payment success:", res.data);
         } catch (error) {
             console.log(error.message);
         }
@@ -48,19 +47,20 @@ const Cart = () => {
     return (
 
         <div className="h-screen">
-
-            <div className="h-16 md:h-16 m-2 flex justify-between px-2 md:px-4 bg-slate-100 rounded-t-lg   text-gray-600">
+            <div className="h-16 flex items-center justify-between md:h-16 m-1 px-1 md:px-4 bg-slate-100 rounded-t-lg text-gray-600">
                 <div className="flex items-center text-sm md:text-lg lg:text-2xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                     My Cart
                 </div>
+
                 {
-                    cart?.length > 0 && <div className="flex items-center justify-evenly space-x-4">
-                    <p><span className="font-semibold">Items: </span><span>{cart?.length}</span></p>
-                    <p><span className="font-semibold">Total price:</span> <span>{sum}</span><span>Tk.</span></p>
-                    <button onClick={() => handlePayment(paymentData)} className="btn btn-primary">Pay now</button>
-                </div>
+                    cart?.length > 0 &&
+                    <div className="flex items-center justify-end space-x-1 md:space-x-2 text-xs md:text-lg">
+
+                        <p className=""><span className="font-semibold">Items:</span><span className="font-bold">{cart?.length}</span></p>
+                        <p><span className="font-semibold">Total price:</span> <span className="font-bold">{sum}</span><span>Tk.</span></p>
+                        <button onClick={() => handlePayment(paymentData)} className="btn btn-sm md:btn-md btn-primary">Pay now</button>
+                    </div>
                 }
-                
 
             </div>
             {cartLoading ? <Spinner  ></Spinner> : cart.length > 0 ? (

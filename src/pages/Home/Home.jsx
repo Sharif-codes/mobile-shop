@@ -5,7 +5,6 @@ import Faq from "./Faq";
 import FeaturedProducts from "./FeaturedProducts";
 import Testomonial from "../../components/Testimonial/Testomonial";
 import { useSelector } from "react-redux";
-import Footer from "../../shared/footer/Footer";
 import img from '../../categoryIcon/HomeBanner.jpg'
 import { TypeAnimation } from "react-type-animation";
 import { useState } from "react";

@@ -147,14 +147,14 @@ const PurchasedProduct = () => {
     };
 
     return (
-        <div className=" flex flex-col mt-1 lg:mt-2 md:mt-0">
+        <div className=" flex flex-col mt-0 lg:mt-2 md:mt-0">
 
             {/*  */}
-            <div className=" h-12 md:h-16 grid md:flex md:justify-between lg:grid-cols-10 grid-cols-2 mx-2 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold items-center mt-1">
-                <div className="lg:col-span-3 ">
+            <div className=" h-12 md:h-16 grid grid-cols-3 md:flex md:justify-between lg:grid-cols-10  mx-2 px-2 md:px-4 bg-slate-100 rounded-t-lg text-sm md:text-lg font-semibold items-center mt-1">
+                <div className="lg:col-span-3 col-span-1 ">
                     <p className="text-sm md:text-lg lg:text-2xl flex items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Purchased</p>
                 </div>
-                <div className="col-span-1 lg:col-span-3 flex">
+                <div className="col-span-2 lg:col-span-3 flex justify-end">
                     <Searchbar handleSearch={handleSearch} ></Searchbar>
                     <SortByPrice setSort={setSort}></SortByPrice>
                 </div>

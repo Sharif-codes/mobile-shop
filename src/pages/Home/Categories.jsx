@@ -38,7 +38,7 @@ const Categories = () => {
                     allCategories?.map((category, idx) => (
                         <div key={idx} className="p-4 bg-transparent rounded flex flex-col items-center justify-center">
                             <img className="w-24 " src={category.img} alt={category} />
-                            <p className="text-slate-700 text-center">{category.categoryName}</p>
+                            <p className="text-xs text-slate-700 text-center">{category.categoryName}</p>
                         </div>
                     ))
                 } 
