@@ -6,7 +6,9 @@ import { Tooltip } from "react-tooltip";
 import { useState } from "react";
 import photoUpload from "../../Api/photoUpload";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { FaCamera } from "react-icons/fa6";
+import { FaCamera, FaIdCard } from "react-icons/fa6";
+import { MdPeople } from "react-icons/md";
+import { IoMdMail } from "react-icons/io";
 
 
 const Profile = () => {
@@ -83,19 +85,19 @@ const Profile = () => {
                     </div>
 
                 </div>
-                <div className="flex flex-col justify-around  mt-4 text-lg font-extralight">
-                    <div>
-                        <p > <span className="font-semibold ">User: </span>{user?.name}</p>
+                <div className="flex flex-col justify-center mt-4 text-lg font-extralight">
+                    <div className="flex justify-center">
+                        <p className="text-xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent" >{user?.name}</p>
                     </div>
-                    <div>
-                        <p><span className="font-semibold ">Role: </span>{user?.role}</p>
+                    <div className="flex justify-center">
+                        <p className="flex items-center gap-1 md:gap-2"> <MdPeople></MdPeople> {user?.role}</p>
                     </div>
-                    <div>
-                        <p><span className="font-semibold ">User id: </span>{user?._id}</p>
+                    <div className="flex justify-center">
+                        <p className="flex items-center gap-1 md:gap-2"><FaIdCard /> {user?._id}</p>
                     </div>
                    
-                    <div>
-                        <p><span className="font-semibold ">Email: </span>{user?.email}</p>
+                    <div className="flex justify-center">
+                        <p className="flex items-center gap-1 md:gap-2"> <IoMdMail /> {user?.email}</p>
                     </div>
                 </div>
 

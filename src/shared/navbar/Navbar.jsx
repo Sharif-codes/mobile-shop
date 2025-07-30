@@ -73,7 +73,7 @@ const Navbar = () => {
 
           <li><Link to="/contact">Contact</Link></li>
           <li><Link to="/settings">Settings</Link></li>
-          {userData?.role === "buyer" ? <li><Link className="flex gap-1" to="/dashboard/cart"><div><FiShoppingCart></FiShoppingCart></div><div>{cart?.length}</div></Link></li> : ""}
+          {userData?.role === "buyer" ? <li><Link className="flex gap-1 " to="/dashboard/cart"><div className=""><FiShoppingCart className=""></FiShoppingCart></div><div>{cart?.length}</div></Link></li> : ""}
         </ul>
       </div>
 

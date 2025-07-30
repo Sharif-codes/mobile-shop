@@ -151,8 +151,8 @@ const ProductCard = ({ product }) => {
     }
     return (
 
-        <div className="rounded-md mx-4 mt-4 border-1 shadow-lg shadow-slate-200 flex flex-col justify-between md:w-40 lg:w-52" >
-            <div onClick={handleDetailsPage} className="group  cursor-pointer flex justify-center p-1">
+        <div className="rounded-md mx-2 pt-3 border-1 flex flex-col justify-between w-36 md:w-40 lg:w-48 bg-base-200" >
+            <div onClick={handleDetailsPage} className="group  cursor-pointer flex justify-center p-1 bg-base-200">
                 <img src={product?.photo_url} alt="A beautiful landscape"
                     className=" flex justify-center h-20 md:h-24 object-cover bg-transparent 
               transition-transform duration-300 ease-in-out
@@ -160,10 +160,10 @@ const ProductCard = ({ product }) => {
             </div>
 
             <div className="p-2 text-center">
-                <h2 className="text-sm text-center font-semibold">{product?.name}</h2>
-                <h2 className="text-xs font-semibold ">Brand: {product?.brand}</h2>
-                {location.pathname === "/dashboard/wishList" ? "" : <h2 className="text-xs text-red-600">Price: {product?.price}Tk.</h2>}
-                {location.pathname === "/dashboard/wishList" ? "" : location.pathname === "/dashboard/cart" ? <h2 className="text-xs font-semibold">Quantity: {product?.cartQuantity}</h2> : <h2 className="text-xs text-green-600">In stock: {product?.quantity}</h2>}
+                <h2 className="text-xs md:text-sm text-center font-semibold">{product?.name}</h2>
+                <h2 className="text-[10px] md:text-xs font-semibold ">Brand: {product?.brand}</h2>
+                {location.pathname === "/dashboard/wishList" ? "" : <h2 className="text-[10px] md:text-xs text-sky-600">Price: {product?.price}Tk.</h2>}
+                {location.pathname === "/dashboard/wishList" ? "" : location.pathname === "/dashboard/cart" ? <h2 className="text-[10px] md:text-xs font-semibold">Quantity: {product?.cartQuantity}</h2> : <h2 className="text-[10px] md:text-xs text-green-400">In stock: {product?.quantity}</h2>}
                 {location.pathname === "/dashboard/cart" || location.pathname === "/dashboard/wishList" ? "" : <h2 className="text-xs text-red-600 flex items-center justify-center"> <Rating
                     style={{ maxWidth: 100 }}
                     value={product?.rating}
@@ -173,11 +173,11 @@ const ProductCard = ({ product }) => {
 
                 <div className="mt-2">
                     {role == "buyer" && location.pathname === "/products" && (
-                        <div className="flex justify-between gap-1 ">
-                            <button onClick={handleDetailsPage} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
+                        <div className="flex gap-1 ">
+                            <button onClick={handleDetailsPage} className="btn w-1/2 btn-sm text-[7px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
                                 Details
                             </button>
-                            <button onClick={()=>handleAddToCart()} className="btn w-1/2 btn-sm text-[8px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md border-0">
+                            <button onClick={()=>handleAddToCart()} className="btn w-1/2 btn-sm text-[7px] lg:text-xs md:text-[8px] hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:text-slate-100 rounded-md">
                                 Add to Cart
                             </button>
                         </div>
